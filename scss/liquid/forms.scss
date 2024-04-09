@@ -31,3 +31,21 @@ select.form-control[multiple] {
   width: 100%;
   margin-top: .25rem;
 }
+
+.form-group.row.fitem {
+  align-items: center;
+}
+
+.mform:not(.full-width-labels) .col-form-label.text-right {
+  display: flex;
+  justify-content: flex-start;
+  gap: .25rem;
+
+  @include media-breakpoint-up(md) {
+    justify-content: flex-end;
+  }
+
+  > .form-label-addon {
+    margin-left: initial;
+  }
+}
