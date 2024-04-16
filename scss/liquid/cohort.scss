@@ -1,0 +1,9 @@
+body.path-cohort #page-content {
+  .nav.nav-tabs {
+    flex-direction: column;
+
+    @include media-breakpoint-up(sm) {
+      flex-direction: row;
+    }
+  }
+}
