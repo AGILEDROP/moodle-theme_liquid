@@ -1,0 +1,35 @@
+.tertiary-navigation > .row {
+  column-gap: 0;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1em;
+
+  &>.navitem {
+    flex-grow: 1;
+    flex-basis: 15rem;
+    margin: 0;
+
+    .simplesearchform {
+      width: 100%;
+    }
+
+    form {
+      padding-right: 0;
+    }
+
+    .input-group {
+      flex-wrap: nowrap;
+      max-width: 25em;
+      width: 100%;
+
+      input {
+        min-width: 10rem;
+        width: 100%;
+      }
+    }
+  }
+
+  &>div:last-child {
+
+  }
+}
