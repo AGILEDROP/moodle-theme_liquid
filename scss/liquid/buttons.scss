@@ -7,3 +7,11 @@
     color: $text-on-secondary;
   }
 }
+
+.singlebutton {
+  margin: $spacer * 0.25;
+
+  + .singlebutton {
+    margin-left: $spacer * 0.25;
+  }
+}
