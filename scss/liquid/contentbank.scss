@@ -1,0 +1,63 @@
+.content-bank-container {
+  display: grid;
+  grid-template-areas:
+    'search search'
+    'button-add button-upload'
+    'category-course category-course'
+    'buttons-layout buttons-layout'
+    'content content';
+  gap: 0.5rem;
+
+  @include media-breakpoint-up(md) {
+    grid-template-areas:
+      'search button-add button-upload buttons-layout'
+      'category-course category-course category-course category-course'
+      'content content content content';
+    grid-template-columns: auto auto auto 1fr;
+  }
+
+  .cb-search-container {
+    grid-area: search;
+
+    input {
+      @include media-breakpoint-up(md) {
+        min-width: 20rem;
+        max-width: 30rem;
+        width: 30vw;
+      }
+    }
+  }
+
+  .button-add {
+    grid-area: button-add;
+
+    > div {
+      width: 100%;
+
+      @include media-breakpoint-up(md) {
+        width: fit-content;
+      }
+    }
+  }
+
+  .button-upload {
+    grid-area: button-upload;
+
+    @include media-breakpoint-up(md) {
+      width: fit-content;
+    }
+  }
+
+  .cb-navigation-container {
+    grid-area: category-course;
+  }
+
+  .buttons-layout {
+    grid-area: buttons-layout;
+    margin-left: auto;
+  }
+
+  .content {
+    grid-area: content;
+  }
+}
