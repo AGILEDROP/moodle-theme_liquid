@@ -1,0 +1,63 @@
+body {
+  --allowed-roles: 'Roles with permissions';
+  --prohibited-roles: 'Prohibited';
+}
+
+@include media-breakpoint-down(sm) {
+  body#page-admin-roles-permissions table#permissions {
+    display: grid;
+
+    thead {
+      display: grid;
+
+      tr {
+        display: grid;
+        grid-template-columns: 1fr auto;
+      }
+
+      th:nth-last-child(-n+2) {
+        display: none;
+      }
+    }
+
+    tbody > tr {
+      display: grid;
+      grid-template-areas:
+        'name risks'
+        'allowedroles risks'
+        'forbiddenroles risks';
+      grid-template-columns: auto 1.5rem;
+      margin-bottom: 1rem;
+
+      > th.name {
+        grid-area: name;
+      }
+
+      > td.risks {
+        grid-area: risks;
+        display: flex;
+        flex-direction: column;
+      }
+
+      > td.allowedroles {
+        grid-area: allowedroles;
+
+        &::before {
+          content: var(--allowed-roles) ':';
+          display: block;
+          font-weight: bold;
+        }
+      }
+
+      > td.forbiddenroles {
+        grid-area: forbiddenroles;
+
+        &::before {
+          content: var(--prohibited-roles) ':';
+          display: block;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
