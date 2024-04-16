@@ -1,0 +1,11 @@
+.generaltable {
+  th, td {
+    text-align: center;
+  }
+
+  thead th,
+  thead td {
+    vertical-align: middle;
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+}
