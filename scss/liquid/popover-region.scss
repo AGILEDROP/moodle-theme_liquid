@@ -5,4 +5,43 @@
           color: $body-color;
       }
   }
+  .popover-region-notifications {
+    > .popover-region-container {
+      height: calc(100vh - 4.7rem);
+      right: -80px;
+      @media (min-width: 481px) {
+        max-height: 500px;
+      }
+
+      .popover-region-content-container {
+        height: calc(100% - 80px);
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    .popover-region {
+      .popover-region-container {
+        top: $navbar-height;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    .popover-region {
+      .popover-region-container {
+        top: $navbar-height;
+        right: -110px;
+      }
+    }
+  }
+}
+
+.popover-region-header-container {
+  padding: 1em 1em 2.5em;
 }
