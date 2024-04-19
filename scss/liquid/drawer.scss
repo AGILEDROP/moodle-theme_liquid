@@ -43,3 +43,7 @@
 .drawercontent {
   padding: 1rem;
 }
+
+[data-region=right-hand-drawer].drawer {
+  z-index: $zindex-sticky + 10;
+}
