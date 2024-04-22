@@ -17,6 +17,10 @@
   
         #region-main {
           padding: 0;
+
+          [role="main"] > .box.generalbox {
+            width: 100%;
+          }
         }
       }
     }
