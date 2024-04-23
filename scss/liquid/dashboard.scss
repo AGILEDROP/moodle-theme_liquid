@@ -52,22 +52,36 @@
 }
 
 .maincalendar {
+  .header {
+    select, button {
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      margin-left: 0.25rem;
+    }
+  }
+
   .controls {
     width: 100%;
-    margin: 1rem 0 1.25rem;
+    margin: 0.5rem 0 1.25rem;
 
     .calendar-controls {
       display: flex;
       align-items: center;
 
       .arrow_link {
-        min-width: 6rem;
+        min-width: 6.3rem;
         flex: 0 0 auto;
       }
 
       .current {
         margin: 0;
         flex: 1 1 auto;
+
+        @media (max-width: 400px) {
+          font-size: 1rem;
+        }
       }
     }
   }
