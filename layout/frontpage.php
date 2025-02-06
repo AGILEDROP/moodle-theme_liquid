@@ -32,10 +32,6 @@ $PAGE->requires->js_call_amd('theme_liquid/frontpage', 'init');
 
 $addblockbutton = $OUTPUT->addblockbutton();
 
-if (defined('BEHAT_SITE_RUNNING') && get_user_preferences('behat_keep_drawer_closed') != 1) {
-    $blockdraweropen = true;
-}
-
 $extraclasses = ['frontpage'];
 if (theme_liquid_setting('leftnavigation') == 0) {
     $extraclasses[] = 'no-left-nav';
@@ -46,7 +42,6 @@ $secondarynavigation = false;
 $primary = new core\navigation\output\primary($PAGE);
 $renderer = $PAGE->get_renderer('core');
 $primarymenu = $primary->export_for_template($renderer);
-$buildregionmainsettings = !$PAGE->include_region_main_settings_in_header_actions() && !$PAGE->has_secondary_navigation();
 
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
