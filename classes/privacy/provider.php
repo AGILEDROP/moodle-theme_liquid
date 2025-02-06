@@ -26,8 +26,6 @@ namespace theme_liquid\privacy;
 
 use core_privacy\local\metadata\null_provider;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy provider implementation for theme_liquid.
  *
