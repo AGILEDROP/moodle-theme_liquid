@@ -8,7 +8,7 @@ define([], function() {
         };
 
         const updateCheckboxes = function(checked) {
-            darkThemeToggle.forEach(function (checkbox) {
+            darkThemeToggle.forEach(function(checkbox) {
                 checkbox.checked = checked;
             });
         };
