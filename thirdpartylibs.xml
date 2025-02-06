@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>js/swiper</location>
+        <name>SwiperJs</name>
+        <version>11.0.5</version>
+        <license>MIT</license>
+        <repository>https://github.com/nolimits4web/swiper</repository>
+    </library>
+</libraries>
