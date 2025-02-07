@@ -17,6 +17,8 @@
 /**
  * Hook callbacks for theme_liquid.
  *
+ * @package    theme_liquid
+ *
  * @copyright  2025 Agiledrop ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
