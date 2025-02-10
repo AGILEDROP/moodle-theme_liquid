@@ -185,3 +185,19 @@ function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forc
         send_file_not_found();
     }
 }
+
+/**
+ * Get the current user preferences that are available
+ *
+ * @return array[]
+ */
+function theme_liquid_user_preferences(): array {
+    return [
+        'theme-dark-mode' => [
+            'type' => PARAM_ALPHA,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+    ];
+}
