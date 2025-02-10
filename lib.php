@@ -107,6 +107,9 @@ function theme_liquid_get_extra_scss($theme) {
 /**
  * Set HTML attributes for dark mode.
  *
+ *  This is a legacy callback that is used for compatibility with older Moodle versions.
+ *  Moodle 4.4+ will use theme_liquid\hook_callbacks::before_html_attributes instead.
+ *
  * @return array An associative array of HTML attributes.
  */
 function theme_liquid_add_htmlattributes() {
