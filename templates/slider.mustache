@@ -45,11 +45,14 @@
                     <div class="swiper-slide">
                         {{#slidelink}}
                             <a href="{{{slidelink}}}" class="ratio ratio-16x9">
-                                {{#slideimage}}
-                                    <div class="image-wrapper">
-                                        <img src="{{{slideimage}}}">
-                                    </div>
-                                {{/slideimage}}
+                                <div class="image-wrapper">
+                                    {{#slideimage}}
+                                        <img src="{{{slideimage}}}" alt="{{{slidetext}}}">
+                                    {{/slideimage}}
+                                    {{^slideimage}}
+                                        <img src="{{config.wwwroot}}/theme/liquid/pix/sample_slider.webp" alt="{{{slidetext}}}">
+                                    {{/slideimage}}
+                                </div>
                                 {{#slidetext}}
                                     <div class="content-wrapper">
                                         {{{slidetext}}}
