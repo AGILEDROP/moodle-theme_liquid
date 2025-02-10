@@ -30,7 +30,7 @@ $page = new admin_settingpage('theme_liquid_frontpagefaq', get_string('frontpage
 $name = 'theme_liquid/showfaq';
 $title = get_string('showfaq', 'theme_liquid');
 $desc = get_string('showfaqdesc', 'theme_liquid');
-$default = 1;
+$default = 0;
 $setting = new admin_setting_configcheckbox($name, $title, $desc, $default);
 $page->add($setting);
 

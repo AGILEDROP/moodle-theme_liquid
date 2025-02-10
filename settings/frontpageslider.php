@@ -38,7 +38,7 @@ $page->add($setting);
 $name = 'theme_liquid/numberslides';
 $title = get_string('numberslides', 'theme_liquid');
 $desc = get_string('numberslidesdesc', 'theme_liquid');
-$default = 3;
+$default = 1;
 $options = [
     1 => '1',
     2 => '2',
@@ -86,7 +86,7 @@ for ($i = 1; $i <= $numberslides; $i++) {
     $name = 'theme_liquid/slide' . $i . 'link';
     $title = get_string('slidelink', 'theme_liquid');
     $desc = get_string('slidelinkdesc', 'theme_liquid');
-    $default = 'http://www.example.com/';
+    $default = '#';
     $setting = new admin_setting_configtext($name, $title, $desc, $default);
     $page->add($setting);
 }
