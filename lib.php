@@ -113,8 +113,17 @@ function theme_liquid_get_extra_scss($theme) {
  * @return array An associative array of HTML attributes.
  */
 function theme_liquid_add_htmlattributes() {
+    global $USER;
+
     $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
     $theme = ($darkthemecookie === '1') ? 'dark' : 'light';
+
+    if (!isguestuser() && isloggedin()) {
+        $themeuserpreferences = get_user_preferences('theme-dark-mode', null, $USER->id);
+        if (!is_null($themeuserpreferences['theme-dark-mode']) && $themeuserpreferences['theme-dark-mode'] === true) {
+            $theme = 'dark';
+        }
+    }
 
     return [
         'data-bs-theme' => $theme,
