@@ -41,7 +41,7 @@ class hook_callbacks {
 
         if (!isguestuser() && isloggedin()) {
             $themeuserpreferences = get_user_preferences('theme-dark-mode', null, $USER->id);
-            $theme = $themeuserpreferences['theme-dark-mode'] ?? $theme;
+            $theme = $themeuserpreferences ?? $theme;
         }
 
         $hook->add_attribute('data-bs-theme', $theme);
