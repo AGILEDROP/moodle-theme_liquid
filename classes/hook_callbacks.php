@@ -40,7 +40,7 @@ class hook_callbacks {
         $theme = ($darkthemecookie === '1') ? 'dark' : 'light';
 
         if (!isguestuser() && isloggedin()) {
-            $themeuserpreferences = get_user_preferences('theme-dark-mode', null, $USER->id);
+            $themeuserpreferences = get_user_preferences('theme_liquid-dark-mode', null, $USER->id);
             $theme = $themeuserpreferences ?? $theme;
         }
 

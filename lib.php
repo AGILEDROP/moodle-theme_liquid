@@ -119,8 +119,8 @@ function theme_liquid_add_htmlattributes() {
     $theme = ($darkthemecookie === '1') ? 'dark' : 'light';
 
     if (!isguestuser() && isloggedin()) {
-        $themeuserpreferences = get_user_preferences('theme-dark-mode', null, $USER->id);
-        if (!is_null($themeuserpreferences['theme-dark-mode']) && $themeuserpreferences['theme-dark-mode'] === true) {
+        $themeuserpreferences = get_user_preferences('theme_liquid-dark-mode', null, $USER->id);
+        if (!is_null($themeuserpreferences['theme_liquid-dark-mode']) && $themeuserpreferences['theme_liquid-dark-mode'] === true) {
             $theme = 'dark';
         }
     }
@@ -202,7 +202,7 @@ function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forc
  */
 function theme_liquid_user_preferences(): array {
     return [
-        'theme-dark-mode' => [
+        'theme_liquid-dark-mode' => [
             'type' => PARAM_ALPHA,
             'null' => NULL_NOT_ALLOWED,
             'default' => false,

@@ -44,7 +44,7 @@ const getCookie = async (name) => {
         cookie = parts.pop().split(';').shift();
     }
 
-    const userPreference = await getUserPreference('theme-dark-mode');
+    const userPreference = await getUserPreference('theme_liquid-dark-mode');
     if (userPreference !== null) {
         cookie = userPreference === "dark" ? "1" : "0";
     }
@@ -59,7 +59,7 @@ const getCookie = async (name) => {
  */
 const setCookie = (name, value) => {
     document.cookie = `${name}=${value}; path=/; SameSite=None; Secure`;
-    setUserPreference('theme-dark-mode', value === "0" ? "light" : "dark");
+    setUserPreference('theme_liquid-dark-mode', value === "0" ? "light" : "dark");
 };
 
 const handleCheckboxChange = (e) => {

@@ -45,7 +45,7 @@ class provider implements
     user_preference_provider {
 
     /** The user preferences for light or dark theme. */
-    const THEME_MODE = 'theme-dark-mode';
+    const THEME_MODE = 'theme_liquid-dark-mode';
 
     /**
      * Returns meta data about this system.
