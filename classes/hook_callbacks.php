@@ -34,9 +34,16 @@ class hook_callbacks {
      * @param before_html_attributes $hook
      */
     public static function before_html_attributes(before_html_attributes $hook): void {
-        $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
+        global $USER;
 
+        $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
         $theme = ($darkthemecookie === '1') ? 'dark' : 'light';
+
+        if (!isguestuser() && isloggedin()) {
+            $themeuserpreferences = get_user_preferences('theme_liquid-dark-mode', null, $USER->id);
+            $theme = $themeuserpreferences ?? $theme;
+        }
+
         $hook->add_attribute('data-bs-theme', $theme);
     }
 }

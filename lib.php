@@ -113,8 +113,17 @@ function theme_liquid_get_extra_scss($theme) {
  * @return array An associative array of HTML attributes.
  */
 function theme_liquid_add_htmlattributes() {
+    global $USER;
+
     $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
     $theme = ($darkthemecookie === '1') ? 'dark' : 'light';
+
+    if (!isguestuser() && isloggedin()) {
+        $themeuserpreferences = get_user_preferences('theme_liquid-dark-mode', null, $USER->id);
+        if (!is_null($themeuserpreferences['theme_liquid-dark-mode']) && $themeuserpreferences['theme_liquid-dark-mode'] === true) {
+            $theme = 'dark';
+        }
+    }
 
     return [
         'data-bs-theme' => $theme,
@@ -184,4 +193,20 @@ function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forc
     } else {
         send_file_not_found();
     }
+}
+
+/**
+ * Get the current user preferences that are available
+ *
+ * @return array[]
+ */
+function theme_liquid_user_preferences(): array {
+    return [
+        'theme_liquid-dark-mode' => [
+            'type' => PARAM_ALPHA,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+    ];
 }

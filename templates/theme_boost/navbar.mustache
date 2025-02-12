@@ -153,3 +153,9 @@
 {{#secondarymoremenu}}
     <div class="secondary-nav-helper"></div>{{/secondarymoremenu}}
 {{> theme_boost/primary-drawer-mobile }}
+{{#js}}
+M.util.js_pending('theme_liquid/darkmode:load');
+require(['theme_liquid/darkmode'], function() {
+    M.util.js_complete('theme_liquid/darkmode:load');
+});
+{{/js}}
