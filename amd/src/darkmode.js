@@ -21,73 +21,79 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {setUserPreference} from 'core_user/repository';
+import {getUserPreference, setUserPreference} from 'core_user/repository';
 
-const init = () => {
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    const darkThemeToggle = document.querySelectorAll(".darktheme-checkbox");
+const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+const darkThemeToggle = document.querySelectorAll(".darktheme-checkbox");
 
-    const setTheme = function(theme) {
-        document.documentElement.setAttribute('data-bs-theme', theme);
-    };
+const setTheme = (theme) => {
+    document.documentElement.setAttribute('data-bs-theme', theme);
+};
 
-    const updateCheckboxes = function(checked) {
-        darkThemeToggle.forEach(function(checkbox) {
-            checkbox.checked = checked;
-        });
-    };
+/**
+ * Retrieves the value of a cookie by name.
+ * @param {string} name - The name of the cookie.
+ * @returns {string|null} - The value of the cookie or null if not found.
+ */
+const getCookie = async (name) => {
+    let cookie = null;
 
-    const initializeTheme = function() {
-        const storedDarkThemeSetting = getCookie("darkThemeEnabled");
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        cookie = parts.pop().split(';').shift();
+    }
 
-        if (storedDarkThemeSetting === null) {
-            setCookie("darkThemeEnabled", darkThemeMq.matches ? "1" : "0");
-            updateCheckboxes(darkThemeMq.matches);
-            setTheme(darkThemeMq.matches ? 'dark' : 'light');
-        } else {
-            const isDarkTheme = storedDarkThemeSetting === "1";
-            updateCheckboxes(isDarkTheme);
-            setTheme(isDarkTheme ? 'dark' : 'light');
-        }
-    };
+    const userPreference = await getUserPreference('theme-dark-mode');
+    if (userPreference !== null) {
+        cookie = userPreference === "dark" ? "1" : "0";
+    }
 
-    const handleCheckboxChange = function(e) {
-        const isDarkThemeEnabled = e.target.checked;
+    return cookie;
+};
 
-        setTheme(isDarkThemeEnabled ? 'dark' : 'light');
-        setCookie("darkThemeEnabled", isDarkThemeEnabled ? "1" : "0");
-        updateCheckboxes(isDarkThemeEnabled);
-    };
+/**
+ * Sets a cookie with the given name and value.
+ * @param {string} name - The name of the cookie.
+ * @param {string} value - The value to set for the cookie.
+ */
+const setCookie = (name, value) => {
+    document.cookie = `${name}=${value}; path=/; SameSite=None; Secure`;
+    setUserPreference('theme-dark-mode', value === "0" ? "light" : "dark");
+};
 
+const handleCheckboxChange = (e) => {
+    const isDarkThemeEnabled = e.target.checked;
+
+    setTheme(isDarkThemeEnabled ? 'dark' : 'light');
+    setCookie("darkThemeEnabled", isDarkThemeEnabled ? "1" : "0");
+    updateCheckboxes(isDarkThemeEnabled);
+};
+
+const updateCheckboxes = (checked) => {
+    darkThemeToggle.forEach(function(checkbox) {
+        checkbox.checked = checked;
+    });
+};
+
+const initializeTheme = async () => {
+    const storedDarkThemeSetting = await getCookie("darkThemeEnabled");
+
+    if (storedDarkThemeSetting === null) {
+        setCookie("darkThemeEnabled", darkThemeMq.matches ? "1" : "0");
+        updateCheckboxes(darkThemeMq.matches);
+        setTheme(darkThemeMq.matches ? 'dark' : 'light');
+    } else {
+        const isDarkTheme = storedDarkThemeSetting === "1";
+        updateCheckboxes(isDarkTheme);
+        setTheme(isDarkTheme ? 'dark' : 'light');
+    }
+};
+
+export const init = () => {
     darkThemeToggle.forEach(function(checkbox) {
         checkbox.addEventListener("change", handleCheckboxChange);
     });
 
     initializeTheme();
-
-    /**
-     * Retrieves the value of a cookie by name.
-     * @param {string} name - The name of the cookie.
-     * @returns {string|null} - The value of the cookie or null if not found.
-     */
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) {
-            return parts.pop().split(';').shift();
-        }
-        return null;
-    }
-
-    /**
-     * Sets a cookie with the given name and value.
-     * @param {string} name - The name of the cookie.
-     * @param {string} value - The value to set for the cookie.
-     */
-    function setCookie(name, value) {
-        document.cookie = `${name}=${value}; path=/; SameSite=None; Secure`;
-        setUserPreference('theme-dark-mode', value === "0" ? "light" : "dark");
-    }
 };
-
-init();
