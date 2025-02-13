@@ -35,7 +35,7 @@ const setTheme = (theme) => {
  * @param {string} name - The name of the cookie.
  * @returns {string|null} - The value of the cookie or null if not found.
  */
-const getCookie = async (name) => {
+const getCookie = async(name) => {
     let cookie = null;
 
     const value = `; ${document.cookie}`;
@@ -76,7 +76,7 @@ const updateCheckboxes = (checked) => {
     });
 };
 
-const initializeTheme = async () => {
+const initializeTheme = async() => {
     const storedDarkThemeSetting = await getCookie("darkThemeEnabled");
 
     if (storedDarkThemeSetting === null) {

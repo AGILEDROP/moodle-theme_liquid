@@ -18,15 +18,15 @@
  * Liquid.
  *
  * @package    theme_liquid
- * @copyright  2023 Agiledrop ltd.
+ * @copyright  2025 Agiledrop ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_liquid';
-$plugin->version = 2025021200;
-$plugin->release = '1.0.1';
+$plugin->version = 2025021300;
+$plugin->release = '1.0.2';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires = 2023100400;
 $plugin->dependencies = [
