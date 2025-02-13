@@ -18,7 +18,7 @@
  * Liquid.
  *
  * @package    theme_liquid
- * @copyright  2023 Agiledrop ltd.
+ * @copyright  2025 Agiledrop ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

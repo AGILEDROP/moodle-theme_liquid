@@ -28,8 +28,6 @@ use core_privacy\local\metadata\collection;
 use core_privacy\local\request\user_preference_provider;
 use core_privacy\local\request\writer;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy provider implementation for theme_liquid.
  *
