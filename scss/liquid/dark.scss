@@ -14,6 +14,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     h4,
     h5,
     h6,
+    .table,
     .h1,
     .h2,
     .h3,
@@ -51,13 +52,18 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .page-link:hover,
     .activity-add,
     .block-add,
+    .accordion-button,
+    .preference-table thead tr,
+    .preference-table tr:not(.preference-row),
+    .navbar .navbar-brand,
     .navbar .secondary-navbar .nav-tabs .nav-link:hover,
     .navbar .secondary-navbar .nav-tabs .nav-link:focus,
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
     .navbar .main-navbar .nav-link:hover,
     .navbar .main-navbar .nav-link:focus,
     .navbar .main-navbar .nav-link.active {
-        color: $dark-link-color;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-link-color !important;
     }
 
     .btn.text-primary,
@@ -76,6 +82,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .block-add,
     .btn.btn-icon:hover,
     .btn.btn-icon:focus,
+    .btn.btn-icon.icons-collapse-expand,
     .path-mod .activity-header:not(:empty),
     .generaltable thead .sticky-column,
     .generaltable tbody tr:nth-of-type(2n),
@@ -159,6 +166,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     body#page-question-type-multichoice div[id^="fitem_id_"][id*="fraction_"],
     body#page-question-type-multichoice div[id^="fitem_id_"][id*="feedback_"],
     body#page-question-type-multichoice div[id^="fitem_id_"][id*="answer_"],
+    .preferences-container .preference-table,
     .popover-region-container,
     .popover-region-footer-container,
     .popover-region-header-container {
@@ -185,6 +193,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     #page-mod-quiz-edit ul.slots li.section li.activity .instancemaxmarkcontainer,
     .popover-region-container,
     .popover-region-footer-container,
+    .content-item-container.unread,
     .no-left-nav .navbar .secondary-navbar nav,
     .swiper-slide .ratio {
         background-color: #101216;

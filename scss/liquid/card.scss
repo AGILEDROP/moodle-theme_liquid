@@ -9,3 +9,20 @@
         border-right: 1px solid rgba(0, 0, 0, .125);
     }
 }
+
+.card-deck {
+    @include media-breakpoint-up(sm) {
+        gap: 1.5rem;
+        margin-right: $card-deck-margin;
+        margin-left: $card-deck-margin;
+
+        .card {
+            margin: 0;
+            min-width: 14rem;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        margin-bottom: $card-deck-margin;
+    }
+}
