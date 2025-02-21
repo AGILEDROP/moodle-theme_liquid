@@ -8,18 +8,18 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     background-color: $dark-bg-color;
 
     body,
-    h1,
     h2,
     h3,
     h4,
     h5,
     h6,
-    .h1,
+    .table,
     .h2,
     .h3,
     .h4,
     .h5,
     .h6,
+    .generaltable,
     .navbar-nav .popover-region > * > .icon,
     .navbar .secondary-navbar .nav-tabs .nav-link,
     .navbar .main-navbar .nav-link,
@@ -28,13 +28,16 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .dropdown-menu,
     .form-control,
     .custom-select,
-    .btn:not(.btn-outline-secondary):not(.btn-outline-primary),
+    .btn:not(.btn-outline-secondary):not(.btn-outline-primary):not(.btn-primary):not(.btn-secondary),
     .frontpage-slider .swiper-slide .ratio .content-wrapper,
-    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn) {
+    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn),
+    body#page-my-index #managecoursesform button {
         color: $dark-text-color;
     }
 
     a,
+    h1,
+    .h1,
     .maincalendar .calendarmonth td a,
     .maincalendar .calendarmonth th a,
     .maincalendar .calendarmonth td:hover .day-number-circle,
@@ -51,19 +54,39 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .page-link:hover,
     .activity-add,
     .block-add,
+    .accordion-button,
+    .preference-table thead tr,
+    .preference-table tr:not(.preference-row),
+    .navbar .navbar-brand,
     .navbar .secondary-navbar .nav-tabs .nav-link:hover,
     .navbar .secondary-navbar .nav-tabs .nav-link:focus,
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
     .navbar .main-navbar .nav-link:hover,
     .navbar .main-navbar .nav-link:focus,
     .navbar .main-navbar .nav-link.active {
-        color: $dark-link-color;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-link-color !important;
     }
 
     .btn.text-primary,
     textarea {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
+    }
+
+    body#page-admin-index {
+        h3 {
+            color: $headings-color;
+        }
+
+        .checkforupdates button {
+            color: $dark-link-color;
+        }
+
+        #region-main-box a {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: #14273e !important;
+        }
     }
 
     .fp-thumbnail {
@@ -76,6 +99,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .block-add,
     .btn.btn-icon:hover,
     .btn.btn-icon:focus,
+    .btn.btn-icon.icons-collapse-expand,
     .path-mod .activity-header:not(:empty),
     .generaltable thead .sticky-column,
     .generaltable tbody tr:nth-of-type(2n),
@@ -159,6 +183,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     body#page-question-type-multichoice div[id^="fitem_id_"][id*="fraction_"],
     body#page-question-type-multichoice div[id^="fitem_id_"][id*="feedback_"],
     body#page-question-type-multichoice div[id^="fitem_id_"][id*="answer_"],
+    .preferences-container .preference-table,
     .popover-region-container,
     .popover-region-footer-container,
     .popover-region-header-container {
@@ -185,6 +210,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     #page-mod-quiz-edit ul.slots li.section li.activity .instancemaxmarkcontainer,
     .popover-region-container,
     .popover-region-footer-container,
+    .content-item-container.unread,
     .no-left-nav .navbar .secondary-navbar nav,
     .swiper-slide .ratio {
         background-color: #101216;
@@ -271,6 +297,21 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .bg-pulse-grey {
         animation: bg-pulse-grey-dark 2s infinite linear;
+    }
+
+    #page-admin-local-codechecker-index .local_codechecker_results {
+        .fail.error {
+            color: #dc2424;
+        }
+
+        .good {
+            color: #2bab2b;
+        }
+
+        .sourcecode pre {
+            background-color: $dark-bg-color;
+            color: $dark-text-color;
+        }
     }
 }
 
