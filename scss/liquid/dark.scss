@@ -8,19 +8,18 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     background-color: $dark-bg-color;
 
     body,
-    h1,
     h2,
     h3,
     h4,
     h5,
     h6,
     .table,
-    .h1,
     .h2,
     .h3,
     .h4,
     .h5,
     .h6,
+    .generaltable,
     .navbar-nav .popover-region > * > .icon,
     .navbar .secondary-navbar .nav-tabs .nav-link,
     .navbar .main-navbar .nav-link,
@@ -29,13 +28,16 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .dropdown-menu,
     .form-control,
     .custom-select,
-    .btn:not(.btn-outline-secondary):not(.btn-outline-primary),
+    .btn:not(.btn-outline-secondary):not(.btn-outline-primary):not(.btn-primary):not(.btn-secondary),
     .frontpage-slider .swiper-slide .ratio .content-wrapper,
-    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn) {
+    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn),
+    body#page-my-index #managecoursesform button {
         color: $dark-text-color;
     }
 
     a,
+    h1,
+    .h1,
     .maincalendar .calendarmonth td a,
     .maincalendar .calendarmonth th a,
     .maincalendar .calendarmonth td:hover .day-number-circle,
@@ -70,6 +72,21 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     textarea {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
+    }
+
+    body#page-admin-index {
+        h3 {
+            color: $headings-color;
+        }
+
+        .checkforupdates button {
+            color: $dark-link-color;
+        }
+
+        #region-main-box a {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: #14273e !important;
+        }
     }
 
     .fp-thumbnail {
@@ -280,6 +297,21 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .bg-pulse-grey {
         animation: bg-pulse-grey-dark 2s infinite linear;
+    }
+
+    #page-admin-local-codechecker-index .local_codechecker_results {
+        .fail.error {
+            color: #dc2424;
+        }
+
+        .good {
+            color: #2bab2b;
+        }
+
+        .sourcecode pre {
+            background-color: $dark-bg-color;
+            color: $dark-text-color;
+        }
     }
 }
 
