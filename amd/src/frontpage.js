@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['theme_liquid/swiper'], function(Swiper) {
+define([], function() {
     /**
      * Initializes Swiper instances on all elements with the 'swiper' class.
      */
@@ -30,6 +30,7 @@ define(['theme_liquid/swiper'], function(Swiper) {
 
         swipers.forEach(function(swiperElement) {
             var options = JSON.parse(swiperElement.getAttribute('data-swiper-options'));
+            /* global Swiper */
             new Swiper(swiperElement, options);
         });
     }
