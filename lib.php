@@ -205,7 +205,7 @@ function theme_liquid_user_preferences(): array {
         'theme_liquid-dark-mode' => [
             'type' => PARAM_ALPHA,
             'null' => NULL_NOT_ALLOWED,
-            'default' => false,
+            'default' => '0',
             'permissioncallback' => [core_user::class, 'is_current_user'],
         ],
     ];

@@ -67,7 +67,7 @@ class provider implements
 
         if (isset($thememodepref)) {
             $preferencestring = get_string('privacy:thememodelight', 'theme_liquid');
-            if ($thememodepref == 1) {
+            if ($thememodepref === '1') {
                 $preferencestring = get_string('privacy:thememodedark', 'theme_liquid');
             }
             writer::export_user_preference(
