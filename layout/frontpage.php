@@ -28,6 +28,7 @@ require_once($CFG->libdir . '/behat/lib.php');
 require_once($CFG->dirroot . '/course/lib.php');
 
 $PAGE->requires->css(new moodle_url('/theme/liquid/js/swiper/swiper-bundle.min.css'));
+$PAGE->requires->js('/theme/liquid/js/swiper/swiper-bundle.min.js');
 $PAGE->requires->js_call_amd('theme_liquid/frontpage', 'init');
 
 $addblockbutton = $OUTPUT->addblockbutton();
