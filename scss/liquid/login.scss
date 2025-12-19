@@ -61,9 +61,12 @@
                     border-bottom: 0;
                 }
 
+                .fcontainer:not(#id_setpasswordcontainer) {
+                  display: flex;
+                  align-items: flex-end;
+                }
+
                 .fcontainer {
-                    display: flex;
-                    align-items: flex-end;
 
                     .form-group {
                         flex: 1 1 auto;
