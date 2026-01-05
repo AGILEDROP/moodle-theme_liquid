@@ -72,3 +72,21 @@ a:not([class]),
         }
     }
 }
+
+.block_timeline .row > * {
+  width: auto;
+}
+
+.table-responsive {
+  .table {
+    .visually-hidden,
+    .accesshide {
+      position: absolute !important;
+      display: block;
+    }
+  }
+}
+
+a{
+  text-decoration: none;
+}
