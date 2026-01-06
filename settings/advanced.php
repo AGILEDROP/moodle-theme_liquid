@@ -60,19 +60,35 @@ $name = 'theme_liquid/presetfiles';
 $title = get_string('presetfiles', 'theme_liquid');
 $description = get_string('presetfiles_desc', 'theme_liquid');
 
-$setting = new admin_setting_configstoredfile($name, $title, $description, 'preset', 0,
-    ['maxfiles' => 20, 'accepted_types' => ['.scss']]);
+$setting = new admin_setting_configstoredfile(
+    $name,
+    $title,
+    $description,
+    'preset',
+    0,
+    ['maxfiles' => 20, 'accepted_types' => ['.scss']]
+);
 $page->add($setting);
 
 // Raw SCSS to include before the content.
-$setting = new admin_setting_scsscode('theme_liquid/scsspre',
-    get_string('rawscsspre', 'theme_liquid'), get_string('rawscsspre_desc', 'theme_liquid'), '', PARAM_RAW);
+$setting = new admin_setting_scsscode(
+    'theme_liquid/scsspre',
+    get_string('rawscsspre', 'theme_liquid'),
+    get_string('rawscsspre_desc', 'theme_liquid'),
+    '',
+    PARAM_RAW
+);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
 // Raw SCSS to include after the content.
-$setting = new admin_setting_scsscode('theme_liquid/scss', get_string('rawscss', 'theme_liquid'),
-    get_string('rawscss_desc', 'theme_liquid'), '', PARAM_RAW);
+$setting = new admin_setting_scsscode(
+    'theme_liquid/scss',
+    get_string('rawscss', 'theme_liquid'),
+    get_string('rawscss_desc', 'theme_liquid'),
+    '',
+    PARAM_RAW
+);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 

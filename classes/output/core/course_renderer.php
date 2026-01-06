@@ -36,7 +36,6 @@ use moodle_url;
  * $renderer = $PAGE->get_renderer('core','course');
  */
 class course_renderer extends \core_course_renderer {
-
     /**
      * Returns HTML to print list of available courses for the frontpage
      *
@@ -58,8 +57,12 @@ class course_renderer extends \core_course_renderer {
         $courses = \core_course_category::top()->get_courses($chelper->get_courses_display_options());
         $totalcount = \core_course_category::top()->get_courses_count($chelper->get_courses_display_options());
 
-        if (!$totalcount && !$this->page->user_is_editing() && has_capability('moodle/course:create',
-                \context_system::instance())) {
+        if (
+            !$totalcount && !$this->page->user_is_editing() && has_capability(
+                'moodle/course:create',
+                \context_system::instance()
+            )
+        ) {
             return $this->add_new_course_button();
         }
 

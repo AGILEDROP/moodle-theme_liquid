@@ -41,7 +41,6 @@ class provider implements
     \core_privacy\local\metadata\provider,
     // This plugin has some sitewide user preferences to export.
     user_preference_provider {
-
     /** The user preferences for light or dark theme. */
     const THEME_MODE = 'theme_liquid-dark-mode';
 

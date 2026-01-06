@@ -27,7 +27,6 @@ use core\hook\output\before_html_attributes;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class hook_callbacks {
-
     /**
      * Runs before HTTP attributes.
      *
