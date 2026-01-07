@@ -100,6 +100,8 @@
                 }
 
                 .fcontainer {
+                    display: flex;
+                    align-items: flex-end;
 
                     .form-group {
                         flex: 1 1 auto;

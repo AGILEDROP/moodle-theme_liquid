@@ -31,24 +31,25 @@
         "legacyseturl": "/editmode.php"
     }
 }}
+<div class="toggle-holder">
 <div class="d-md-none divider border-left h-75 align-self-center ml-1 mr-3"></div>
 <form action="{{{legacyseturl}}}" method="post" class="d-flex align-items-center editmode-switch-form">
     <div class="input-group">
         <label class="mr-2 mb-0" for="{{uniqid}}-editingswitch">
             {{#str}} editmode {{/str}}
         </label>
-        <div class="custom-control custom-switch">
+        <div class="form-check form-switch">
             <input type="checkbox"{{!
                 }} name="setmode"{{!
                 }}{{#checked}}{{!
                     }} checked{{!
                 }}{{/checked}}{{!
-                }} class="custom-control-input"{{!
+                }} class="form-check-input"{{!
                 }} id="{{uniqid}}-editingswitch"{{!
                 }} data-context="{{{pagecontextid}}}"{{!
                 }} data-pageurl="{{{pageurl}}}"{{!
             }}>
-            <span class="custom-control-label">&nbsp;</span>
+            <span class="form-check-label">&nbsp;</span>
         </div>
     </div>
     <input type="hidden" name="sesskey" value="{{{sesskey}}}">
@@ -58,6 +59,7 @@
         <input type="submit" value="{{#str}}setmode, core{{/str}}">
     </noscript>
 </form>
+</div>
 {{#js}}
     require(['core/edit_switch'], function(editSwitch) {
     editSwitch.init('{{uniqid}}-editingswitch');
