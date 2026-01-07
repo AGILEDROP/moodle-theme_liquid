@@ -23,6 +23,43 @@
     }
 
     &#page-login-forgot_password {
+        #id_setpassword {
+            #fitem_id_username2 {
+                display: flex;
+                gap: 1rem;
+
+                > div {
+                    width: auto;
+                }
+            }
+
+            #fitem_id_passwordpolicyinfo {
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+                background-color: $gray-800;
+                color: $gray-100;
+                margin-bottom: 1rem;
+            }
+
+            [data-bs-theme="dark"] #fitem_id_passwordpolicyinfo {
+                background-color: $gray-100;
+                color: $gray-900;
+            }
+
+            .checkbox {
+                margin-top: 1rem;
+            }
+
+            #fitem_id_password {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .fdescription {
+            max-width: 25rem;
+            width: 100%;
+            margin: 0 auto;
+        }
         .generalbox {
             margin: auto;
             padding: 1rem 2rem;
@@ -30,7 +67,7 @@
 
             @include media-breakpoint-up(lg) {
                 width: 50%;
-                max-width: 800px;
+                max-width: 50rem;
             }
         }
 
@@ -43,7 +80,7 @@
 
             @include media-breakpoint-up(lg) {
                 width: 50%;
-                max-width: 800px;
+                max-width: 50rem;
                 margin: 0;
                 flex: 0 0 auto;
                 justify-content: center;
@@ -53,7 +90,8 @@
 
             fieldset {
                 margin-bottom: 3rem;
-                padding-bottom: 3rem;
+                padding-bottom: 2rem;
+                width: 100%;
 
                 &:last-child {
                     margin-bottom: 0;
@@ -62,8 +100,6 @@
                 }
 
                 .fcontainer {
-                    display: flex;
-                    align-items: flex-end;
 
                     .form-group {
                         flex: 1 1 auto;
@@ -82,8 +118,8 @@
                     }
 
                     .femptylabel {
-                        margin: 0 0 0 1rem;
                         flex: 0 0 auto;
+                        margin-top: 1rem;
 
                         .col-form-label {
                             display: none;
@@ -93,6 +129,7 @@
                             flex: 0 0 100%;
                             max-width: 100%;
                             padding: 0;
+                            justify-content: center;
                         }
                     }
                 }
@@ -141,7 +178,7 @@
     }
 
     img {
-        max-width: 200px;
+        max-width: 12.5rem;
     }
 }
 
@@ -167,10 +204,12 @@
 .login-heading,
 .login-form,
 .login-divider,
-.login-container .alert {
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+.login-container .alert,
+#id_searchbyusername,
+#id_searchbyemail,
+#id_setpassword {
+    max-width: 25rem;
+    margin: 0 auto;
 }
 
 .login-logo {
