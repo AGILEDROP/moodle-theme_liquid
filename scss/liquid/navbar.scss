@@ -274,6 +274,39 @@
     }
 }
 
+// Edit mode switch styling (now uses Bootstrap 4 custom-control)
+.editmode-switch-form {
+    .custom-control.custom-switch {
+        cursor: pointer;
+
+        .custom-control-input {
+            cursor: pointer;
+
+            ~ .custom-control-label::before {
+                border: 1px solid rgba(255, 255, 255, .3);
+                background-color: #fff;
+            }
+
+            ~ .custom-control-label::after {
+                background-color: #b4bbc3;
+            }
+
+            &:checked ~ .custom-control-label::before {
+                background-color: $secondary;
+                border-color: $secondary;
+            }
+
+            &:checked ~ .custom-control-label::after {
+                background-color: $white;
+            }
+        }
+
+        .custom-control-label {
+            cursor: pointer;
+        }
+    }
+}
+
 [data-bs-theme="dark"] {
     .toggle-holder .custom-switch .custom-control-label {
         &::before {
@@ -285,6 +318,22 @@
         &::after {
             background-color: $white;
             transform: translateX(.75rem);
+        }
+    }
+
+    // Edit mode switch in dark mode
+    .editmode-switch-form {
+        .custom-control.custom-switch {
+            .custom-control-input {
+                &:checked ~ .custom-control-label::before {
+                    background-color: $secondary;
+                    border-color: $secondary;
+                }
+
+                &:checked ~ .custom-control-label::after {
+                    background-color: $white;
+                }
+            }
         }
     }
 }
