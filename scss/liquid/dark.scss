@@ -3,6 +3,9 @@ $dark-box-bg-color: #121519;
 $dark-text-color: rgba($white, .7);
 $dark-link-color: rgba($white, .9);
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
+$dark-btn-hover-bg: rgba($white, .1);
+$dark-btn-content-bg: rgba($white, .05);
+$dark-btn-content-hover-bg: rgba($white, .15);
 
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
@@ -279,6 +282,66 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .navbar .navbar-toggler-icon {
         background-image: url([[pix:theme|burger-menu-white]]);
+    }
+
+    // Button hover states in dark mode
+    .btn.add-section,
+    .btn.activity-add,
+    .btn.block-add {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $dark-btn-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    // Add content button - dark background with white border
+    .btn.add-content {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: #032633 !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border: 1px solid $white !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
+
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $white !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+
+            // Change hr to orange on button hover
+            ~ hr,
+            + * hr {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $secondary !important;
+            }
+        }
+    }
+
+    // Change hr when parent has hovered add-content button
+    .divider-content:has(.add-content:hover) hr,
+    .divider-content:has(.add-content:focus) hr,
+    .divider:has(.add-content:hover) hr,
+    .divider:has(.add-content:focus) hr,
+    .course-content .divider:has(.btn.add-content:hover) hr,
+    .course-content .divider:has(.btn.add-content:focus) hr {
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: $secondary !important;
+    }
+
+    // General button hover fallback
+    .btn:not(.btn-primary):not(.btn-secondary):not(.btn-link):not(.add-content):hover,
+    .btn:not(.btn-primary):not(.btn-secondary):not(.btn-link):not(.add-content):focus {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-btn-hover-bg !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
     }
 
     @include media-breakpoint-down(sm) {
