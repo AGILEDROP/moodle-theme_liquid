@@ -24,6 +24,23 @@
 
     &#page-login-forgot_password {
         #id_setpassword {
+            [id*="fitem_id_password"] {
+                display: block;
+
+                .col-form-label {
+                    width: 100%;
+                    margin-bottom: 0.5rem;
+                }
+
+                .form-inline {
+                    width: 100%;
+                }
+
+                div[data-fieldtype="password"] {
+                    width: 100%;
+                }
+            }
+
             #fitem_id_username2 {
                 display: flex;
                 gap: 1rem;
@@ -52,6 +69,21 @@
 
             #fitem_id_password {
                 margin-bottom: 1rem;
+            }
+        }
+        #id_searchbyusernamecontainer, #id_searchbyemailcontainer {
+
+            #fitem_id_username, #fitem_id_email {
+                display: block;
+
+                > div {
+                    width: 100%;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            .fitem_id_submitbuttonusername {
+                width: auto;
             }
         }
 
@@ -100,7 +132,6 @@
                 }
 
                 .fcontainer {
-                    display: flex;
                     align-items: flex-end;
 
                     .form-group {
@@ -136,6 +167,20 @@
                     }
                 }
             }
+        }
+
+
+        #fgroup_id_buttonar {
+          padding-bottom: 1rem;
+
+            .col-form-label {
+                /* stylelint-disable-next-line declaration-no-important */
+                display: none !important;
+            }
+
+          div[data-fieldtype="group"] {
+            width: 100%;
+          }
         }
     }
 }
@@ -209,7 +254,8 @@
 .login-container .alert,
 #id_searchbyusername,
 #id_searchbyemail,
-#id_setpassword {
+#id_setpassword,
+#fgroup_id_buttonar {
     max-width: 25rem;
     margin: 0 auto;
 }
