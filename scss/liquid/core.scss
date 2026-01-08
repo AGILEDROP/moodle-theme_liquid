@@ -73,6 +73,32 @@ a:not([class]),
     }
 }
 
+// Bootstrap 5 gutter override - reduce default from 30px to 15px (Bootstrap 4 value)
+.row {
+  /* stylelint-disable-next-line declaration-no-important */
+  --bs-gutter-x: 15px !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  --bs-gutter-y: 0 !important;
+}
+
+// Bootstrap 4 to 5 compatibility: make no-gutters work like Bootstrap 4
+.row.no-gutters,
+.no-gutters {
+  /* stylelint-disable-next-line declaration-no-important */
+  --bs-gutter-x: 0 !important;
+  /* stylelint-disable-next-line declaration-no-important */
+  --bs-gutter-y: 0 !important;
+
+  > * {
+    /* stylelint-disable-next-line declaration-no-important */
+    padding-right: 0 !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    padding-left: 0 !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-top: 0 !important;
+  }
+}
+
 .block_timeline .row > * {
   width: auto;
 }
@@ -87,6 +113,34 @@ a:not([class]),
   }
 }
 
-a{
+a {
   text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  // But not for buttons and add buttons
+  &.btn,
+  &.block-add,
+  &.activity-add {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-decoration: none !important;
+
+    &:hover,
+    &:focus {
+      /* stylelint-disable-next-line declaration-no-important */
+      text-decoration: none !important;
+    }
+  }
+}
+
+// No underline for navigation links
+nav a {
+  &:hover,
+  &:focus {
+    /* stylelint-disable-next-line declaration-no-important */
+    text-decoration: none !important;
+  }
 }

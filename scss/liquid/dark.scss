@@ -1,10 +1,8 @@
-$dark-bg-color: #191c20;
-$dark-box-bg-color: #121519;
+// Dark mode dynamic variables (using preset variables where available)
 $dark-text-color: rgba($white, .7);
 $dark-link-color: rgba($white, .9);
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
-$dark-btn-content-bg: rgba($white, .05);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
 [data-bs-theme="dark"] {
@@ -66,7 +64,8 @@ $dark-btn-content-hover-bg: rgba($white, .15);
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
     .navbar .main-navbar .nav-link:hover,
     .navbar .main-navbar .nav-link:focus,
-    .navbar .main-navbar .nav-link.active {
+    .navbar .main-navbar .nav-link.active,
+    button {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
@@ -143,7 +142,8 @@ $dark-btn-content-hover-bg: rgba($white, .15);
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax,
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax .yui-layout-unit.yui-layout-unit-center div.yui-layout-bd,
     .mdl-chat-my-entry .chat-message .text,
-    .chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd {
+    .chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd,
+    .modchooser .modal-body .optionsummary {
         /* stylelint-disable-next-line declaration-no-important */
         background-color: $dark-box-bg-color !important;
     }
@@ -284,14 +284,37 @@ $dark-btn-content-hover-bg: rgba($white, .15);
         background-image: url([[pix:theme|burger-menu-white]]);
     }
 
-    // Button hover states in dark mode
-    .btn.add-section,
-    .btn.activity-add,
-    .btn.block-add {
+    // Outline buttons - use their respective theme colors on hover
+    .btn-outline-primary {
         &:hover,
         &:focus {
             /* stylelint-disable-next-line declaration-no-important */
-            background-color: $dark-btn-hover-bg !important;
+            background-color: $btn-outline-primary-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $btn-outline-primary-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    .btn-outline-secondary {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    // Add section button - use primary color on hover
+    .btn.add-section {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $primary !important;
             /* stylelint-disable-next-line declaration-no-important */
             color: $white !important;
         }
@@ -300,7 +323,7 @@ $dark-btn-content-hover-bg: rgba($white, .15);
     // Add content button - dark background with white border
     .btn.add-content {
         /* stylelint-disable-next-line declaration-no-important */
-        background-color: #032633 !important;
+        background-color: $dark-btn-content-bg !important;
         /* stylelint-disable-next-line declaration-no-important */
         border: 1px solid $white !important;
         /* stylelint-disable-next-line declaration-no-important */
@@ -335,14 +358,6 @@ $dark-btn-content-hover-bg: rgba($white, .15);
         border-color: $secondary !important;
     }
 
-    // General button hover fallback
-    .btn:not(.btn-primary):not(.btn-secondary):not(.btn-link):not(.add-content):hover,
-    .btn:not(.btn-primary):not(.btn-secondary):not(.btn-link):not(.add-content):focus {
-        /* stylelint-disable-next-line declaration-no-important */
-        background-color: $dark-btn-hover-bg !important;
-        /* stylelint-disable-next-line declaration-no-important */
-        color: $white !important;
-    }
 
     @include media-breakpoint-down(sm) {
         .nav-tabs:not(.more-nav),

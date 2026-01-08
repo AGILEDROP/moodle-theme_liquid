@@ -69,6 +69,16 @@ $dark: $gray-800 !default;
 $text-on-primary: $white !default;
 $text-on-secondary: $white !default;
 
+// Button hover state colors
+$btn-primary-hover-bg: #010b0f !default;
+$btn-primary-hover-border: #000203 !default;
+$btn-outline-primary-hover-bg: #032633 !default;
+
+// Dark mode variables
+$dark-bg-color: #191c20 !default;
+$dark-box-bg-color: #121519 !default;
+$dark-btn-content-bg: #032633 !default;
+
 $theme-colors: () !default;
 $theme-colors: map-merge(
     (

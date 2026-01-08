@@ -215,11 +215,27 @@
 
         a {
             color: $text-on-primary;
+
+            &.active,
+            &:hover,
+            &:focus {
+                color: $white;
+            }
         }
     }
 
     .navbar-toggler-icon {
         background-image: url([[pix:theme|burger-menu-black]]);
+    }
+}
+
+// Active navbar links should use white color
+.navbar-nav {
+    .nav-link.active,
+    .nav-link.show,
+    .nav-link:hover,
+    .nav-link:focus {
+        color: $white;
     }
 }
 

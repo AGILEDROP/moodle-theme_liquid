@@ -1,3 +1,8 @@
+// Cards should have white background in light mode
+.card {
+    background-color: $white;
+}
+
 .card-header h3 {
     margin: 0;
     font-size: 1.5rem;
