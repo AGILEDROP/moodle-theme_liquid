@@ -71,9 +71,11 @@
                 margin-bottom: 1rem;
             }
         }
-        #id_searchbyusernamecontainer, #id_searchbyemailcontainer {
+        #id_searchbyusernamecontainer,
+        #id_searchbyemailcontainer {
 
-            #fitem_id_username, #fitem_id_email {
+            #fitem_id_username,
+            #fitem_id_email {
                 display: block;
 
                 > div {
@@ -171,16 +173,16 @@
 
 
         #fgroup_id_buttonar {
-          padding-bottom: 1rem;
+            padding-bottom: 1rem;
 
             .col-form-label {
                 /* stylelint-disable-next-line declaration-no-important */
                 display: none !important;
             }
 
-          div[data-fieldtype="group"] {
-            width: 100%;
-          }
+            div[data-fieldtype="group"] {
+                width: 100%;
+            }
         }
     }
 }
