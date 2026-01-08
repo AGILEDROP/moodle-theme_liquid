@@ -74,19 +74,20 @@ a:not([class]),
 }
 
 .block_timeline .row > * {
-  width: auto;
+    width: auto;
 }
 
 .table-responsive {
-  .table {
-    .visually-hidden,
-    .accesshide {
-      position: absolute !important;
-      display: block;
+    .table {
+        .visually-hidden,
+        .accesshide {
+            /* stylelint-disable-next-line declaration-no-important */
+            position: absolute !important;
+            display: block;
+        }
     }
-  }
 }
 
-a{
-  text-decoration: none;
+a {
+    text-decoration: none;
 }
