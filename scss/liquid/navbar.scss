@@ -239,6 +239,13 @@
     }
 }
 
+// Not logged in - add horizontal padding to top navbar
+.notloggedin {
+    .navbar.fixed-top {
+        padding-inline: 1.5rem;
+    }
+}
+
 #page {
     margin-top: $navbar-height;
 

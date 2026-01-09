@@ -6,3 +6,11 @@
 #page-user-profile .page-header-image .userpicture {
     border-radius: 0.5rem;
 }
+
+#participantsform {
+  .buttons {
+    .d-flex.align-items-center {
+      align-items: flex-end !important;
+    }
+  }
+}
