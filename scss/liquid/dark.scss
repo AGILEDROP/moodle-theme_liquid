@@ -377,6 +377,54 @@ $dark-btn-content-hover-bg: rgba($white, .15);
         animation: bg-pulse-grey-dark 2s infinite linear;
     }
 
+    #page-mod-lti-coursetools table.generaltable tbody tr:hover,
+    #page-mod-lti-coursetools table.table-striped tbody tr:hover {
+        background: inherit;
+    }
+
+    .tool-card-header {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: #576071 !important;
+    }
+
+    // Question bank table styling
+    .generaltable.table-fixed {
+        tr.qbank-sortable-column {
+            background-color: transparent;
+        }
+
+        tbody tr:nth-of-type(odd) {
+            background-color: $dark-bg-color;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: transparent;
+        }
+
+        tbody tr:hover {
+            background-color: rgba($white, .05);
+        }
+    }
+
+    .yui3-skin-sam .yui3-datatable-table {
+        .yui3-datatable-header {
+            border-bottom-color: $gray-800;
+            color: $white;
+        }
+
+        .yui3-datatable-cell {
+            border-top-color: $gray-800;
+        }
+
+        .yui3-datatable-odd .yui3-datatable-cell {
+            background-color: $dark-bg-color;
+        }
+
+        .yui3-datatable-even .yui3-datatable-cell {
+            background-color: transparent;
+        }
+    }
+
     #page-admin-local-codechecker-index .local_codechecker_results {
         .fail.error {
             color: #dc2424;

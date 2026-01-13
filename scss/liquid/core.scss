@@ -144,3 +144,87 @@ nav a {
     text-decoration: none !important;
   }
 }
+
+.reportbuilder-filters-sidebar {
+  background: inherit;
+}
+
+.tool-card-header {
+  background-color: #f5f5f5;
+}
+
+.data-registry .context-tree {
+  overflow-y: auto;
+}
+
+.calendar_event_user {
+  background-color: inherit;
+}
+
+#registration-choice-container {
+  .card.card-block {
+    padding: 1rem;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+#add-tool-form {
+  padding-bottom: 1rem;
+
+  .control-group input {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// Question bank table styling - make it consistent with table-striped and table-hover
+.generaltable.table-fixed {
+  tr.qbank-sortable-column {
+    background-color: transparent;
+  }
+
+  // Reset background-color inheritance from .generaltable to allow Bootstrap 5's
+  // box-shadow based striping to work correctly
+  > tbody > tr > td,
+  > tbody > tr > th {
+    background-color: transparent;
+  }
+
+  > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: var(--bs-table-striped-bg);
+  }
+
+  > tbody > tr:hover > * {
+    --bs-table-color-state: var(--bs-table-hover-color);
+    --bs-table-bg-state: var(--bs-table-hover-bg);
+  }
+
+  // Hide dropdown arrow when icon is already present
+  .dropdown-toggle::after {
+    display: none;
+  }
+}
+
+body#page-admin-reportbuilder-edit {
+  @media (min-width: 1160px) {
+    #page {
+      margin-left: 0;
+    }
+
+    .navbar.fixed-top {
+      left: 0;
+    }
+  }
+
+  @media (min-width: 992px) {
+    &.path-admin-reportbuilder.pagelayout-popup .dynamictabs .nav-tabs {
+      /* stylelint-disable-next-line declaration-no-important */
+      background-color: transparent !important;
+      /* stylelint-disable-next-line declaration-no-important */
+      box-shadow: none !important;
+    }
+  }
+}
