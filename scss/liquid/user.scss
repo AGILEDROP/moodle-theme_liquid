@@ -8,9 +8,10 @@
 }
 
 #participantsform {
-  .buttons {
-    .d-flex.align-items-center {
-      align-items: flex-end !important;
+    .buttons {
+        .d-flex.align-items-center {
+            /* stylelint-disable-next-line declaration-no-important */
+            align-items: flex-end !important;
+        }
     }
-  }
 }
