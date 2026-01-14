@@ -1,10 +1,32 @@
 .btn {
     &.btn-primary {
         color: $text-on-primary;
+
+        &:hover,
+        &:focus {
+            color: $white;
+            background-color: $btn-primary-hover-bg;
+            border-color: $btn-primary-hover-border;
+        }
+    }
+
+    &.btn-outline-primary {
+        &:hover,
+        &:focus {
+            color: $white;
+            background-color: $btn-outline-primary-hover-bg;
+            border-color: $btn-outline-primary-hover-bg;
+        }
     }
 
     &.btn-secondary,
     &.bg-secondary {
         color: $text-on-secondary;
     }
+}
+
+// Badges with bg-secondary should always have white text
+.badge.bg-secondary {
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $white !important;
 }

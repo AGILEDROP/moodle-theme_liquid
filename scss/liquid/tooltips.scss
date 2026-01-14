@@ -1,0 +1,73 @@
+// Dark mode tooltip styles - black background, white text
+html[data-bs-theme="dark"],
+[data-bs-theme="dark"] {
+    .tooltip {
+        .tooltip-inner {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: #000 !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: #fff !important;
+        }
+
+        // Tooltip arrow colors for different placements
+        &.bs-tooltip-top .tooltip-arrow::before,
+        &.bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow::before {
+            /* stylelint-disable-next-line declaration-no-important */
+            border-top-color: #000 !important;
+        }
+
+        &.bs-tooltip-end .tooltip-arrow::before,
+        &.bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before {
+            /* stylelint-disable-next-line declaration-no-important */
+            border-right-color: #000 !important;
+        }
+
+        &.bs-tooltip-bottom .tooltip-arrow::before,
+        &.bs-tooltip-auto[data-popper-placement^="bottom"] .tooltip-arrow::before {
+            /* stylelint-disable-next-line declaration-no-important */
+            border-bottom-color: #000 !important;
+        }
+
+        &.bs-tooltip-start .tooltip-arrow::before,
+        &.bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before {
+            /* stylelint-disable-next-line declaration-no-important */
+            border-left-color: #000 !important;
+        }
+    }
+}
+
+// Light mode - standard dark tooltips
+html[data-bs-theme="light"],
+[data-bs-theme="light"],
+body {
+    .tooltip {
+        .tooltip-inner {
+            background-color: #000;
+            color: #fff;
+        }
+    }
+}
+
+// Enhanced tooltip animations and positioning
+.tooltip {
+    // Smooth transitions
+    transition: opacity 0.15s ease-in-out;
+
+    // Ensure proper z-index (above most elements)
+    z-index: 9999;
+
+    // Better visibility
+    .tooltip-inner {
+        max-width: 300px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        text-align: left;
+        word-wrap: break-word;
+    }
+
+    // Smooth arrow transitions
+    .tooltip-arrow {
+        transition: all 0.15s ease-in-out;
+    }
+}

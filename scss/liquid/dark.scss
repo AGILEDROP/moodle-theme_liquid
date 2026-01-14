@@ -1,8 +1,9 @@
-$dark-bg-color: #191c20;
-$dark-box-bg-color: #121519;
+// Dark mode dynamic variables (using preset variables where available)
 $dark-text-color: rgba($white, .7);
 $dark-link-color: rgba($white, .9);
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
+$dark-btn-hover-bg: rgba($white, .1);
+$dark-btn-content-hover-bg: rgba($white, .15);
 
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
@@ -63,7 +64,8 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
     .navbar .main-navbar .nav-link:hover,
     .navbar .main-navbar .nav-link:focus,
-    .navbar .main-navbar .nav-link.active {
+    .navbar .main-navbar .nav-link.active,
+    button {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
@@ -140,7 +142,8 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax,
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax .yui-layout-unit.yui-layout-unit-center div.yui-layout-bd,
     .mdl-chat-my-entry .chat-message .text,
-    .chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd {
+    .chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd,
+    .modchooser .modal-body .optionsummary {
         /* stylelint-disable-next-line declaration-no-important */
         background-color: $dark-box-bg-color !important;
     }
@@ -281,6 +284,81 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
         background-image: url([[pix:theme|burger-menu-white]]);
     }
 
+    // Outline buttons - use their respective theme colors on hover
+    .btn-outline-primary {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $btn-outline-primary-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $btn-outline-primary-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    .btn-outline-secondary {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    // Add section button - use primary color on hover
+    .btn.add-section {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $primary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    // Add content button - dark background with white border
+    .btn.add-content {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-btn-content-bg !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border: 1px solid $white !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
+
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $white !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+
+            // Change hr to orange on button hover
+            ~ hr,
+            + * hr {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $secondary !important;
+            }
+        }
+    }
+
+    // Change hr when parent has hovered add-content button
+    .divider-content:has(.add-content:hover) hr,
+    .divider-content:has(.add-content:focus) hr,
+    .divider:has(.add-content:hover) hr,
+    .divider:has(.add-content:focus) hr,
+    .course-content .divider:has(.btn.add-content:hover) hr,
+    .course-content .divider:has(.btn.add-content:focus) hr {
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: $secondary !important;
+    }
+
+
     @include media-breakpoint-down(sm) {
         .nav-tabs:not(.more-nav),
         .nav-pills {
@@ -297,6 +375,54 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .bg-pulse-grey {
         animation: bg-pulse-grey-dark 2s infinite linear;
+    }
+
+    #page-mod-lti-coursetools table.generaltable tbody tr:hover,
+    #page-mod-lti-coursetools table.table-striped tbody tr:hover {
+        background: inherit;
+    }
+
+    .tool-card-header {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: #576071 !important;
+    }
+
+    // Question bank table styling
+    .generaltable.table-fixed {
+        tr.qbank-sortable-column {
+            background-color: transparent;
+        }
+
+        tbody tr:nth-of-type(odd) {
+            background-color: $dark-bg-color;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: transparent;
+        }
+
+        tbody tr:hover {
+            background-color: rgba($white, .05);
+        }
+    }
+
+    .yui3-skin-sam .yui3-datatable-table {
+        .yui3-datatable-header {
+            border-bottom-color: $gray-800;
+            color: $white;
+        }
+
+        .yui3-datatable-cell {
+            border-top-color: $gray-800;
+        }
+
+        .yui3-datatable-odd .yui3-datatable-cell {
+            background-color: $dark-bg-color;
+        }
+
+        .yui3-datatable-even .yui3-datatable-cell {
+            background-color: transparent;
+        }
     }
 
     #page-admin-local-codechecker-index .local_codechecker_results {
