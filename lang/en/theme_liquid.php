@@ -29,6 +29,7 @@ $string['advancedsettings'] = 'Advanced settings';
 $string['bodyfont'] = 'Body font size, rem';
 $string['borderssettings'] = 'Borders settings';
 $string['borderwidth'] = 'Border width';
+$string['choosereadme'] = 'Liquid is a modern, clean and fully responsive Moodle theme created by Agiledrop. It is suitable for all types of Moodle websites, including online courses, corporate training, and educational institutions. The theme offers a variety of customization options, allowing administrators to tailor the look and feel of their Moodle site to match their branding and design preferences.';
 $string['colorssettings'] = 'Colors settings';
 $string['configtitle'] = 'Liquid';
 $string['dangercolor'] = 'Danger color';
