@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -26,13 +27,15 @@ use core\hook\output\before_html_attributes;
  * @copyright  2025 Agiledrop ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class hook_callbacks {
+class hook_callbacks
+{
     /**
      * Runs before HTTP attributes.
      *
      * @param before_html_attributes $hook
      */
-    public static function before_html_attributes(before_html_attributes $hook): void {
+    public static function before_html_attributes(before_html_attributes $hook): void
+    {
         global $USER;
 
         $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;

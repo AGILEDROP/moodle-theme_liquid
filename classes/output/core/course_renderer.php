@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -35,13 +36,15 @@ use moodle_url;
  * Can be retrieved with the following:
  * $renderer = $PAGE->get_renderer('core','course');
  */
-class course_renderer extends \core_course_renderer {
+class course_renderer extends \core_course_renderer
+{
     /**
      * Returns HTML to print list of available courses for the frontpage
      *
      * @return string
      */
-    public function frontpage_available_courses() {
+    public function frontpage_available_courses()
+    {
         global $CFG;
 
         $chelper = new \coursecat_helper();
@@ -86,7 +89,8 @@ class course_renderer extends \core_course_renderer {
      *
      * @return array $data available course data.
      */
-    public function available_coursebox($course) {
+    public function available_coursebox($course)
+    {
         $coursecontext = context_course::instance($course->id);
 
         // Category.
