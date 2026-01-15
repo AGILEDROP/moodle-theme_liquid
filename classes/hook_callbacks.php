@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,8 +33,7 @@ class hook_callbacks
      *
      * @param before_html_attributes $hook
      */
-    public static function before_html_attributes(before_html_attributes $hook): void
-    {
+    public static function before_html_attributes(before_html_attributes $hook): void {
         global $USER;
 
         $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;

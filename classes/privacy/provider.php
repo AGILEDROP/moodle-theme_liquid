@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -52,8 +51,7 @@ class provider implements
      * @param  collection $collection The initialised item collection to add items to.
      * @return collection A listing of user data stored through this system.
      */
-    public static function get_metadata(collection $collection): collection
-    {
+    public static function get_metadata(collection $collection): collection {
         $collection->add_user_preference(self::THEME_MODE, 'privacy:metadata:preference:thememode');
         return $collection;
     }
@@ -63,8 +61,7 @@ class provider implements
      *
      * @param int $userid The userid of the user whose data is to be exported.
      */
-    public static function export_user_preferences(int $userid)
-    {
+    public static function export_user_preferences(int $userid) {
 
         $thememodepref = get_user_preferences(self::THEME_MODE, null, $userid);
 

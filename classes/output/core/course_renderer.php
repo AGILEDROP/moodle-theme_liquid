@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -43,8 +42,7 @@ class course_renderer extends \core_course_renderer
      *
      * @return string
      */
-    public function frontpage_available_courses()
-    {
+    public function frontpage_available_courses() {
         global $CFG;
 
         $chelper = new \coursecat_helper();
@@ -89,8 +87,7 @@ class course_renderer extends \core_course_renderer
      *
      * @return array $data available course data.
      */
-    public function available_coursebox($course)
-    {
+    public function available_coursebox($course) {
         $coursecontext = context_course::instance($course->id);
 
         // Category.

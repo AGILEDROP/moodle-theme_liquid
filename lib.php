@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -29,8 +28,7 @@
  * @param theme_config $theme The theme config object.
  * @return string
  */
-function theme_liquid_get_main_scss_content($theme)
-{
+function theme_liquid_get_main_scss_content($theme) {
     global $CFG;
 
     $scss = '';
@@ -40,9 +38,9 @@ function theme_liquid_get_main_scss_content($theme)
     $context = context_system::instance();
     if ($filename == 'default.scss') {
         $scss .= file_get_contents($CFG->dirroot . '/theme/liquid/scss/preset/default.scss');
-    } elseif ($filename == 'plain.scss') {
+    } else if ($filename == 'plain.scss') {
         $scss .= file_get_contents($CFG->dirroot . '/theme/liquid/scss/preset/plain.scss');
-    } elseif ($filename && ($presetfile = $fs->get_file($context->id, 'theme_liquid', 'preset', 0, '/', $filename))) {
+    } else if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_liquid', 'preset', 0, '/', $filename))) {
         $scss .= $presetfile->get_content();
     } else {
         $scss .= file_get_contents($CFG->dirroot . '/theme/liquid/scss/preset/default.scss');
@@ -56,8 +54,7 @@ function theme_liquid_get_main_scss_content($theme)
  * @param theme_config $theme The theme config object.
  * @return array
  */
-function theme_liquid_get_pre_scss($theme)
-{
+function theme_liquid_get_pre_scss($theme) {
     $scss = '';
     $configurable = [
         // Config key => [variableName, ...].
@@ -102,8 +99,7 @@ function theme_liquid_get_pre_scss($theme)
  * @param theme_config $theme The theme config object.
  * @return string
  */
-function theme_liquid_get_extra_scss($theme)
-{
+function theme_liquid_get_extra_scss($theme) {
     $content = '';
     return !empty($theme->settings->scss) ? $theme->settings->scss . ' ' . $content : $content;
 }
@@ -116,8 +112,7 @@ function theme_liquid_get_extra_scss($theme)
  *
  * @return array An associative array of HTML attributes.
  */
-function theme_liquid_add_htmlattributes()
-{
+function theme_liquid_add_htmlattributes() {
     global $USER;
 
     $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
@@ -142,8 +137,7 @@ function theme_liquid_add_htmlattributes()
  * @param mixed $format
  * @return mixed
  */
-function theme_liquid_setting($setting, $format = true)
-{
+function theme_liquid_setting($setting, $format = true) {
     global $CFG, $PAGE;
 
     require_once($CFG->dirroot . '/lib/weblib.php');
@@ -184,8 +178,7 @@ function theme_liquid_setting($setting, $format = true)
  * @param array $options
  * @return bool
  */
-function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = [])
-{
+function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = []) {
     static $theme;
 
     if (empty($theme)) {
@@ -207,8 +200,7 @@ function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forc
  *
  * @return array[]
  */
-function theme_liquid_user_preferences(): array
-{
+function theme_liquid_user_preferences(): array {
     return [
         'theme_liquid-dark-mode' => [
             'type' => PARAM_ALPHA,
