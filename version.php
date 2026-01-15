@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_liquid';
-$plugin->version = 2025041800;
+$plugin->version = 2026011501;
 $plugin->release = '1.0.4';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires = 2023100400;
