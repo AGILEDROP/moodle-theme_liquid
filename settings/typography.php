@@ -22,7 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_liquid_typography', get_string('typographysettings', 'theme_liquid'));

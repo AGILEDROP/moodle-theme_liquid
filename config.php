@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $THEME->name = 'liquid';
-$THEME->sheets = [];
+$THEME->sheets[] = 'fontawesome.min';
 $THEME->editor_sheets = [];
 $THEME->editor_scss = ['editor'];
 $THEME->usefallback = true;

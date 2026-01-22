@@ -72,6 +72,12 @@
         width: 100%;
         margin: 0;
 
+        .clickable {
+            &:hover {
+                background-color: transparent;
+            }
+        }
+
         td,
         th {
             position: relative;

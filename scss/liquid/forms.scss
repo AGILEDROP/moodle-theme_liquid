@@ -1,3 +1,7 @@
+.form-inline .form-control {
+    width: 100%;
+}
+
 .form-control {
     &:focus {
         border-color: $primary;

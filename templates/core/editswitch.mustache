@@ -18,7 +18,7 @@
 
     @template core/editswitch
 
-    This template renders the top navbar.
+    Liquid theme override - uses Bootstrap 4 custom-control instead of Bootstrap 5 form-check
 
     Example context (json):
     {
@@ -31,10 +31,9 @@
         "legacyseturl": "/editmode.php"
     }
 }}
-<div class="d-md-none divider border-left h-75 align-self-center ml-1 mr-3"></div>
 <form action="{{{legacyseturl}}}" method="post" class="d-flex align-items-center editmode-switch-form">
     <div class="input-group">
-        <label class="mr-2 mb-0" for="{{uniqid}}-editingswitch">
+        <label class="me-2 mb-0" for="{{uniqid}}-editingswitch">
             {{#str}} editmode {{/str}}
         </label>
         <div class="custom-control custom-switch">
@@ -48,7 +47,7 @@
                 }} data-context="{{{pagecontextid}}}"{{!
                 }} data-pageurl="{{{pageurl}}}"{{!
             }}>
-            <span class="custom-control-label">&nbsp;</span>
+            <label class="custom-control-label" for="{{uniqid}}-editingswitch"></label>
         </div>
     </div>
     <input type="hidden" name="sesskey" value="{{{sesskey}}}">
@@ -59,7 +58,7 @@
     </noscript>
 </form>
 {{#js}}
-    require(['core/edit_switch'], function(editSwitch) {
+require(['core/edit_switch'], function(editSwitch) {
     editSwitch.init('{{uniqid}}-editingswitch');
-    });
+});
 {{/js}}

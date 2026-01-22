@@ -1,3 +1,36 @@
+// Make YUI datatables consistent with Moodle/Bootstrap tables
+.yui3-skin-sam .yui3-datatable-table {
+    @extend .table;
+    @extend .generaltable;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    border: none;
+
+    .yui3-datatable-header {
+        background-color: transparent;
+        border-bottom: 2px solid $table-border-color;
+        font-weight: bold;
+        text-align: left;
+        padding: $table-cell-padding-y $table-cell-padding-x;
+        text-shadow: none;
+    }
+
+    .yui3-datatable-cell {
+        padding: $table-cell-padding-y $table-cell-padding-x;
+        border-top: 1px solid $table-border-color;
+        vertical-align: top;
+    }
+
+    .yui3-datatable-odd .yui3-datatable-cell {
+        background-color: $table-striped-bg;
+    }
+
+    .yui3-datatable-even .yui3-datatable-cell {
+        background-color: transparent;
+    }
+}
+
 .yui-skin-sam {
     .yui-layout {
         &.path-mod-chat-gui_ajax {

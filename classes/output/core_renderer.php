@@ -31,7 +31,8 @@ use theme_config;
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
  */
-class core_renderer extends \theme_boost\output\core_renderer {
+class core_renderer extends \theme_boost\output\core_renderer
+{
     /**
      * The standard tags (meta tags, links to stylesheets and JavaScript, etc.)
      * that should be included in the <head> tag. Designed to be called in theme
