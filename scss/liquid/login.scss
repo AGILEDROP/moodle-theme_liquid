@@ -51,8 +51,8 @@
             }
 
             #fitem_id_passwordpolicyinfo {
-                padding: 0.5rem;
-                border-radius: 0.25rem;
+                padding: $spacer * 0.5;
+                border-radius: $auth-box-border-radius;
                 background-color: $gray-800;
                 color: $gray-100;
                 margin-bottom: 1rem;
@@ -90,19 +90,27 @@
         }
 
         .fdescription {
-            max-width: 25rem;
+            max-width: $auth-form-max-width;
             width: 100%;
             margin: 0 auto;
         }
-        .generalbox {
-            margin: auto;
-            padding: 1rem 2rem;
-            color: $white;
+        .login-container > div:not(.loginimage) {
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+        }
 
-            @include media-breakpoint-up(lg) {
-                width: 50%;
-                max-width: 50rem;
-            }
+        .flex-md-row-reverse {
+            /* stylelint-disable-next-line declaration-no-important */
+            flex-direction: unset !important;
+        }
+
+        .generalbox {
+            max-width: $auth-form-max-width;
+            margin: 0 auto;
+            padding: $spacer * 0.5;
+            border: 1px solid $border-color;
+            border-radius: $auth-box-border-radius;
         }
 
         .mform {
@@ -110,17 +118,7 @@
             flex-direction: column;
             padding: 1rem 2rem;
             background-color: $white;
-            flex: 1 1 auto;
-
-            @include media-breakpoint-up(lg) {
-                width: 50%;
-                max-width: 50rem;
-                margin: 0;
-                flex: 0 0 auto;
-                justify-content: center;
-                border-radius: 0;
-                box-shadow: none;
-            }
+            flex: 0 0 auto;
 
             fieldset {
                 margin-bottom: 3rem;
@@ -164,7 +162,7 @@
                             flex: 0 0 100%;
                             max-width: 100%;
                             padding: 0;
-                            justify-content: center;
+                            justify-content: flex-start;
                         }
                     }
                 }
@@ -190,6 +188,7 @@
 .login-wrapper {
     align-items: unset;
     justify-content: unset;
+    height: 100%;
 }
 
 .login-container {
@@ -200,13 +199,17 @@
     border-radius: 0;
     background: none;
     box-shadow: none;
+    height: 100%;
 
-    > div {
+    > div:not(.loginimage) {
+        background-color: $white;
         display: flex;
-        flex-direction: column;
+        flex: 1 1 auto;
 
         @include media-breakpoint-up(lg) {
-            flex-direction: row;
+            width: 50%;
+            max-width: $auth-right-panel-max-width;
+            flex: 0 0 auto;
         }
     }
 
@@ -216,35 +219,64 @@
 }
 
 .loginimage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     flex: 0 0 auto;
-    padding: 3rem;
+    padding: 2rem;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-image: url([[pix:theme_liquid|pattern-dark]]);
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: 100% auto;
+        transform: rotate(180deg);
+        pointer-events: none;
+    }
 
     @include media-breakpoint-up(lg) {
         flex: 1 1 auto;
+        padding: 3rem;
+        background-image: url([[pix:theme_liquid|pattern-dark]]);
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: 100% auto;
+
+        &::before {
+            height: 50%;
+        }
     }
 
     img {
-        max-width: 12.5rem;
+        position: relative;
+        width: 100%;
+        max-width: 20rem;
+    }
+}
+
+.login-container .login-logo {
+    margin-top: 4rem;
+
+    @include media-breakpoint-up(lg) {
+        margin-top: 0;
     }
 }
 
 .loginform {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     padding: 1rem 2rem;
-    text-align: center;
     background-color: $white;
     flex: 1 1 auto;
 
     @include media-breakpoint-up(lg) {
-        width: 50%;
-        max-width: 800px;
+        width: 100%;
+        max-width: none;
         margin: 0;
-        flex: 0 0 auto;
+        flex: 1 1 auto;
         border-radius: 0;
         box-shadow: none;
     }
@@ -253,13 +285,18 @@
 .login-heading,
 .login-form,
 .login-divider,
-.login-container .alert,
 #id_searchbyusername,
 #id_searchbyemail,
 #id_setpassword,
 #fgroup_id_buttonar {
     max-width: 25rem;
     margin: 0 auto;
+}
+
+.login-container .alert {
+    max-width: 25rem;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin: 0 auto 0.5rem !important;
 }
 
 .login-logo {
@@ -269,3 +306,4 @@
         font-size: 3rem;
     }
 }
+

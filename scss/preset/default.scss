@@ -127,6 +127,12 @@ $border-radius-lg: 1.125rem !default;
 
 $border-color: $gray-300 !default;
 
+// Auth page variables.
+$auth-form-max-width: 25rem !default;
+$auth-logo-max-width: 20rem !default;
+$auth-right-panel-max-width: 800px !default;
+$auth-box-border-radius: 0.25rem !default;
+
 // Shadow variables.
 $box-shadow-sm: 0 .375rem .75rem -.125rem rgba(208, 208, 196, .24) !default;
 $box-shadow: 0 .4375rem 1.25rem rgba(208, 208, 196, .32) !default;

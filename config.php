@@ -39,6 +39,11 @@ $THEME->layouts = [
         'defaultregion' => 'side-pre',
         'options' => ['nonavbar' => true],
     ],
+    'login' => [
+        'file' => 'login.php',
+        'regions' => [],
+        'options' => ['langmenu' => true],
+    ],
 ];
 $THEME->parents = ['boost'];
 $THEME->enable_dock = false;

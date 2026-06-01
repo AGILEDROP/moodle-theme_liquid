@@ -43,7 +43,19 @@
             <div id="region-main-box" class="col-12">
                 <section id="region-main" class="col-12 h-100" aria-label="{{#str}}content{{/str}}">
                     <div class="login-wrapper">
-                        <div class="login-container">
+                        <div class="login-container d-flex flex-column flex-lg-row">
+                            <div class="loginimage d-flex justify-content-center align-items-center">
+                                <div id="loginlogo" class="login-logo d-flex justify-content-center bg-transparent mb-0">
+                                    {{#logourl}}
+                                        <img id="logoimage" src="{{logourl}}" class="img-fluid" alt="{{sitename}}"/>
+                                    {{/logourl}}
+                                    {{^logourl}}
+                                        <img src="{{config.wwwroot}}/theme/liquid/pix/logo-default-dark.svg"
+                                            class="img-fluid login-default-logo"
+                                            alt="{{sitename}}"/>
+                                    {{/logourl}}
+                                </div>
+                            </div>
                             {{{ output.main_content }}}
                         </div>
                     </div>

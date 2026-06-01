@@ -94,18 +94,7 @@
         "languagemenu": "Choose language"
     }
 }}
-<div class="loginimage">
-    <div id="loginlogo" class="login-logo">
-        {{#logourl}}
-            <img id="logoimage" src="{{logourl}}" class="img-fluid" alt="{{sitename}}"/>
-            <h1 class="login-heading sr-only">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
-        {{/logourl}}
-        {{^logourl}}
-            <h1 class="login-heading">{{sitename}}</h1>
-        {{/logourl}}
-    </div>
-</div>
-<div class="loginform">
+<div class="loginform d-flex flex-column justify-content-center text-center">
     {{#languagemenu}}
         <div class="login-languagemenu ml-auto">
             {{>core/action_menu}}
@@ -161,11 +150,13 @@
                     {{{recaptcha}}}
                 </div>
             {{/recaptcha}}
-            <div class="login-form-submit form-group">
-                <button class="btn btn-primary" type="submit" id="loginbtn">{{#str}}login{{/str}}</button>
-            </div>
-            <div class="login-form-forgotpassword form-group">
-                <a href="{{forgotpasswordurl}}">{{#str}}forgotaccount{{/str}}</a>
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="login-form-submit form-group mb-0">
+                    <button class="btn btn-primary" type="submit" id="loginbtn">{{#str}}login{{/str}}</button>
+                </div>
+                <div class="login-form-forgotpassword form-group mb-0">
+                    <a href="{{forgotpasswordurl}}">{{#str}}forgotaccount{{/str}}</a>
+                </div>
             </div>
         </form>
         {{#hasidentityproviders}}
