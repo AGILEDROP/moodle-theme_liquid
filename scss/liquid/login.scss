@@ -22,14 +22,92 @@
         }
     }
 
+    .flex-md-row-reverse {
+        /* stylelint-disable-next-line declaration-no-important */
+        flex-direction: unset !important;
+    }
+
+    &#page-login-signup {
+        .login-container > div:not(.loginimage) {
+            flex-direction: column;
+            overflow-y: auto;
+            justify-content: center;
+        }
+
+        .col-form-label {
+            /* stylelint-disable-next-line declaration-no-important */
+            text-align: left !important;
+            width: 100%;
+            margin-bottom: $spacer * 0.5;
+        }
+
+        .signupform {
+            padding: $spacer $spacer * 2;
+            width: 100%;
+        }
+
+        .mform {
+            max-width: $auth-form-max-width;
+            margin: 0 auto;
+
+            .form-group.row {
+                flex-direction: column;
+
+                [class*="col-md-"] {
+                    /* stylelint-disable-next-line declaration-no-important */
+                    max-width: 100% !important;
+                    /* stylelint-disable-next-line declaration-no-important */
+                    flex: 0 0 100% !important;
+                    padding: 0;
+                }
+            }
+        }
+
+        .form-label-addon {
+            margin-left: 0;
+        }
+
+        .form-control,
+        .form-select {
+            width: 100%;
+        }
+
+        #fgroup_id_buttonar {
+            .col-form-label {
+                /* stylelint-disable-next-line declaration-no-important */
+                display: none !important;
+            }
+
+            div[data-fieldtype="group"] {
+                width: 100%;
+
+                > div > div {
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+
     &#page-login-forgot_password {
         #id_setpassword {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: 0;
+
+            .form-label-addon {
+                margin-left: 0;
+            }
+
+            .col-md-3.col-form-label.pb-0.pt-0 {
+                display: none;
+            }
+
             [id*="fitem_id_password"] {
                 display: block;
 
                 .col-form-label {
                     width: 100%;
-                    margin-bottom: 0.5rem;
+                    margin-bottom: $spacer * 0.5;
                 }
 
                 .form-inline {
@@ -43,34 +121,27 @@
 
             #fitem_id_username2 {
                 display: flex;
-                gap: 1rem;
+                gap: $spacer;
 
                 > div {
                     width: auto;
                 }
-            }
 
-            #fitem_id_passwordpolicyinfo {
-                padding: $spacer * 0.5;
-                border-radius: $auth-box-border-radius;
-                background-color: $gray-800;
-                color: $gray-100;
-                margin-bottom: 1rem;
-            }
-
-            [data-bs-theme="dark"] #fitem_id_passwordpolicyinfo {
-                background-color: $gray-100;
-                color: $gray-900;
+                .col-form-label span::after {
+                    content: ':';
+                    margin-left: -0.25em;
+                }
             }
 
             .checkbox {
-                margin-top: 1rem;
+                margin-top: $spacer;
             }
 
             #fitem_id_password {
-                margin-bottom: 1rem;
+                margin-bottom: $spacer;
             }
         }
+
         #id_searchbyusernamecontainer,
         #id_searchbyemailcontainer {
 
@@ -80,7 +151,7 @@
 
                 > div {
                     width: 100%;
-                    margin-bottom: 0.5rem;
+                    margin-bottom: $spacer * 0.5;
                 }
             }
 
@@ -94,35 +165,35 @@
             width: 100%;
             margin: 0 auto;
         }
+
         .login-container > div:not(.loginimage) {
             flex-direction: column;
             justify-content: center;
-            gap: 2rem;
-        }
-
-        .flex-md-row-reverse {
-            /* stylelint-disable-next-line declaration-no-important */
-            flex-direction: unset !important;
+            gap: $spacer * 2;
         }
 
         .generalbox {
             max-width: $auth-form-max-width;
-            margin: 0 auto;
+            margin: 0 $spacer * 2;
             padding: $spacer * 0.5;
             border: 1px solid $border-color;
             border-radius: $auth-box-border-radius;
+
+            @include media-breakpoint-up(lg) {
+                margin: 0 auto;
+            }
         }
 
         .mform {
             display: flex;
             flex-direction: column;
-            padding: 1rem 2rem;
+            padding: $spacer $spacer * 2;
             background-color: $white;
             flex: 0 0 auto;
 
             fieldset {
-                margin-bottom: 3rem;
-                padding-bottom: 2rem;
+                margin-bottom: $spacer * 3;
+                padding-bottom: $spacer * 2;
                 width: 100%;
 
                 &:last-child {
@@ -152,7 +223,7 @@
 
                     .femptylabel {
                         flex: 0 0 auto;
-                        margin-top: 1rem;
+                        margin-top: $spacer;
 
                         .col-form-label {
                             display: none;
@@ -169,20 +240,42 @@
             }
         }
 
-
         #fgroup_id_buttonar {
-            padding-bottom: 1rem;
+            padding-bottom: $spacer;
+            width: 100%;
 
             .col-form-label {
                 /* stylelint-disable-next-line declaration-no-important */
                 display: none !important;
             }
 
-            div[data-fieldtype="group"] {
-                width: 100%;
+            .felement {
+                /* stylelint-disable-next-line declaration-no-important */
+                max-width: 100% !important;
+                /* stylelint-disable-next-line declaration-no-important */
+                flex: 0 0 100% !important;
+                padding: 0;
+
+                > div > div {
+                    justify-content: space-between;
+                    width: 100%;
+                }
             }
         }
     }
+}
+
+#fitem_id_passwordpolicyinfo {
+    padding: $spacer * 0.5;
+    border-radius: $auth-box-border-radius;
+    background-color: $gray-800;
+    color: $gray-100;
+    margin-bottom: $spacer;
+}
+
+[data-bs-theme="dark"] #fitem_id_passwordpolicyinfo {
+    background-color: $gray-100;
+    color: $gray-900;
 }
 
 .login-wrapper {
@@ -221,7 +314,7 @@
 .loginimage {
     position: relative;
     flex: 0 0 auto;
-    padding: 2rem;
+    padding: $spacer * 2;
     overflow: hidden;
 
     &::before {
@@ -241,7 +334,7 @@
 
     @include media-breakpoint-up(lg) {
         flex: 1 1 auto;
-        padding: 3rem;
+        padding: $spacer * 3;
         background-image: url([[pix:theme_liquid|pattern-dark]]);
         background-repeat: no-repeat;
         background-position: bottom center;
@@ -255,12 +348,12 @@
     img {
         position: relative;
         width: 100%;
-        max-width: 20rem;
+        max-width: $auth-logo-max-width;
     }
 }
 
 .login-container .login-logo {
-    margin-top: 4rem;
+    margin-top: $spacer * 4;
 
     @include media-breakpoint-up(lg) {
         margin-top: 0;
@@ -268,7 +361,7 @@
 }
 
 .loginform {
-    padding: 1rem 2rem;
+    padding: $spacer $spacer * 2;
     background-color: $white;
     flex: 1 1 auto;
 
@@ -276,7 +369,6 @@
         width: 100%;
         max-width: none;
         margin: 0;
-        flex: 1 1 auto;
         border-radius: 0;
         box-shadow: none;
     }
@@ -285,18 +377,21 @@
 .login-heading,
 .login-form,
 .login-divider,
+.login-instructions,
+.login-signup,
+#guestlogin,
 #id_searchbyusername,
 #id_searchbyemail,
 #id_setpassword,
 #fgroup_id_buttonar {
-    max-width: 25rem;
+    max-width: $auth-form-max-width;
     margin: 0 auto;
 }
 
 .login-container .alert {
-    max-width: 25rem;
+    max-width: $auth-form-max-width;
     /* stylelint-disable-next-line declaration-no-important */
-    margin: 0 auto 0.5rem !important;
+    margin: 0 auto $spacer * 0.5 !important;
 }
 
 .login-logo {
@@ -306,4 +401,3 @@
         font-size: 3rem;
     }
 }
-
