@@ -391,6 +391,16 @@
     margin: 0 auto;
 }
 
+.login-container {
+    h1.login-heading {
+        font-size: $h2-font-size;
+    }
+
+    h2.login-heading {
+        font-size: $h4-font-size;
+    }
+}
+
 .login-container .login-divider {
     margin-top: $spacer * 1.5;
     margin-bottom: $spacer * 1.5;
