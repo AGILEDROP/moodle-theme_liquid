@@ -173,13 +173,13 @@
                 {{/identityproviders}}
             </div>
         {{/hasidentityproviders}}
-        {{#hasinstructions}}
+        {{#instructions}}
             <div class="login-divider"></div>
             <div class="login-instructions {{#cansignup}}mb-3{{/cansignup}}">
                 <h2 class="login-heading">{{#str}}firsttime{{/str}}</h2>
                 {{{instructions}}}
             </div>
-        {{/hasinstructions}}
+        {{/instructions}}
         {{#cansignup}}
             <div class="login-signup">
                 <a class="btn btn-secondary" href="{{signupurl}}">{{#str}}startsignup{{/str}}</a>

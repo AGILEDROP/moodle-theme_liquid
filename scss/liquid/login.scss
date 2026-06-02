@@ -391,6 +391,12 @@
     margin: 0 auto;
 }
 
+.login-container .login-divider {
+    margin-top: $spacer * 1.5;
+    margin-bottom: $spacer * 1.5;
+    border-top: 1px solid $border-color;
+}
+
 .login-container .alert {
     max-width: $auth-form-max-width;
     /* stylelint-disable-next-line declaration-no-important */
