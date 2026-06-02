@@ -127,9 +127,12 @@
                     width: auto;
                 }
 
+                .col-form-label span {
+                    display: flex !important;
+                }
+
                 .col-form-label span::after {
                     content: ':';
-                    margin-left: -0.25em;
                 }
             }
 
