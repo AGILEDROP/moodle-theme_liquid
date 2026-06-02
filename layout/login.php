@@ -29,9 +29,9 @@ $logourl = $OUTPUT->get_logo_url();
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), 'escape' => false]),
-    'output'   => $OUTPUT,
+    'output' => $OUTPUT,
     'bodyattributes' => $bodyattributes,
-    'logourl'  => $logourl ? $logourl->out(false) : false,
+    'logourl' => $logourl ? $logourl->out(false) : false,
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/login', $templatecontext);
