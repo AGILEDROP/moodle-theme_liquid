@@ -10,10 +10,17 @@
             top: calc(#{$navbar-height} + 0.7rem);
         }
 
-        .btn {
+        .btn.icon-no-margin {
             border-radius: $border-radius;
-            background-color: $secondary;
-            color: $white;
+            padding: 16px;
+            background-color: $btn-secondary-bg;
+            color: $text-on-secondary;
+            box-shadow: $box-shadow-sm;
+            transition: padding 200ms;
+            width: auto;
+            height: auto;
+            margin: 0;
+
         }
 
         .no-left-nav & {
@@ -37,9 +44,17 @@
     }
 
     .drawer-right-toggle {
-        .btn {
+        margin: 0;
+
+        .btn.icon-no-margin {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
+            padding-right: 10px;
+            padding-left: 14px;
+
+            &:hover {
+                padding-right: 20px;
+            }
         }
     }
 }
