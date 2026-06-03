@@ -8,6 +8,50 @@
     background: none;
 }
 
+.path-mod-book #mod_book-chaptersnavigation {
+    margin: 0 -45px;
+}
+
+#mod_book-chaptersnavigation .btn:hover,
+#mod_book-chaptersnavigation .btn:focus {
+    background-color: $btn-secondary-hover-bg;
+    border-color: $btn-secondary-hover-border;
+}
+
+.path-mod-book {
+    .btn-previous,
+    .btn-next {
+        background-color: $btn-secondary-bg;
+        border-color: $btn-secondary-bg;
+        color: $text-on-secondary;
+
+        .icon {
+            color: $text-on-secondary;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $btn-secondary-hover-bg;
+            border-color: $btn-secondary-hover-border;
+            color: $text-on-secondary;
+
+            .icon {
+                color: $text-on-secondary;
+            }
+        }
+    }
+}
+
+[data-bs-theme="dark"] {
+    .path-mod-book {
+        .btn-previous,
+        .btn-next {
+            /* stylelint-disable-next-line declaration-no-important */
+            border: none !important;
+        }
+    }
+}
+
 .aalink,
 #page-footer a:not([class]),
 .arrow_link,

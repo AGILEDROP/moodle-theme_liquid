@@ -240,7 +240,8 @@ $dark-btn-content-hover-bg: rgba($white, .15);
 
     .block_myoverview,
     .dashboard-card-footer,
-    .fp-iconview .fp-filename-field .fp-filename {
+    .fp-iconview .fp-filename-field .fp-filename,
+    .path-mod .activity-details:not(:empty) {
         background-color: transparent;
     }
 

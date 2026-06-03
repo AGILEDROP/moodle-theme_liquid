@@ -33,6 +33,13 @@
         }
     }
 
+    &.btn-outline-secondary {
+        &:hover,
+        &:focus {
+            color: $white;
+        }
+    }
+
     &.btn-secondary,
     &.bg-secondary {
         color: $text-on-secondary;

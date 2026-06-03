@@ -29,3 +29,13 @@
         display: block;
     }
 }
+
+.stickyfooter {
+    @include media-breakpoint-up(xlg) {
+        left: $navbar-width;
+
+        .no-left-nav & {
+            left: 0;
+        }
+    }
+}

@@ -118,13 +118,16 @@
             &.today {
                 .day-number-circle {
                     font-weight: 500;
+                    border-radius: 50%;
+                    background-color: $btn-primary-bg;
+                    color: $white;
                 }
 
                 &:hover,
                 &:focus,
                 &:active {
                     .day-number-circle {
-                        background-color: $primary;
+                        background-color: $btn-primary-bg;
                         color: $white;
                     }
                 }

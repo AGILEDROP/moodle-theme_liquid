@@ -16,11 +16,17 @@
             background-color: $btn-secondary-bg;
             color: $text-on-secondary;
             box-shadow: $box-shadow-sm;
-            transition: padding 200ms;
+            transition: padding 200ms, background-color 150ms ease-in-out, border-color 150ms ease-in-out;
             width: auto;
             height: auto;
             margin: 0;
 
+            &:hover,
+            &:focus {
+                background-color: $btn-secondary-hover-bg;
+                border-color: $btn-secondary-hover-border;
+                color: $text-on-secondary;
+            }
         }
 
         .no-left-nav & {
