@@ -5,6 +5,11 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
+// Question/quiz panel colors
+$dark-outcome-color: #8e7a30;
+$dark-outcome-bg: rgba($dark-outcome-color, .15);
+$dark-outcome-border: rgba($dark-outcome-color, .4);
+
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
 
@@ -87,7 +92,7 @@ $dark-btn-content-hover-bg: rgba($white, .15);
 
         #region-main-box a {
             /* stylelint-disable-next-line declaration-no-important */
-            color: #14273e !important;
+            color: $dark-link-color !important;
         }
     }
 
@@ -272,6 +277,46 @@ $dark-btn-content-hover-bg: rgba($white, .15);
 
     .tox-tinymce {
         filter: grayscale(100%) invert(95%);
+
+        // Reset color override — invert filter handles dark mode, forced white would double-invert to near-black
+        button {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: unset !important;
+        }
+    }
+
+    // TinyMCE inline floating toolbar — lives in .tox-tinymce-aux OUTSIDE .tox-tinymce so the filter doesn't reach it
+    .tox-tinymce-aux {
+        .tox-pop__dialog {
+            background-color: $gray-900;
+            border: none;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
+        }
+
+        .tox-pop.tox-pop--top::before,
+        .tox-pop.tox-pop--top::after {
+            border-color: transparent transparent $gray-900 transparent;
+        }
+
+        .tox-pop.tox-pop--bottom::before,
+        .tox-pop.tox-pop--bottom::after {
+            border-color: $gray-900 transparent transparent transparent;
+        }
+
+        .tox-tbtn {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $dark-text-color !important;
+            background: $gray-900;
+
+            svg path {
+                fill: $dark-text-color;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: rgba($white, .1);
+            }
+        }
     }
 
     .breadcrumb-item:last-child,
@@ -339,7 +384,6 @@ $dark-btn-content-hover-bg: rgba($white, .15);
             /* stylelint-disable-next-line declaration-no-important */
             color: $white !important;
 
-            // Change hr to orange on button hover
             ~ hr,
             + * hr {
                 /* stylelint-disable-next-line declaration-no-important */
@@ -358,7 +402,6 @@ $dark-btn-content-hover-bg: rgba($white, .15);
         /* stylelint-disable-next-line declaration-no-important */
         border-color: $secondary !important;
     }
-
 
     @include media-breakpoint-down(sm) {
         .nav-tabs:not(.more-nav),
@@ -384,14 +427,87 @@ $dark-btn-content-hover-bg: rgba($white, .15);
     }
 
     .tool-card-header {
-        /* stylelint-disable-next-line declaration-no-important */
-        background-color: #576071 !important;
+        background-color: #576071;
     }
 
-    // Question bank table styling
-    .generaltable.table-fixed {
-        tr.qbank-sortable-column {
-            background-color: transparent;
+    // btn-light doesn't work on dark backgrounds — convert to an outline style
+    .btn-light {
+        background-color: transparent;
+        border-color: rgba($white, .4);
+        color: $dark-link-color;
+
+        &:hover,
+        &:focus {
+            background-color: rgba($white, .1);
+            border-color: rgba($white, .6);
+        }
+    }
+
+    // Question outcome/feedback panel
+    .que .outcome,
+    .que .comment {
+        background-color: $dark-outcome-bg;
+        border-color: $dark-outcome-border;
+        color: $dark-text-color;
+    }
+
+    // Question formulation panel
+    .que .formulation {
+        background-color: $dark-box-bg-color;
+        border-color: $gray-800;
+        color: $dark-text-color;
+    }
+
+    // Question attempt info panel
+    .que .info {
+        background-color: $dark-box-bg-color;
+        border-color: $gray-800;
+        color: $dark-text-color;
+        width: 9em;
+    }
+
+    // Quiz review summary table cells
+    table.quizreviewsummary th.cell,
+    table.quizreviewsummary td.cell {
+        background: unset;
+    }
+
+    // Module chooser option states
+    .option[data-region="chooser-option-container"] {
+        &:not(.selected):hover {
+            background-color: rgba($white, .08);
+        }
+
+        &.selected {
+            border-color: $primary;
+            background-color: rgba($primary, .15);
+        }
+    }
+
+    // Question bank table scroll container - dark scrollbar
+    .question_table {
+        &::-webkit-scrollbar-track {
+            background: $gray-800;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $gray-600;
+
+            &:hover {
+                background: $gray-500;
+            }
+        }
+    }
+
+    // Question bank table
+    table.question-bank-table {
+        background-color: unset;
+
+        thead tr.qbank-column-list,
+        thead tr.qbank-column-list th {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $dark-bg-color !important;
+            color: $dark-link-color;
         }
 
         tbody tr:nth-of-type(odd) {
@@ -404,6 +520,28 @@ $dark-btn-content-hover-bg: rgba($white, .15);
 
         tbody tr:hover {
             background-color: rgba($white, .05);
+        }
+
+        tbody tr.highlight {
+            background-color: rgba($primary, .15);
+        }
+    }
+
+    // Override Bootstrap's text-dark utility (!important needed — Bootstrap uses it too)
+    .text-dark {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-link-color !important;
+    }
+
+    // Question bank status/version dropdowns
+    .form-select {
+        background-color: $gray-900;
+        color: $dark-text-color;
+        border-color: $gray-800;
+
+        option {
+            background-color: $gray-900;
+            color: $dark-text-color;
         }
     }
 
@@ -423,6 +561,46 @@ $dark-btn-content-hover-bg: rgba($white, .15);
 
         .yui3-datatable-even .yui3-datatable-cell {
             background-color: transparent;
+        }
+    }
+
+    // Alert links should use Bootstrap's own --bs-alert-link-color, not the page-level override
+    .alert a {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--bs-alert-link-color) !important;
+    }
+
+    // Autocomplete suggestions dropdown
+    .form-autocomplete-suggestions {
+        background-color: $gray-900;
+        border-color: $gray-800;
+
+        li {
+            color: $dark-text-color;
+
+            &:hover,
+            &[aria-selected="true"]:not(.suggestions-heading) {
+                background-color: rgba($white, .08);
+                color: $dark-link-color;
+            }
+
+            &.suggestions-heading {
+                background-color: $gray-800;
+                color: $dark-text-color;
+            }
+        }
+    }
+
+    // Activity item hover in edit mode: subtle background instead of outline/shadow
+    .editing .activity-item:hover:not(:has(.activity:hover)),
+    .editing .activity-item.selected {
+        outline: none;
+        box-shadow: none;
+        background-color: rgba($white, .06);
+
+        .activityiconcontainer,
+        .badge {
+            mix-blend-mode: normal;
         }
     }
 

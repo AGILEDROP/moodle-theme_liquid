@@ -224,6 +224,34 @@ nav a {
     }
 }
 
+// Question bank table container - keep scroll inside the container, not page-level
+.question_table {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $gray-200;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $gray-500;
+        border-radius: 3px;
+
+        &:hover {
+            background: $gray-600;
+        }
+    }
+}
+
+// Question attempt info panel
+.que .info {
+    width: 9em;
+}
+
 // Question bank table styling - make it consistent with table-striped and table-hover
 .generaltable.table-fixed {
     tr.qbank-sortable-column {
@@ -272,4 +300,18 @@ body#page-admin-reportbuilder-edit {
             box-shadow: none !important;
         }
     }
+}
+
+// Hide empty placeholder li in autocomplete suggestions (inline style requires !important)
+.form-autocomplete-suggestions li[data-value=""]:not(.suggestions-heading) {
+    /* stylelint-disable-next-line declaration-no-important */
+    display: none !important;
+}
+
+// Activity item hover in edit mode: subtle background instead of outline/shadow
+.editing .activity-item:hover:not(:has(.activity:hover)),
+.editing .activity-item.selected {
+    outline: none;
+    box-shadow: none;
+    background-color: rgba(#032633, .06);
 }
