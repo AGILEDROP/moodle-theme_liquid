@@ -5,6 +5,8 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
+$dark-surface-color: #191c20;
+
 // Question/quiz panel colors
 $dark-outcome-color: #8e7a30;
 $dark-outcome-bg: rgba($dark-outcome-color, .15);
@@ -130,7 +132,11 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         background-color: $dark-bg-color;
     }
 
-    .bg-white,
+    .bg-white {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-surface-color !important;
+    }
+
     #page.drawers .main-inner,
     .dropdown-menu,
     .maincalendar .calendarmonth td:hover .day-number-circle,
@@ -562,6 +568,18 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         .yui3-datatable-even .yui3-datatable-cell {
             background-color: transparent;
         }
+    }
+
+    // Quiz edit page inplaceeditable has hardcoded light background
+    #page-mod-quiz-edit .inplaceeditable {
+        background: transparent;
+    }
+
+    // Quiz edit page question name and text have hardcoded dark-on-light colors
+    #page-mod-quiz-edit .question-bank-table .questionname,
+    #page-mod-quiz-edit ul.slots li.activity div.activityinstance .questionname,
+    #page-mod-quiz-edit ul.slots li.activity div.activityinstance .questiontext {
+        color: $dark-text-color;
     }
 
     // Alert links should use Bootstrap's own --bs-alert-link-color, not the page-level override
