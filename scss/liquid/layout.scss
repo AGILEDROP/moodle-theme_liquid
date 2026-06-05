@@ -36,7 +36,7 @@
 
     .drawer-left-toggle {
         @include media-breakpoint-up(xlg) {
-            left: $navbar-width;
+            left: 286px;
 
             .no-left-nav & {
                 left: 0;
@@ -46,6 +46,11 @@
         .btn {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
+
+            &:hover,
+            &:focus {
+                padding-left: 28px;
+            }
         }
     }
 

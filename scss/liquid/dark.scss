@@ -570,6 +570,25 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         }
     }
 
+    // Login form input has hardcoded light background
+    .login-container .login-form .form-control {
+        background-color: $dark-bg-color;
+    }
+
+    // Course category listings columns-3 layout has hardcoded light backgrounds
+    @media (min-width: 1200px) and (max-width: 1600px) {
+        #course-category-listings.columns-3 {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $dark-box-bg-color !important;
+        }
+
+        #course-category-listings.columns-3 #category-listing > div,
+        #course-category-listings.columns-3 #course-listing > div,
+        #course-category-listings.columns-3 #course-detail > div {
+            background-color: $dark-surface-color;
+        }
+    }
+
     // Quiz edit page inplaceeditable has hardcoded light background
     #page-mod-quiz-edit .inplaceeditable {
         background: transparent;

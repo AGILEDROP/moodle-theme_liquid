@@ -308,6 +308,87 @@ body#page-admin-reportbuilder-edit {
     display: none !important;
 }
 
+.form-check-input:checked {
+    /* stylelint-disable-next-line declaration-no-important */
+    background-color: $btn-secondary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $btn-secondary-bg !important;
+}
+
+.simplesearchform .btn-submit {
+    /* stylelint-disable-next-line declaration-no-important */
+    background-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $text-on-primary !important;
+}
+
+.listing-actions.course-listing-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card .coursename,
+.coursebox > .info > .coursename,
+.coursename {
+    /* stylelint-disable-next-line declaration-no-important */
+    font-size: unset !important;
+}
+
+// Normalize old Moodle radio/checkbox inputs that don't have Bootstrap's .form-check-input class
+.form-check input[type="radio"]:not(.form-check-input),
+.form-check input[type="checkbox"]:not(.form-check-input) {
+    appearance: none;
+    width: 1em;
+    height: 1em;
+    margin-top: .25em;
+    vertical-align: top;
+    background-color: var(--bs-body-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+
+    &:checked {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $btn-secondary-bg !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: $btn-secondary-bg !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+    }
+}
+
+.form-check input[type="radio"]:not(.form-check-input) {
+    border-radius: 50%;
+}
+
+.form-check input[type="checkbox"]:not(.form-check-input) {
+    border-radius: .25em;
+}
+
+.userselector > .d-flex {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#course-category-listings .listitem[data-selected="1"] {
+    border-left-color: $secondary;
+}
+
+#course-category-listings .detail-pair .pair-key span {
+    margin-right: 0;
+}
+
+#course-category-listings .detail-pair.row {
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-top: .5rem !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-bottom: .5rem !important;
+}
+
 // Activity item hover in edit mode: subtle background instead of outline/shadow
 .editing .activity-item:hover:not(:has(.activity:hover)),
 .editing .activity-item.selected {
