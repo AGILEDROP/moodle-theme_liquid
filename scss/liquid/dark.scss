@@ -1,5 +1,5 @@
 // Dark mode dynamic variables (using preset variables where available)
-$dark-text-color: rgba($white, .7);
+$dark-text-color: rgba($white, .8);
 $dark-link-color: rgba($white, .9);
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
@@ -575,6 +575,22 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         background-color: $dark-bg-color;
     }
 
+    // Override hardcoded black borders and text colors from pasted content (e.g. Google Docs)
+    #region-main table td,
+    #region-main table th {
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: rgba($white, .2) !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+
+        span {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: inherit !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+        }
+    }
+
     // Identity provider buttons have hardcoded white background
     .login-container .login-identityprovider-btn {
         /* stylelint-disable-next-line declaration-no-important */
@@ -590,6 +606,42 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
             background-color: rgba($white, .08) !important;
             /* stylelint-disable-next-line declaration-no-important */
             color: $dark-link-color !important;
+        }
+    }
+
+    // Quiz nav correct/incorrect buttons have hardcoded light colors
+    .path-mod-quiz #mod_quiz_navblock {
+        .qnbutton.correct,
+        .qnbutton.correct .trafficlight {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            .thispageholder {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $success !important;
+            }
+        }
+
+        .qnbutton.incorrect,
+        .qnbutton.incorrect .trafficlight {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            .thispageholder {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $danger !important;
+            }
+        }
+
+        .qnbutton.partiallycorrect,
+        .qnbutton.partiallycorrect .trafficlight {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            .thispageholder {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $warning !important;
+            }
         }
     }
 

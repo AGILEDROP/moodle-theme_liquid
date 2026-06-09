@@ -396,3 +396,46 @@ body#page-admin-reportbuilder-edit {
     box-shadow: none;
     background-color: rgba(#032633, .06);
 }
+
+.path-mod-quiz #mod_quiz_navblock {
+    .qnbutton {
+        position: relative;
+        text-align: center;
+        line-height: 40px;
+
+        .thispageholder {
+            position: absolute;
+            inset: 0;
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+
+        .trafficlight {
+            display: none;
+        }
+    }
+
+    .qnbutton.notyetanswered,
+    .qnbutton.notyetanswered .trafficlight {
+        background-color: transparent;
+
+        .thispageholder {
+            border-color: $secondary;
+        }
+    }
+
+    .qnbutton.complete,
+    .qnbutton.complete .trafficlight,
+    .qnbutton.answersaved,
+    .qnbutton.answersaved .trafficlight,
+    .qnbutton.blocked,
+    .qnbutton.blocked .trafficlight,
+    .qnbutton.requiresgrading,
+    .qnbutton.requiresgrading .trafficlight {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $secondary !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
+    }
+}
