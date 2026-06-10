@@ -645,6 +645,19 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         }
     }
 
+    // Availability info has hardcoded light background
+    .availabilityinfo {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: rgba($white, .06) !important;
+        color: $dark-text-color;
+    }
+
+    // Restrict access eye/delete icons are black PNGs, invert them for dark mode
+    .availability-eye img,
+    .availability-delete img {
+        filter: invert(1);
+    }
+
     // Course category listings columns-3 layout has hardcoded light backgrounds
     @media (min-width: 1200px) and (max-width: 1600px) {
         #course-category-listings.columns-3 {
