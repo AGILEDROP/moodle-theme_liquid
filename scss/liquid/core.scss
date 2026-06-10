@@ -1,3 +1,5 @@
+$activity-edit-hover-bg: rgba(#032633, .06);
+
 #page-header {
     h1.h2 {
         font-weight: $headings-font-weight;
@@ -394,7 +396,7 @@ body#page-admin-reportbuilder-edit {
 .editing .activity-item.selected {
     outline: none;
     box-shadow: none;
-    background-color: rgba(#032633, .06);
+    background-color: $activity-edit-hover-bg;
 }
 
 .path-mod-quiz #mod_quiz_navblock {

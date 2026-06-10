@@ -6,6 +6,7 @@ $dark-btn-hover-bg: rgba($white, .1);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
 $dark-surface-color: #191c20;
+$dark-card-header-bg: #576071;
 
 // Question/quiz panel colors
 $dark-outcome-color: #8e7a30;
@@ -433,7 +434,7 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
     }
 
     .tool-card-header {
-        background-color: #576071;
+        background-color: $dark-card-header-bg;
     }
 
     // btn-light doesn't work on dark backgrounds — convert to an outline style
@@ -469,7 +470,6 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         background-color: $dark-box-bg-color;
         border-color: $gray-800;
         color: $dark-text-color;
-        width: 9em;
     }
 
     // Quiz review summary table cells
@@ -643,6 +643,23 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
                 border-color: $warning !important;
             }
         }
+    }
+
+    // Progress text has hardcoded muted color, too dark on dark backgrounds
+    .block .block-cards .progress-text {
+        color: $dark-text-color;
+    }
+
+    // Course index dimmed item hover has hardcoded black color
+    .courseindex .courseindex-item:hover.dimmed,
+    .courseindex .courseindex-item:focus.dimmed {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+    }
+
+    // Completion dialog has hardcoded dark-on-light color
+    .activity-item .activity-completion .completion-dialog {
+        color: $dark-text-color;
     }
 
     // Availability info has hardcoded light background
