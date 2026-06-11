@@ -249,9 +249,11 @@ nav a {
     }
 }
 
-// Question attempt info panel
+// Question attempt info panel — match border-radius to .formulation
 .que .info {
     width: 9em;
+    padding: .75em;
+    border-radius: $alert-border-radius;
 }
 
 // Question bank table styling - make it consistent with table-striped and table-hover

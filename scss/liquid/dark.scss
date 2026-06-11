@@ -254,7 +254,7 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
     .dashboard-card-footer,
     .fp-iconview .fp-filename-field .fp-filename,
     .path-mod .activity-details:not(:empty) {
-        background-color: transparent;
+        background-color: $dark-surface-color;
     }
 
     .frontpage-slider .swiper-slide .ratio .image-wrapper + .content-wrapper {
@@ -472,6 +472,11 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         color: $dark-text-color;
     }
 
+    // Flag icon is a black PNG, invert for dark mode
+    .que .info .questionflag img {
+        filter: invert(1);
+    }
+
     // Quiz review summary table cells
     table.quizreviewsummary th.cell,
     table.quizreviewsummary td.cell {
@@ -586,8 +591,6 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         span {
             /* stylelint-disable-next-line declaration-no-important */
             color: inherit !important;
-            /* stylelint-disable-next-line declaration-no-important */
-            background-color: transparent !important;
         }
     }
 
@@ -643,6 +646,15 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
                 border-color: $warning !important;
             }
         }
+    }
+
+    // Grade report heading/category cells have hardcoded light background
+    .path-grade-report-grader .gradeparent .heading .cell,
+    .path-grade-report-grader .gradeparent .cell.category,
+    .path-grade-report-grader .gradeparent .avg .cell {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-surface-color !important;
+        color: $dark-text-color;
     }
 
     // Progress text has hardcoded muted color, too dark on dark backgrounds
@@ -755,7 +767,22 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
             color: $dark-text-color;
         }
     }
+
+    #region-main .maincalendar .calendarmonth {
+        td,
+        th {
+            border-color: rgba($white, .15);
+        }
+    }
+
+    .maincalendar .calendarmonth td:hover .day-number-circle,
+    .maincalendar .calendarmonth td:focus .day-number-circle,
+    .maincalendar .calendarmonth td:active .day-number-circle {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $gray-600 !important;
+    }
 }
+
 
 @keyframes bg-pulse-grey-dark {
     0% {
@@ -768,3 +795,4 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         background-color: $gray-700;
     }
 }
+

@@ -209,3 +209,11 @@
         }
     }
 }
+
+// Full-page calendar: add cell borders
+#region-main .maincalendar .calendarmonth {
+    td,
+    th {
+        border: 1px solid $gray-300;
+    }
+}
