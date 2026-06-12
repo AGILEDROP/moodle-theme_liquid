@@ -96,6 +96,19 @@ a:not([class]),
     left: 0 !important;
 }
 
+// Vertically centre the quiz timer next to its toggle button. The wrapper
+// is flex but ships with no align-items, so the taller button drags the
+// timer text to the top edge.
+#quiz-timer-wrapper {
+    align-items: center;
+
+    #quiz-timer {
+        display: inline-flex;
+        align-items: center;
+        gap: .25rem;
+    }
+}
+
 @include media-breakpoint-down(sm) {
     .nav-tabs:not(.more-nav),
     .nav-pills {
@@ -342,9 +355,16 @@ body#page-admin-reportbuilder-edit {
     font-size: unset !important;
 }
 
-// Normalize old Moodle radio/checkbox inputs that don't have Bootstrap's .form-check-input class
+// Normalize old Moodle radio/checkbox inputs that don't have Bootstrap's .form-check-input class.
+// Also covers the quiz multichoice/truefalse answers, which the qtype renderers emit as bare
+// <input type="radio"> / <input type="checkbox"> inside <div class="r0"> / <div class="r1">
+// (no .form-check wrapper, no .form-check-input class).
 .form-check input[type="radio"]:not(.form-check-input),
-.form-check input[type="checkbox"]:not(.form-check-input) {
+.form-check input[type="checkbox"]:not(.form-check-input),
+.que .answer .r0 > input[type="radio"]:not(.form-check-input),
+.que .answer .r1 > input[type="radio"]:not(.form-check-input),
+.que .answer .r0 > input[type="checkbox"]:not(.form-check-input),
+.que .answer .r1 > input[type="checkbox"]:not(.form-check-input) {
     appearance: none;
     width: 1em;
     height: 1em;
@@ -365,11 +385,15 @@ body#page-admin-reportbuilder-edit {
     }
 }
 
-.form-check input[type="radio"]:not(.form-check-input) {
+.form-check input[type="radio"]:not(.form-check-input),
+.que .answer .r0 > input[type="radio"]:not(.form-check-input),
+.que .answer .r1 > input[type="radio"]:not(.form-check-input) {
     border-radius: 50%;
 }
 
-.form-check input[type="checkbox"]:not(.form-check-input) {
+.form-check input[type="checkbox"]:not(.form-check-input),
+.que .answer .r0 > input[type="checkbox"]:not(.form-check-input),
+.que .answer .r1 > input[type="checkbox"]:not(.form-check-input) {
     border-radius: .25em;
 }
 
