@@ -694,6 +694,30 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         color: $dark-text-color;
     }
 
+    // Activity meta dates use a hardcoded dark slate color that is unreadable on dark backgrounds.
+    .activity-item .activity-dates,
+    .path-mod .activity-information .activity-dates {
+        color: rgba($white, .65);
+    }
+
+    // Core blockquote uses a dark slate text color and a light grey left border
+    // that both collapse into the background on dark mode.
+    blockquote {
+        color: rgba($white, .75);
+        border-left-color: rgba($white, .25);
+    }
+
+    // Completion requirement badges: mix-blend-mode multiply renders the
+    // bg-light pills as near-black voids on dark surfaces. Disable the blend
+    // and use a translucent white pill instead.
+    .path-mod .automatic-completion-conditions .badge.bg-light {
+        mix-blend-mode: normal;
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: rgba($white, .08) !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+    }
+
     // Availability info has hardcoded light background
     .availabilityinfo {
         /* stylelint-disable-next-line declaration-no-important */
