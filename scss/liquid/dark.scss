@@ -13,6 +13,12 @@ $dark-outcome-color: #8e7a30;
 $dark-outcome-bg: rgba($dark-outcome-color, .15);
 $dark-outcome-border: rgba($dark-outcome-color, .4);
 
+// Teacher comment / override panel - green hue to match the light theme's
+// distinct green palette for .que .comment.
+$dark-comment-color: #4a9970;
+$dark-comment-bg: rgba($dark-comment-color, .15);
+$dark-comment-border: rgba($dark-comment-color, .4);
+
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
 
@@ -450,11 +456,18 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
         }
     }
 
-    // Question outcome/feedback panel
-    .que .outcome,
-    .que .comment {
+    // Question outcome/feedback panel (yellow grading hue, mirrors light theme).
+    .que .outcome {
         background-color: $dark-outcome-bg;
         border-color: $dark-outcome-border;
+        color: $dark-text-color;
+    }
+
+    // Teacher comment / override panel (green hue, mirrors light theme so the
+    // comment block stays visually distinct from outcome feedback).
+    .que .comment {
+        background-color: $dark-comment-bg;
+        border-color: $dark-comment-border;
         color: $dark-text-color;
     }
 
@@ -705,6 +718,13 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
     blockquote {
         color: rgba($white, .75);
         border-left-color: rgba($white, .25);
+    }
+
+    // User initials avatar pill uses a hardcoded near-white background and
+    // dark slate text, which sticks out as a bright chip on dark surfaces.
+    .userinitials {
+        background-color: rgba($white, .12);
+        color: $dark-text-color;
     }
 
     // Completion requirement badges: mix-blend-mode multiply renders the
