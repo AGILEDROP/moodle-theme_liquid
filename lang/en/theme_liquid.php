@@ -65,6 +65,8 @@ $string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.
 $string['presetfiles'] = 'Additional theme preset files';
 $string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href="https://docs.moodle.org/dev/Boost_Presets">Boost presets</a> for information on creating and sharing your own preset files.';
 $string['primarycolor'] = 'Primary color';
+$string['btnprimarycolor'] = 'Primary button background color';
+$string['btnsecondarycolor'] = 'Secondary button background color';
 $string['privacy:metadata'] = 'The Liquid theme does not store any user data.';
 $string['privacy:metadata:preference:thememode'] = 'The user\'s preference for light or dark theme.';
 $string['privacy:thememodedark'] = 'The current preference for the theme mode is dark';

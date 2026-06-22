@@ -22,14 +22,92 @@
         }
     }
 
+    .flex-md-row-reverse {
+        /* stylelint-disable-next-line declaration-no-important */
+        flex-direction: unset !important;
+    }
+
+    &#page-login-signup {
+        .login-container > div:not(.loginimage) {
+            flex-direction: column;
+            overflow-y: auto;
+            justify-content: center;
+        }
+
+        .col-form-label {
+            /* stylelint-disable-next-line declaration-no-important */
+            text-align: left !important;
+            width: 100%;
+            margin-bottom: $spacer * 0.5;
+        }
+
+        .signupform {
+            padding: $spacer $spacer * 2;
+            width: 100%;
+        }
+
+        .mform {
+            max-width: $auth-form-max-width;
+            margin: 0 auto;
+
+            .form-group.row {
+                flex-direction: column;
+
+                [class*="col-md-"] {
+                    /* stylelint-disable-next-line declaration-no-important */
+                    max-width: 100% !important;
+                    /* stylelint-disable-next-line declaration-no-important */
+                    flex: 0 0 100% !important;
+                    padding: 0;
+                }
+            }
+        }
+
+        .form-label-addon {
+            margin-left: 0;
+        }
+
+        .form-control,
+        .form-select {
+            width: 100%;
+        }
+
+        #fgroup_id_buttonar {
+            .col-form-label {
+                /* stylelint-disable-next-line declaration-no-important */
+                display: none !important;
+            }
+
+            div[data-fieldtype="group"] {
+                width: 100%;
+
+                > div > div {
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+
     &#page-login-forgot_password {
         #id_setpassword {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: 0;
+
+            .form-label-addon {
+                margin-left: 0;
+            }
+
+            .col-md-3.col-form-label.pb-0.pt-0 {
+                display: none;
+            }
+
             [id*="fitem_id_password"] {
                 display: block;
 
                 .col-form-label {
                     width: 100%;
-                    margin-bottom: 0.5rem;
+                    margin-bottom: $spacer * 0.5;
                 }
 
                 .form-inline {
@@ -43,34 +121,30 @@
 
             #fitem_id_username2 {
                 display: flex;
-                gap: 1rem;
+                gap: $spacer;
 
                 > div {
                     width: auto;
                 }
-            }
 
-            #fitem_id_passwordpolicyinfo {
-                padding: 0.5rem;
-                border-radius: 0.25rem;
-                background-color: $gray-800;
-                color: $gray-100;
-                margin-bottom: 1rem;
-            }
+                .col-form-label span {
+                    display: flex !important;
+                }
 
-            [data-bs-theme="dark"] #fitem_id_passwordpolicyinfo {
-                background-color: $gray-100;
-                color: $gray-900;
+                .col-form-label span::after {
+                    content: ':';
+                }
             }
 
             .checkbox {
-                margin-top: 1rem;
+                margin-top: $spacer;
             }
 
             #fitem_id_password {
-                margin-bottom: 1rem;
+                margin-bottom: $spacer;
             }
         }
+
         #id_searchbyusernamecontainer,
         #id_searchbyemailcontainer {
 
@@ -80,7 +154,7 @@
 
                 > div {
                     width: 100%;
-                    margin-bottom: 0.5rem;
+                    margin-bottom: $spacer * 0.5;
                 }
             }
 
@@ -90,41 +164,39 @@
         }
 
         .fdescription {
-            max-width: 25rem;
+            max-width: $auth-form-max-width;
             width: 100%;
             margin: 0 auto;
         }
+
+        .login-container > div:not(.loginimage) {
+            flex-direction: column;
+            justify-content: center;
+            gap: $spacer * 2;
+        }
+
         .generalbox {
-            margin: auto;
-            padding: 1rem 2rem;
-            color: $white;
+            max-width: $auth-form-max-width;
+            margin: 0 $spacer * 2;
+            padding: $spacer * 0.5;
+            border: 1px solid $border-color;
+            border-radius: $auth-box-border-radius;
 
             @include media-breakpoint-up(lg) {
-                width: 50%;
-                max-width: 50rem;
+                margin: 0 auto;
             }
         }
 
         .mform {
             display: flex;
             flex-direction: column;
-            padding: 1rem 2rem;
+            padding: $spacer $spacer * 2;
             background-color: $white;
-            flex: 1 1 auto;
-
-            @include media-breakpoint-up(lg) {
-                width: 50%;
-                max-width: 50rem;
-                margin: 0;
-                flex: 0 0 auto;
-                justify-content: center;
-                border-radius: 0;
-                box-shadow: none;
-            }
+            flex: 0 0 auto;
 
             fieldset {
-                margin-bottom: 3rem;
-                padding-bottom: 2rem;
+                margin-bottom: $spacer * 3;
+                padding-bottom: $spacer * 2;
                 width: 100%;
 
                 &:last-child {
@@ -154,7 +226,7 @@
 
                     .femptylabel {
                         flex: 0 0 auto;
-                        margin-top: 1rem;
+                        margin-top: $spacer;
 
                         .col-form-label {
                             display: none;
@@ -164,32 +236,55 @@
                             flex: 0 0 100%;
                             max-width: 100%;
                             padding: 0;
-                            justify-content: center;
+                            justify-content: flex-start;
                         }
                     }
                 }
             }
         }
 
-
         #fgroup_id_buttonar {
-            padding-bottom: 1rem;
+            padding-bottom: $spacer;
+            width: 100%;
 
             .col-form-label {
                 /* stylelint-disable-next-line declaration-no-important */
                 display: none !important;
             }
 
-            div[data-fieldtype="group"] {
-                width: 100%;
+            .felement {
+                /* stylelint-disable-next-line declaration-no-important */
+                max-width: 100% !important;
+                /* stylelint-disable-next-line declaration-no-important */
+                flex: 0 0 100% !important;
+                padding: 0;
+
+                > div > div {
+                    justify-content: space-between;
+                    width: 100%;
+                }
             }
         }
     }
 }
 
+#fitem_id_passwordpolicyinfo {
+    padding: $spacer * 0.5;
+    border-radius: $auth-box-border-radius;
+    background-color: $gray-800;
+    color: $gray-100;
+    margin-bottom: $spacer;
+}
+
+[data-bs-theme="dark"] #fitem_id_passwordpolicyinfo {
+    background-color: $gray-100;
+    color: $gray-900;
+}
+
 .login-wrapper {
     align-items: unset;
     justify-content: unset;
+    height: 100%;
 }
 
 .login-container {
@@ -200,13 +295,17 @@
     border-radius: 0;
     background: none;
     box-shadow: none;
+    height: 100%;
 
-    > div {
+    > div:not(.loginimage) {
+        background-color: $white;
         display: flex;
-        flex-direction: column;
+        flex: 1 1 auto;
 
         @include media-breakpoint-up(lg) {
-            flex-direction: row;
+            width: 50%;
+            max-width: $auth-right-panel-max-width;
+            flex: 0 0 auto;
         }
     }
 
@@ -216,35 +315,63 @@
 }
 
 .loginimage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     flex: 0 0 auto;
-    padding: 3rem;
+    padding: $spacer * 2;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-image: url([[pix:theme_liquid|pattern-dark]]);
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: 100% auto;
+        transform: rotate(180deg);
+        pointer-events: none;
+    }
 
     @include media-breakpoint-up(lg) {
         flex: 1 1 auto;
+        padding: $spacer * 3;
+        background-image: url([[pix:theme_liquid|pattern-dark]]);
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: 100% auto;
+
+        &::before {
+            height: 50%;
+        }
     }
 
     img {
-        max-width: 12.5rem;
+        position: relative;
+        width: 100%;
+        max-width: $auth-logo-max-width;
+    }
+}
+
+.login-container .login-logo {
+    margin-top: $spacer * 4;
+
+    @include media-breakpoint-up(lg) {
+        margin-top: 0;
     }
 }
 
 .loginform {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem 2rem;
-    text-align: center;
+    padding: $spacer $spacer * 2;
     background-color: $white;
     flex: 1 1 auto;
 
     @include media-breakpoint-up(lg) {
-        width: 50%;
-        max-width: 800px;
+        width: 100%;
+        max-width: none;
         margin: 0;
-        flex: 0 0 auto;
         border-radius: 0;
         box-shadow: none;
     }
@@ -253,13 +380,92 @@
 .login-heading,
 .login-form,
 .login-divider,
-.login-container .alert,
+.login-instructions,
+.login-signup,
+.login-identityproviders,
+#guestlogin,
 #id_searchbyusername,
 #id_searchbyemail,
-#id_setpassword,
-#fgroup_id_buttonar {
-    max-width: 25rem;
+#id_setpassword {
+    max-width: $auth-form-max-width;
     margin: 0 auto;
+}
+
+.login-identityproviders {
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: 1fr;
+
+    > h2 {
+        grid-column: 1 / -1;
+        margin: 0;
+    }
+
+    .btn-block + .btn-block {
+        margin-top: 0;
+    }
+
+    // 2 providers: side by side
+    &:has(> a:nth-of-type(2):last-of-type) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    // 3 providers: all in a row
+    &:has(> a:nth-of-type(3):last-of-type) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    // 4 providers: 2×2
+    &:has(> a:nth-of-type(4):last-of-type) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    // 5 providers: 2×2 + last full width
+    &:has(> a:nth-of-type(5):last-of-type) {
+        grid-template-columns: repeat(2, 1fr);
+
+        > a:last-of-type {
+            grid-column: 1 / -1;
+        }
+    }
+
+    // 6 providers: 2×3
+    &:has(> a:nth-of-type(6):last-of-type) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.login-container .login-identityprovider-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: .9rem;
+    white-space: nowrap;
+}
+
+.login-container {
+    h1.login-heading {
+        font-size: $h2-font-size;
+    }
+
+    h2.login-heading {
+        font-size: $h4-font-size;
+    }
+}
+
+.login-container .login-divider {
+    margin-top: $spacer * 1.5;
+    margin-bottom: $spacer * 1.5;
+    border-top: 1px solid $border-color;
+}
+
+.login-container .alert {
+    max-width: $auth-form-max-width;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin: 0 auto $spacer * 0.5 !important;
 }
 
 .login-logo {

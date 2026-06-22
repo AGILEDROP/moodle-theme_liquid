@@ -34,6 +34,22 @@ $setting = new admin_setting_configcolourpicker($name, $title, '', $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+// Primary button background color.
+$name = 'theme_liquid/btnprimarycolor';
+$title = get_string('btnprimarycolor', 'theme_liquid');
+$default = '#005f6a';
+$setting = new admin_setting_configcolourpicker($name, $title, '', $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Secondary button background color.
+$name = 'theme_liquid/btnsecondarycolor';
+$title = get_string('btnsecondarycolor', 'theme_liquid');
+$default = '#ee4723';
+$setting = new admin_setting_configcolourpicker($name, $title, '', $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // Text color on primary color.
 $name = 'theme_liquid/textprimarycolor';
 $title = get_string('textprimarycolor', 'theme_liquid');
