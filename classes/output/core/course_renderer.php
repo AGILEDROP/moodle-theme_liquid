@@ -35,8 +35,7 @@ use moodle_url;
  * Can be retrieved with the following:
  * $renderer = $PAGE->get_renderer('core','course');
  */
-class course_renderer extends \core_course_renderer
-{
+class course_renderer extends \core_course_renderer {
     /**
      * Returns HTML to print list of available courses for the frontpage
      *
