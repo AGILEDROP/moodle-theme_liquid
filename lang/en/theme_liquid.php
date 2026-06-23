@@ -29,6 +29,8 @@ $string['advancedsettings'] = 'Advanced settings';
 $string['bodyfont'] = 'Body font size, rem';
 $string['borderssettings'] = 'Borders settings';
 $string['borderwidth'] = 'Border width';
+$string['btnprimarycolor'] = 'Primary button background color';
+$string['btnsecondarycolor'] = 'Secondary button background color';
 $string['choosereadme'] = 'Liquid is a modern, clean and fully responsive Moodle theme created by Agiledrop. It is suitable for all types of Moodle websites, including online courses, corporate training, and educational institutions. The theme offers a variety of customization options, allowing administrators to tailor the look and feel of their Moodle site to match their branding and design preferences.';
 $string['colorssettings'] = 'Colors settings';
 $string['configtitle'] = 'Liquid';
@@ -65,8 +67,6 @@ $string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.
 $string['presetfiles'] = 'Additional theme preset files';
 $string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href="https://docs.moodle.org/dev/Boost_Presets">Boost presets</a> for information on creating and sharing your own preset files.';
 $string['primarycolor'] = 'Primary color';
-$string['btnprimarycolor'] = 'Primary button background color';
-$string['btnsecondarycolor'] = 'Secondary button background color';
 $string['privacy:metadata'] = 'The Liquid theme does not store any user data.';
 $string['privacy:metadata:preference:thememode'] = 'The user\'s preference for light or dark theme.';
 $string['privacy:thememodedark'] = 'The current preference for the theme mode is dark';
