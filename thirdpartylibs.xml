@@ -7,4 +7,11 @@
         <license>MIT</license>
         <repository>https://github.com/nolimits4web/swiper</repository>
     </library>
+    <library>
+        <location>style/fontawesome.min.css</location>
+        <name>Font Awesome Free</name>
+        <version>6.7.2</version>
+        <license>CC BY 4.0, SIL OFL 1.1, MIT</license>
+        <repository>https://github.com/FortAwesome/Font-Awesome</repository>
+    </library>
 </libraries>

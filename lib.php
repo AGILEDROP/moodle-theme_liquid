@@ -59,6 +59,8 @@ function theme_liquid_get_pre_scss($theme) {
     $configurable = [
         // Config key => [variableName, ...].
         'primarycolor' => ['primary'],
+        'btnprimarycolor' => ['btn-primary-bg'],
+        'btnsecondarycolor' => ['btn-secondary-bg'],
         'textprimarycolor' => ['text-on-primary'],
         'successcolor' => ['success'],
         'infocolor' => ['info'],

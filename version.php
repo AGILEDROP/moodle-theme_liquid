@@ -25,10 +25,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_liquid';
-$plugin->version = 2025041800;
-$plugin->release = '1.0.4';
+$plugin->version = 2026062300;
+$plugin->release = '1.1.0';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->requires = 2023100400;
+$plugin->requires = 2025041400;
 $plugin->dependencies = [
     'theme_boost' => '2023100900',
 ];

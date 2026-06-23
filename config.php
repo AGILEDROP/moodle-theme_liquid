@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $THEME->name = 'liquid';
-$THEME->sheets = [];
+$THEME->sheets[] = 'fontawesome.min';
 $THEME->editor_sheets = [];
 $THEME->editor_scss = ['editor'];
 $THEME->usefallback = true;
@@ -38,6 +38,11 @@ $THEME->layouts = [
         'regions' => ['side-pre'],
         'defaultregion' => 'side-pre',
         'options' => ['nonavbar' => true],
+    ],
+    'login' => [
+        'file' => 'login.php',
+        'regions' => [],
+        'options' => ['langmenu' => true],
     ],
 ];
 $THEME->parents = ['boost'];
