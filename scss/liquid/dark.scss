@@ -874,6 +874,54 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         color: $dark-text-color !important;
     }
     /* stylelint-enable declaration-no-important */
+
+    .pagelayout-maintenance .page-header-headings,
+    .pagelayout-secure .page-header-headings {
+        background-color: transparent;
+    }
+
+    #page-content {
+        .user-report-container,
+        .user-grade thead th,
+        .user-grade tbody tr,
+        .user-grade td,
+        .user-grade td.item,
+        .user-grade th.category,
+        .user-grade th.column-itemname:not(.header, .category, .baggt, .baggb),
+        .user-grade .baggt,
+        .user-grade .baggb {
+            background-color: transparent;
+        }
+
+        .user-grade th.category.column-itemname {
+            border: none;
+        }
+
+        .user-grade th.category a.toggle-category i {
+            color: $white;
+        }
+    }
+
+    .message-app {
+        .day {
+            color: $dark-text-color;
+        }
+
+        .message.send {
+            background-color: $gray-700;
+            color: $dark-text-color;
+
+            .tail {
+                border-bottom-color: $gray-700;
+            }
+        }
+    }
+
+    img[alt^="QR code"] {
+        padding: .5rem;
+        background-color: $white;
+        border-radius: .25rem;
+    }
 }
 
 
