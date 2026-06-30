@@ -22,7 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_liquid_colors', get_string('colorssettings', 'theme_liquid'));
@@ -31,6 +30,22 @@ $page = new admin_settingpage('theme_liquid_colors', get_string('colorssettings'
 $name = 'theme_liquid/primarycolor';
 $title = get_string('primarycolor', 'theme_liquid');
 $default = '#032633';
+$setting = new admin_setting_configcolourpicker($name, $title, '', $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Primary button background color.
+$name = 'theme_liquid/btnprimarycolor';
+$title = get_string('btnprimarycolor', 'theme_liquid');
+$default = '#005f6a';
+$setting = new admin_setting_configcolourpicker($name, $title, '', $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Secondary button background color.
+$name = 'theme_liquid/btnsecondarycolor';
+$title = get_string('btnsecondarycolor', 'theme_liquid');
+$default = '#ee4723';
 $setting = new admin_setting_configcolourpicker($name, $title, '', $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);

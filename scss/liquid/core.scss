@@ -1,3 +1,5 @@
+$activity-edit-hover-bg: rgba(#032633, .06);
+
 #page-header {
     h1.h2 {
         font-weight: $headings-font-weight;
@@ -6,6 +8,50 @@
 
 #region-main {
     background: none;
+}
+
+.path-mod-book #mod_book-chaptersnavigation {
+    margin: 0 -45px;
+}
+
+#mod_book-chaptersnavigation .btn:hover,
+#mod_book-chaptersnavigation .btn:focus {
+    background-color: $btn-secondary-hover-bg;
+    border-color: $btn-secondary-hover-border;
+}
+
+.path-mod-book {
+    .btn-previous,
+    .btn-next {
+        background-color: $btn-secondary-bg;
+        border-color: $btn-secondary-bg;
+        color: $text-on-secondary;
+
+        .icon {
+            color: $text-on-secondary;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $btn-secondary-hover-bg;
+            border-color: $btn-secondary-hover-border;
+            color: $text-on-secondary;
+
+            .icon {
+                color: $text-on-secondary;
+            }
+        }
+    }
+}
+
+[data-bs-theme="dark"] {
+    .path-mod-book {
+        .btn-previous,
+        .btn-next {
+            /* stylelint-disable-next-line declaration-no-important */
+            border: none !important;
+        }
+    }
 }
 
 .aalink,
@@ -50,6 +96,19 @@ a:not([class]),
     left: 0 !important;
 }
 
+// Vertically centre the quiz timer next to its toggle button. The wrapper
+// is flex but ships with no align-items, so the taller button drags the
+// timer text to the top edge.
+#quiz-timer-wrapper {
+    align-items: center;
+
+    #quiz-timer {
+        display: inline-flex;
+        align-items: center;
+        gap: .25rem;
+    }
+}
+
 @include media-breakpoint-down(sm) {
     .nav-tabs:not(.more-nav),
     .nav-pills {
@@ -70,5 +129,341 @@ a:not([class]),
                 color: $primary !important;
             }
         }
+    }
+}
+
+// Bootstrap 5 gutter override - reduce default from 30px to 15px (Bootstrap 4 value)
+.row {
+    /* stylelint-disable-next-line declaration-no-important */
+    --bs-gutter-x: 15px !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    --bs-gutter-y: 0 !important;
+}
+
+// Bootstrap 4 to 5 compatibility: make no-gutters work like Bootstrap 4
+.row.no-gutters,
+.no-gutters {
+    /* stylelint-disable-next-line declaration-no-important */
+    --bs-gutter-x: 0 !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    --bs-gutter-y: 0 !important;
+
+    > * {
+        /* stylelint-disable-next-line declaration-no-important */
+        padding-right: 0 !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        padding-left: 0 !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        margin-top: 0 !important;
+    }
+}
+
+.block_timeline .row > * {
+    width: auto;
+}
+
+.table-responsive {
+    .table {
+        .visually-hidden,
+        .accesshide {
+            /* stylelint-disable-next-line declaration-no-important */
+            position: absolute !important;
+            display: block;
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+
+    // But not for buttons and add buttons
+    &.btn,
+    &.block-add,
+    &.activity-add {
+        /* stylelint-disable-next-line declaration-no-important */
+        text-decoration: none !important;
+
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            text-decoration: none !important;
+        }
+    }
+}
+
+// No underline for navigation links
+nav a {
+    &:hover,
+    &:focus {
+        /* stylelint-disable-next-line declaration-no-important */
+        text-decoration: none !important;
+    }
+}
+
+.reportbuilder-filters-sidebar {
+    background: inherit;
+}
+
+.tool-card-header {
+    background-color: #f5f5f5;
+}
+
+.data-registry .context-tree {
+    overflow-y: auto;
+}
+
+.calendar_event_user {
+    background-color: inherit;
+}
+
+#registration-choice-container {
+    .card.card-block {
+        padding: 1rem;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+#add-tool-form {
+    padding-bottom: 1rem;
+
+    .control-group input {
+        margin-bottom: 0.5rem;
+    }
+}
+
+// Question bank table container - keep scroll inside the container, not page-level
+.question_table {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $gray-200;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $gray-500;
+        border-radius: 3px;
+
+        &:hover {
+            background: $gray-600;
+        }
+    }
+}
+
+// Question attempt info panel — match border-radius to .formulation
+.que .info {
+    width: 9em;
+    padding: .75em;
+    border-radius: $alert-border-radius;
+}
+
+// Question bank table styling - make it consistent with table-striped and table-hover
+.generaltable.table-fixed {
+    tr.qbank-sortable-column {
+        background-color: transparent;
+    }
+
+    // Reset background-color inheritance from .generaltable to allow Bootstrap 5's
+    // box-shadow based striping to work correctly
+    > tbody > tr > td,
+    > tbody > tr > th {
+        background-color: transparent;
+    }
+
+    > tbody > tr:nth-of-type(odd) > * {
+        --bs-table-color-type: var(--bs-table-striped-color);
+        --bs-table-bg-type: var(--bs-table-striped-bg);
+    }
+
+    > tbody > tr:hover > * {
+        --bs-table-color-state: var(--bs-table-hover-color);
+        --bs-table-bg-state: var(--bs-table-hover-bg);
+    }
+
+    // Hide dropdown arrow when icon is already present
+    .dropdown-toggle::after {
+        display: none;
+    }
+}
+
+body#page-admin-reportbuilder-edit {
+    @media (min-width: 1160px) {
+        #page {
+            margin-left: 0;
+        }
+
+        .navbar.fixed-top {
+            left: 0;
+        }
+    }
+
+    @media (min-width: 992px) {
+        &.path-admin-reportbuilder.pagelayout-popup .dynamictabs .nav-tabs {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            box-shadow: none !important;
+        }
+    }
+}
+
+// Hide empty placeholder li in autocomplete suggestions (inline style requires !important)
+.form-autocomplete-suggestions li[data-value=""]:not(.suggestions-heading) {
+    /* stylelint-disable-next-line declaration-no-important */
+    display: none !important;
+}
+
+.form-check-input:checked {
+    /* stylelint-disable-next-line declaration-no-important */
+    background-color: $btn-secondary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $btn-secondary-bg !important;
+}
+
+.simplesearchform .btn-submit {
+    /* stylelint-disable-next-line declaration-no-important */
+    background-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $text-on-primary !important;
+}
+
+.listing-actions.course-listing-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card .coursename,
+.coursebox > .info > .coursename,
+.coursename {
+    /* stylelint-disable-next-line declaration-no-important */
+    font-size: unset !important;
+}
+
+// Normalize old Moodle radio/checkbox inputs that don't have Bootstrap's .form-check-input class.
+// Also covers the quiz multichoice/truefalse answers, which the qtype renderers emit as bare
+// <input type="radio"> / <input type="checkbox"> inside <div class="r0"> / <div class="r1">
+// (no .form-check wrapper, no .form-check-input class).
+.form-check input[type="radio"]:not(.form-check-input),
+.form-check input[type="checkbox"]:not(.form-check-input),
+.que .answer .r0 > input[type="radio"]:not(.form-check-input),
+.que .answer .r1 > input[type="radio"]:not(.form-check-input),
+.que .answer .r0 > input[type="checkbox"]:not(.form-check-input),
+.que .answer .r1 > input[type="checkbox"]:not(.form-check-input) {
+    appearance: none;
+    width: 1em;
+    height: 1em;
+    margin-top: .25em;
+    vertical-align: top;
+    background-color: var(--bs-body-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+
+    &:checked {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $btn-secondary-bg !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: $btn-secondary-bg !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+    }
+}
+
+.form-check input[type="radio"]:not(.form-check-input),
+.que .answer .r0 > input[type="radio"]:not(.form-check-input),
+.que .answer .r1 > input[type="radio"]:not(.form-check-input) {
+    border-radius: 50%;
+}
+
+.form-check input[type="checkbox"]:not(.form-check-input),
+.que .answer .r0 > input[type="checkbox"]:not(.form-check-input),
+.que .answer .r1 > input[type="checkbox"]:not(.form-check-input) {
+    border-radius: .25em;
+}
+
+.userselector > .d-flex {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#course-category-listings .listitem[data-selected="1"] {
+    border-left-color: $secondary;
+}
+
+#course-category-listings .detail-pair .pair-key span {
+    margin-right: 0;
+}
+
+#course-category-listings .detail-pair.row {
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-top: .5rem !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-bottom: .5rem !important;
+}
+
+// Activity item hover in edit mode: subtle background instead of outline/shadow
+.editing .activity-item:hover:not(:has(.activity:hover)),
+.editing .activity-item.selected {
+    outline: none;
+    box-shadow: none;
+    background-color: $activity-edit-hover-bg;
+}
+
+.path-mod-quiz #mod_quiz_navblock {
+    .qnbutton {
+        position: relative;
+        text-align: center;
+        line-height: 40px;
+
+        .thispageholder {
+            position: absolute;
+            inset: 0;
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+
+        .trafficlight {
+            display: none;
+        }
+    }
+
+    .qnbutton.notyetanswered,
+    .qnbutton.notyetanswered .trafficlight {
+        background-color: transparent;
+
+        .thispageholder {
+            border-color: $secondary;
+        }
+    }
+
+    .qnbutton.complete,
+    .qnbutton.complete .trafficlight,
+    .qnbutton.answersaved,
+    .qnbutton.answersaved .trafficlight,
+    .qnbutton.blocked,
+    .qnbutton.blocked .trafficlight,
+    .qnbutton.requiresgrading,
+    .qnbutton.requiresgrading .trafficlight {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $secondary !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
     }
 }

@@ -1,8 +1,23 @@
-$dark-bg-color: #191c20;
-$dark-box-bg-color: #121519;
-$dark-text-color: rgba($white, .7);
+// Dark mode dynamic variables (using preset variables where available)
+$dark-text-color: rgba($white, .8);
 $dark-link-color: rgba($white, .9);
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
+$dark-btn-hover-bg: rgba($white, .1);
+$dark-btn-content-hover-bg: rgba($white, .15);
+
+$dark-surface-color: #191c20;
+$dark-card-header-bg: #576071;
+
+// Question/quiz panel colors
+$dark-outcome-color: #8e7a30;
+$dark-outcome-bg: rgba($dark-outcome-color, .15);
+$dark-outcome-border: rgba($dark-outcome-color, .4);
+
+// Teacher comment / override panel - green hue to match the light theme's
+// distinct green palette for .que .comment.
+$dark-comment-color: #4a9970;
+$dark-comment-bg: rgba($dark-comment-color, .15);
+$dark-comment-border: rgba($dark-comment-color, .4);
 
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
@@ -63,7 +78,8 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
     .navbar .main-navbar .nav-link:hover,
     .navbar .main-navbar .nav-link:focus,
-    .navbar .main-navbar .nav-link.active {
+    .navbar .main-navbar .nav-link.active,
+    button {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
@@ -85,7 +101,7 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
         #region-main-box a {
             /* stylelint-disable-next-line declaration-no-important */
-            color: #14273e !important;
+            color: $dark-link-color !important;
         }
     }
 
@@ -123,7 +139,11 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
         background-color: $dark-bg-color;
     }
 
-    .bg-white,
+    .bg-white {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-surface-color !important;
+    }
+
     #page.drawers .main-inner,
     .dropdown-menu,
     .maincalendar .calendarmonth td:hover .day-number-circle,
@@ -140,7 +160,8 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax,
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax .yui-layout-unit.yui-layout-unit-center div.yui-layout-bd,
     .mdl-chat-my-entry .chat-message .text,
-    .chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd {
+    .chooserdialogue .moodle-dialogue-wrap .moodle-dialogue-bd,
+    .modchooser .modal-body .optionsummary {
         /* stylelint-disable-next-line declaration-no-important */
         background-color: $dark-box-bg-color !important;
     }
@@ -237,8 +258,9 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .block_myoverview,
     .dashboard-card-footer,
-    .fp-iconview .fp-filename-field .fp-filename {
-        background-color: transparent;
+    .fp-iconview .fp-filename-field .fp-filename,
+    .path-mod .activity-details:not(:empty) {
+        background-color: $dark-surface-color;
     }
 
     .frontpage-slider .swiper-slide .ratio .image-wrapper + .content-wrapper {
@@ -268,6 +290,46 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .tox-tinymce {
         filter: grayscale(100%) invert(95%);
+
+        // Reset color override — invert filter handles dark mode, forced white would double-invert to near-black
+        button {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: unset !important;
+        }
+    }
+
+    // TinyMCE inline floating toolbar — lives in .tox-tinymce-aux OUTSIDE .tox-tinymce so the filter doesn't reach it
+    .tox-tinymce-aux {
+        .tox-pop__dialog {
+            background-color: $gray-900;
+            border: none;
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
+        }
+
+        .tox-pop.tox-pop--top::before,
+        .tox-pop.tox-pop--top::after {
+            border-color: transparent transparent $gray-900 transparent;
+        }
+
+        .tox-pop.tox-pop--bottom::before,
+        .tox-pop.tox-pop--bottom::after {
+            border-color: $gray-900 transparent transparent transparent;
+        }
+
+        .tox-tbtn {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $dark-text-color !important;
+            background: $gray-900;
+
+            svg path {
+                fill: $dark-text-color;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: rgba($white, .1);
+            }
+        }
     }
 
     .breadcrumb-item:last-child,
@@ -279,6 +341,79 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 
     .navbar .navbar-toggler-icon {
         background-image: url([[pix:theme|burger-menu-white]]);
+    }
+
+    // Outline buttons - use their respective theme colors on hover
+    .btn-outline-primary {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $btn-outline-primary-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $btn-outline-primary-hover-bg !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    .btn-outline-secondary {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    // Add section button - use primary color on hover
+    .btn.add-section {
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $primary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+        }
+    }
+
+    // Add content button - dark background with white border
+    .btn.add-content {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-btn-content-bg !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border: 1px solid $white !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
+
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $secondary !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            border-color: $white !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $white !important;
+
+            ~ hr,
+            + * hr {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $secondary !important;
+            }
+        }
+    }
+
+    // Change hr when parent has hovered add-content button
+    .divider-content:has(.add-content:hover) hr,
+    .divider-content:has(.add-content:focus) hr,
+    .divider:has(.add-content:hover) hr,
+    .divider:has(.add-content:focus) hr,
+    .course-content .divider:has(.btn.add-content:hover) hr,
+    .course-content .divider:has(.btn.add-content:focus) hr {
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: $secondary !important;
     }
 
     @include media-breakpoint-down(sm) {
@@ -299,6 +434,389 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
         animation: bg-pulse-grey-dark 2s infinite linear;
     }
 
+    #page-mod-lti-coursetools table.generaltable tbody tr:hover,
+    #page-mod-lti-coursetools table.table-striped tbody tr:hover {
+        background: inherit;
+    }
+
+    .tool-card-header {
+        background-color: $dark-card-header-bg;
+    }
+
+    // btn-light doesn't work on dark backgrounds — convert to an outline style
+    .btn-light {
+        background-color: transparent;
+        border-color: rgba($white, .4);
+        color: $dark-link-color;
+
+        &:hover,
+        &:focus {
+            background-color: rgba($white, .1);
+            border-color: rgba($white, .6);
+        }
+    }
+
+    // Question outcome/feedback panel (yellow grading hue, mirrors light theme).
+    .que .outcome {
+        background-color: $dark-outcome-bg;
+        border-color: $dark-outcome-border;
+        color: $dark-text-color;
+    }
+
+    // Teacher comment / override panel (green hue, mirrors light theme so the
+    // comment block stays visually distinct from outcome feedback).
+    .que .comment {
+        background-color: $dark-comment-bg;
+        border-color: $dark-comment-border;
+        color: $dark-text-color;
+    }
+
+    // Per-answer specific feedback chip. The multianswer / multichoice /
+    // calculatedmulti qtype stylesheets hardcode `background: #fff3bf` (pale
+    // yellow), which becomes light-on-light on dark mode. Reuse the same
+    // outcome palette for visual consistency.
+    /* stylelint-disable declaration-no-important */
+    .que .answer .specificfeedback {
+        background-color: $dark-outcome-bg !important;
+        border-color: $dark-outcome-border !important;
+        color: $dark-text-color !important;
+    }
+
+    // Essay read-only response panel: qtype_essay hardcodes background:#fff
+    // which becomes white-on-white. Drop the background entirely so the panel
+    // inherits the surrounding dark surface.
+    .que.essay .qtype_essay_response.readonly {
+        background-color: transparent !important;
+        color: $dark-text-color !important;
+    }
+    /* stylelint-enable declaration-no-important */
+
+    // Question formulation panel
+    .que .formulation {
+        background-color: $dark-box-bg-color;
+        border-color: $gray-800;
+        color: $dark-text-color;
+    }
+
+    // Question attempt info panel
+    .que .info {
+        background-color: $dark-box-bg-color;
+        border-color: $gray-800;
+        color: $dark-text-color;
+    }
+
+    // Flag icon is a black PNG, invert for dark mode
+    .que .info .questionflag img {
+        filter: invert(1);
+    }
+
+    // Quiz review summary table cells
+    table.quizreviewsummary th.cell,
+    table.quizreviewsummary td.cell {
+        background: unset;
+    }
+
+    // Module chooser option states
+    .option[data-region="chooser-option-container"] {
+        &:not(.selected):hover {
+            background-color: rgba($white, .08);
+        }
+
+        &.selected {
+            border-color: $primary;
+            background-color: rgba($primary, .15);
+        }
+    }
+
+    // Question bank table scroll container - dark scrollbar
+    .question_table {
+        &::-webkit-scrollbar-track {
+            background: $gray-800;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $gray-600;
+
+            &:hover {
+                background: $gray-500;
+            }
+        }
+    }
+
+    // Question bank table
+    table.question-bank-table {
+        background-color: unset;
+
+        thead tr.qbank-column-list,
+        thead tr.qbank-column-list th {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $dark-bg-color !important;
+            color: $dark-link-color;
+        }
+
+        tbody tr:nth-of-type(odd) {
+            background-color: $dark-bg-color;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: transparent;
+        }
+
+        tbody tr:hover {
+            background-color: rgba($white, .05);
+        }
+
+        tbody tr.highlight {
+            background-color: rgba($primary, .15);
+        }
+    }
+
+    // Override Bootstrap's text-dark utility (!important needed — Bootstrap uses it too)
+    .text-dark {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-link-color !important;
+    }
+
+    // Question bank status/version dropdowns
+    .form-select {
+        background-color: $gray-900;
+        color: $dark-text-color;
+        border-color: $gray-800;
+
+        option {
+            background-color: $gray-900;
+            color: $dark-text-color;
+        }
+    }
+
+    .yui3-skin-sam .yui3-datatable-table {
+        .yui3-datatable-header {
+            border-bottom-color: $gray-800;
+            color: $white;
+        }
+
+        .yui3-datatable-cell {
+            border-top-color: $gray-800;
+        }
+
+        .yui3-datatable-odd .yui3-datatable-cell {
+            background-color: $dark-bg-color;
+        }
+
+        .yui3-datatable-even .yui3-datatable-cell {
+            background-color: transparent;
+        }
+    }
+
+    // Login form input has hardcoded light background
+    .login-container .login-form .form-control {
+        background-color: $dark-bg-color;
+    }
+
+    // Override hardcoded black borders and text colors from pasted content (e.g. Google Docs)
+    #region-main table td,
+    #region-main table th {
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: rgba($white, .2) !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+
+        span {
+            /* stylelint-disable-next-line declaration-no-important */
+            color: inherit !important;
+        }
+    }
+
+    // Identity provider buttons have hardcoded white background
+    .login-container .login-identityprovider-btn {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-surface-color !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border-color: rgba($white, .15) !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: rgba($white, .08) !important;
+            /* stylelint-disable-next-line declaration-no-important */
+            color: $dark-link-color !important;
+        }
+    }
+
+    // Quiz nav correct/incorrect buttons have hardcoded light colors
+    .path-mod-quiz #mod_quiz_navblock {
+        .qnbutton.correct,
+        .qnbutton.correct .trafficlight {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            .thispageholder {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $success !important;
+            }
+        }
+
+        .qnbutton.incorrect,
+        .qnbutton.incorrect .trafficlight {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            .thispageholder {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $danger !important;
+            }
+        }
+
+        .qnbutton.partiallycorrect,
+        .qnbutton.partiallycorrect .trafficlight {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            .thispageholder {
+                /* stylelint-disable-next-line declaration-no-important */
+                border-color: $warning !important;
+            }
+        }
+    }
+
+    // Grade report heading/category cells have hardcoded light background
+    .path-grade-report-grader .gradeparent .heading .cell,
+    .path-grade-report-grader .gradeparent .cell.category,
+    .path-grade-report-grader .gradeparent .avg .cell {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $dark-surface-color !important;
+        color: $dark-text-color;
+    }
+
+    // Progress text has hardcoded muted color, too dark on dark backgrounds
+    .block .block-cards .progress-text {
+        color: $dark-text-color;
+    }
+
+    // Course index dimmed item hover has hardcoded black color
+    .courseindex .courseindex-item:hover.dimmed,
+    .courseindex .courseindex-item:focus.dimmed {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+    }
+
+    // Completion dialog has hardcoded dark-on-light color
+    .activity-item .activity-completion .completion-dialog {
+        color: $dark-text-color;
+    }
+
+    // Activity meta dates use a hardcoded dark slate color that is unreadable on dark backgrounds.
+    .activity-item .activity-dates,
+    .path-mod .activity-information .activity-dates {
+        color: rgba($white, .65);
+    }
+
+    // Core blockquote uses a dark slate text color and a light grey left border
+    // that both collapse into the background on dark mode.
+    blockquote {
+        color: rgba($white, .75);
+        border-left-color: rgba($white, .25);
+    }
+
+    // User initials avatar pill uses a hardcoded near-white background and
+    // dark slate text, which sticks out as a bright chip on dark surfaces.
+    .userinitials {
+        background-color: rgba($white, .12);
+        color: $dark-text-color;
+    }
+
+    // Completion requirement badges: mix-blend-mode multiply renders the
+    // bg-light pills as near-black voids on dark surfaces. Disable the blend
+    // and use a translucent white pill instead.
+    .path-mod .automatic-completion-conditions .badge.bg-light {
+        mix-blend-mode: normal;
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: rgba($white, .08) !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $dark-text-color !important;
+    }
+
+    // Availability info has hardcoded light background
+    .availabilityinfo {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: rgba($white, .06) !important;
+        color: $dark-text-color;
+    }
+
+    // Restrict access eye/delete icons are black PNGs, invert them for dark mode
+    .availability-eye img,
+    .availability-delete img {
+        filter: invert(1);
+    }
+
+    // Course category listings columns-3 layout has hardcoded light backgrounds
+    @media (min-width: 1200px) and (max-width: 1600px) {
+        #course-category-listings.columns-3 {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: $dark-box-bg-color !important;
+        }
+
+        #course-category-listings.columns-3 #category-listing > div,
+        #course-category-listings.columns-3 #course-listing > div,
+        #course-category-listings.columns-3 #course-detail > div {
+            background-color: $dark-surface-color;
+        }
+    }
+
+    // Quiz edit page inplaceeditable has hardcoded light background
+    #page-mod-quiz-edit .inplaceeditable {
+        background: transparent;
+    }
+
+    // Quiz edit page question name and text have hardcoded dark-on-light colors
+    #page-mod-quiz-edit .question-bank-table .questionname,
+    #page-mod-quiz-edit ul.slots li.activity div.activityinstance .questionname,
+    #page-mod-quiz-edit ul.slots li.activity div.activityinstance .questiontext {
+        color: $dark-text-color;
+    }
+
+    // Alert links should use Bootstrap's own --bs-alert-link-color, not the page-level override
+    .alert a {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: var(--bs-alert-link-color) !important;
+    }
+
+    // Autocomplete suggestions dropdown
+    .form-autocomplete-suggestions {
+        background-color: $gray-900;
+        border-color: $gray-800;
+
+        li {
+            color: $dark-text-color;
+
+            &:hover,
+            &[aria-selected="true"]:not(.suggestions-heading) {
+                background-color: rgba($white, .08);
+                color: $dark-link-color;
+            }
+
+            &.suggestions-heading {
+                background-color: $gray-800;
+                color: $dark-text-color;
+            }
+        }
+    }
+
+    // Activity item hover in edit mode: subtle background instead of outline/shadow
+    .editing .activity-item:hover:not(:has(.activity:hover)),
+    .editing .activity-item.selected {
+        outline: none;
+        box-shadow: none;
+        background-color: rgba($white, .06);
+
+        .activityiconcontainer,
+        .badge {
+            mix-blend-mode: normal;
+        }
+    }
+
     #page-admin-local-codechecker-index .local_codechecker_results {
         .fail.error {
             color: #dc2424;
@@ -313,7 +831,99 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
             color: $dark-text-color;
         }
     }
+
+    #region-main .maincalendar .calendarmonth {
+        td,
+        th {
+            border-color: rgba($white, .15);
+        }
+    }
+
+    .maincalendar .calendarmonth td:hover .day-number-circle,
+    .maincalendar .calendarmonth td:focus .day-number-circle,
+    .maincalendar .calendarmonth td:active .day-number-circle {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: $gray-600 !important;
+    }
+
+    // Quiz timer: Boost sets background-color: $white which on dark mode
+    // gives white-on-white text. Re-skin so it stays visible while keeping
+    // the red border identity. The timeleftN rules below override the
+    // background as time runs out and pick their own contrast colour.
+    #quiz-timer-wrapper #quiz-timer {
+        background-color: $dark-surface-color;
+        color: $dark-text-color;
+    }
+
+    // Question-type chips that hard-code light backgrounds in the qtype's
+    // own stylesheet (ddimageortext / ddmarker / ddwtos use .group1..8 with
+    // #fff / pastel fills; qtype_ordering uses .sortablelist li with #fff
+    // and a black border). On dark mode the page text colour is light, so
+    // those tiles render light-on-light and disappear. Re-skin them with
+    // the dark surface colour so they match the rest of the theme.
+    /* stylelint-disable declaration-no-important */
+    .que.ddimageortext .draghome,
+    .que.ddimageortext .drop,
+    .que.ddmarker .draghome,
+    .que.ddwtos .draghome,
+    .que.ddwtos .drop,
+    .que.ordering .sortablelist li,
+    form.mform fieldset#id_previewareaheader [class*="group"] {
+        background-color: $dark-surface-color !important;
+        border-color: rgba($white, .2) !important;
+        color: $dark-text-color !important;
+    }
+    /* stylelint-enable declaration-no-important */
+
+    .pagelayout-maintenance .page-header-headings,
+    .pagelayout-secure .page-header-headings {
+        background-color: transparent;
+    }
+
+    #page-content {
+        .user-report-container,
+        .user-grade thead th,
+        .user-grade tbody tr,
+        .user-grade td,
+        .user-grade td.item,
+        .user-grade th.category,
+        .user-grade th.column-itemname:not(.header, .category, .baggt, .baggb),
+        .user-grade .baggt,
+        .user-grade .baggb {
+            background-color: transparent;
+        }
+
+        .user-grade th.category.column-itemname {
+            border: none;
+        }
+
+        .user-grade th.category a.toggle-category i {
+            color: $white;
+        }
+    }
+
+    .message-app {
+        .day {
+            color: $dark-text-color;
+        }
+
+        .message.send {
+            background-color: $gray-700;
+            color: $dark-text-color;
+
+            .tail {
+                border-bottom-color: $gray-700;
+            }
+        }
+    }
+
+    img[alt^="QR code"] {
+        padding: .5rem;
+        background-color: $white;
+        border-radius: .25rem;
+    }
 }
+
 
 @keyframes bg-pulse-grey-dark {
     0% {
@@ -326,3 +936,4 @@ $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
         background-color: $gray-700;
     }
 }
+

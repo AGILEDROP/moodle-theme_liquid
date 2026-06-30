@@ -1,3 +1,7 @@
+.form-inline .form-control {
+    width: 100%;
+}
+
 .form-control {
     &:focus {
         border-color: $primary;
@@ -30,4 +34,67 @@ select.form-control[multiple] {
 .form-item .form-setting .form-defaultinfo {
     width: 100%;
     margin-top: .25rem;
+}
+
+// On Lesson activity pages the page form often has only a single Continue
+// button with no labelled fields above it, so the empty 3-col label gutter
+// just pushes the button right with nothing to align to. Collapse the empty
+// label column and let the button column span full width — same pattern
+// already used on the login form.
+.path-mod-lesson .mform .femptylabel {
+    .col-form-label {
+        display: none;
+    }
+
+    .felement {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+// For labelled rows on Lesson pages (shortanswer "Your answer", numerical),
+// the 3/9 split leaves a quarter of the row empty before the input because
+// the label is right-aligned within col-md-3. Collapse the label column to
+// its content width and let the input column take the remaining space, so
+// the label sits directly to the left of the input with no gutter.
+.path-mod-lesson .mform .fitem.row:not(.femptylabel) {
+    flex-wrap: nowrap;
+    align-items: center;
+
+    > .col-form-label {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+        padding-right: .75rem;
+    }
+
+    > .felement {
+        flex: 1 1 auto;
+        max-width: none;
+    }
+}
+
+// Boost flattens the right margin of .fitem inside a flex form to .25rem,
+// which makes inline radio/checkbox answers (Lesson T/F and multichoice,
+// quiz inline answers, etc.) look cramped. Restore Bootstrap-default spacing
+// for the specifically inline form-check label, leaving non-check fitems
+// (the tight-margin ones Boost intends) untouched.
+.mform .d-flex .fitem.form-check-inline {
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-right: .75rem !important;
+}
+
+// Lesson multichoice answers render each radio as its own form row with an
+// empty col-md-3 gutter. Collapse it and let the radio column span full
+// width. Matching uses .answeroption too but its col-md-3 holds the real
+// label, so :has(> .col-md-9.checkbox) restricts this to the radio variant.
+.answeroption .row.fitem:has(> .col-md-9.checkbox) {
+    > .col-md-3 {
+        display: none;
+    }
+
+    > .col-md-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }

@@ -33,7 +33,11 @@ class hook_callbacks {
      * @param before_html_attributes $hook
      */
     public static function before_html_attributes(before_html_attributes $hook): void {
-        global $USER;
+        global $USER, $PAGE;
+
+        if ($PAGE->theme->name !== 'liquid') {
+            return;
+        }
 
         $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
         $theme = ($darkthemecookie === '1') ? 'dark' : 'light';

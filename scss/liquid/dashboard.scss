@@ -72,6 +72,12 @@
         width: 100%;
         margin: 0;
 
+        .clickable {
+            &:hover {
+                background-color: transparent;
+            }
+        }
+
         td,
         th {
             position: relative;
@@ -112,13 +118,16 @@
             &.today {
                 .day-number-circle {
                     font-weight: 500;
+                    border-radius: 50%;
+                    background-color: $btn-primary-bg;
+                    color: $white;
                 }
 
                 &:hover,
                 &:focus,
                 &:active {
                     .day-number-circle {
-                        background-color: $primary;
+                        background-color: $btn-primary-bg;
                         color: $white;
                     }
                 }
@@ -198,5 +207,13 @@
                 }
             }
         }
+    }
+}
+
+// Full-page calendar: add cell borders
+#region-main .maincalendar .calendarmonth {
+    td,
+    th {
+        border: 1px solid $gray-300;
     }
 }

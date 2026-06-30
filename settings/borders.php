@@ -22,7 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_liquid_borders', get_string('borderssettings', 'theme_liquid'));

@@ -1,10 +1,97 @@
+.btn-primary {
+    --bs-btn-bg: #{$btn-primary-bg};
+    --bs-btn-border-color: #{$btn-primary-bg};
+    --bs-btn-disabled-bg: #{$btn-primary-bg};
+    --bs-btn-disabled-border-color: #{$btn-primary-bg};
+}
+
+.btn-secondary {
+    --bs-btn-bg: #{$btn-secondary-bg};
+    --bs-btn-border-color: #{$btn-secondary-bg};
+    --bs-btn-disabled-bg: #{$btn-secondary-bg};
+    --bs-btn-disabled-border-color: #{$btn-secondary-bg};
+}
+
 .btn {
     &.btn-primary {
         color: $text-on-primary;
+
+        &:hover,
+        &:focus {
+            color: $white;
+            background-color: $btn-primary-hover-bg;
+            border-color: $btn-primary-hover-border;
+        }
+    }
+
+    &.btn-outline-primary {
+        &:hover,
+        &:focus {
+            color: $white;
+            background-color: $btn-outline-primary-hover-bg;
+            border-color: $btn-outline-primary-hover-bg;
+        }
+    }
+
+    &.btn-outline-secondary {
+        &:hover,
+        &:focus {
+            color: $white;
+        }
     }
 
     &.btn-secondary,
     &.bg-secondary {
         color: $text-on-secondary;
+
+        &:hover,
+        &:focus {
+            color: $text-on-secondary;
+            background-color: $btn-secondary-hover-bg;
+            border-color: $btn-secondary-hover-border;
+        }
+    }
+}
+
+// Override Moodle core whitebutton hack that breaks btn-secondary styling
+.block_myoverview .whitebutton .btn-secondary {
+    /* stylelint-disable-next-line declaration-no-important */
+    background: $secondary !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $secondary !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $text-on-secondary !important;
+}
+
+// Badges with bg-secondary should always have white text
+.badge.bg-secondary {
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $white !important;
+}
+
+// Add block button
+.btn-add-content {
+    /* stylelint-disable-next-line declaration-no-important */
+    border: 2px dotted $secondary !important;
+
+    &:hover,
+    &:focus {
+        /* stylelint-disable-next-line declaration-no-important */
+        border: 2px dotted $secondary !important;
+    }
+}
+
+[data-bs-theme="dark"] {
+    .btn-add-content {
+        /* stylelint-disable-next-line declaration-no-important */
+        background-color: transparent !important;
+        /* stylelint-disable-next-line declaration-no-important */
+        border: 2px dotted $secondary !important;
+
+        &:hover,
+        &:focus {
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: rgba($white, .05) !important;
+        }
     }
 }

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Liquid.
+ * Liquid login layout.
  *
  * @package    theme_liquid
  * @copyright  2025 Agiledrop ltd.
@@ -24,14 +24,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingliquid', get_string('configtitle', 'theme_liquid'));
+$bodyattributes = $OUTPUT->body_attributes();
+$logourl = $OUTPUT->get_logo_url();
 
-    require('settings/colors.php');
-    require('settings/typography.php');
-    require('settings/borders.php');
-    require('settings/frontpageslider.php');
-    require('settings/frontpagefaq.php');
-    require('settings/additional.php');
-    require('settings/advanced.php');
-}
+$templatecontext = [
+    'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), 'escape' => false]),
+    'output' => $OUTPUT,
+    'bodyattributes' => $bodyattributes,
+    'logourl' => $logourl ? $logourl->out(false) : false,
+];
+
+echo $OUTPUT->render_from_template('theme_boost/login', $templatecontext);
