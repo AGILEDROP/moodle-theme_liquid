@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'theme_liquid';
-$plugin->version = 2026062300;
-$plugin->release = '1.1.0';
+$plugin->version = 2026070300;
+$plugin->release = '1.1.1';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires = 2025041400;
 $plugin->dependencies = [
