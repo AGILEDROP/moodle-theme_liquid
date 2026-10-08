@@ -915,6 +915,10 @@ $dark-comment-border: rgba($dark-comment-color, .4);
                 border-bottom-color: $gray-700;
             }
         }
+
+      .message.received h6 {
+        color: inherit;
+      }
     }
 
     img[alt^="QR code"] {
