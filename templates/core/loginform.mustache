@@ -98,7 +98,7 @@
 }}
 <div class="loginform d-flex flex-column justify-content-center">
     {{#languagemenu}}
-        <div class="login-languagemenu ml-auto">
+        <div class="login-languagemenu ms-auto">
             {{>core/action_menu}}
         </div>
     {{/languagemenu}}
@@ -110,7 +110,7 @@
             </div>
         {{/maintenance}}
         {{#error}}
-            <a href="#" id="loginerrormessage" class="sr-only">{{error}}</a>
+            <a href="#" id="loginerrormessage" class="visually-hidden">{{error}}</a>
             <div class="alert alert-danger" role="alert">
                 {{#errortitle}}
                     <strong class="d-block mb-1">{{errortitle}}</strong>
@@ -119,11 +119,11 @@
             </div>
         {{/error}}
         {{#info}}
-            <a href="#" id="logininfomessage" class="sr-only">{{info}}</a>
+            <a href="#" id="logininfomessage" class="visually-hidden">{{info}}</a>
             <div class="alert alert-info" role="alert">{{info}}</div>
         {{/info}}
         {{#cansignup}}
-            <a href="{{signupurl}}" class="sr-only">{{#str}} tocreatenewaccount {{/str}}</a>
+            <a href="{{signupurl}}" class="visually-hidden">{{#str}} tocreatenewaccount {{/str}}</a>
         {{/cansignup}}
         {{#showloginform}}
             <form class="login-form" action="{{loginurl}}" method="post" id="login">
@@ -131,7 +131,7 @@
                 <script>document.getElementById('anchor').value = location.hash;</script>
                 <input type="hidden" name="logintoken" value="{{logintoken}}">
                 <div class="login-form-username form-group">
-                    <label for="username" class="sr-only">
+                    <label for="username" class="visually-hidden">
                         {{^canloginbyemail}}
                             {{#str}} username {{/str}}
                         {{/canloginbyemail}}
@@ -147,7 +147,7 @@
                         !}}autocomplete="username">
                 </div>
                 <div class="login-form-password form-group">
-                    <label for="password" class="sr-only">{{#str}} password {{/str}}</label>
+                    <label for="password" class="visually-hidden">{{#str}} password {{/str}}</label>
                     <input type="password" name="password" id="password" value="" {{!
                         !}}class="form-control" {{!
                         !}}placeholder="{{#cleanstr}}password{{/cleanstr}}" {{!
