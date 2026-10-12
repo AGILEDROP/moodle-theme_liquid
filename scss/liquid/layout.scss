@@ -122,6 +122,16 @@
             }
         }
 
+        &.show-drawer-left.show-drawer-right {
+            @include media-breakpoint-up(xlg) {
+                margin-left: calc(#{$navbar-width} + #{$drawer-left-width});
+
+                .no-left-nav & {
+                    margin-left: $drawer-left-width;
+                }
+            }
+        }
+
         #region-main {
             > .notifications {
                 padding-left: 15px;
