@@ -40,6 +40,160 @@
     }
 }
 
+.drawer.drawer-left,
+.drawer.drawer-right {
+    background-color: $gray-300;
+}
+
+.drawer {
+    .drawerheader .draweractions .btn {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background-color: transparent;
+
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+
+    &.drawer-right .drawerheadertop {
+        flex-direction: row;
+    }
+}
+
+.drawer.drawer-left.drawer-primary {
+    background-color: $primary;
+
+    .drawerheader .draweractions .btn {
+        background-color: transparent;
+
+        &:hover,
+        &:focus {
+            background-color: rgba($text-on-primary, .1);
+        }
+    }
+}
+
 .drawercontent {
     padding: 1rem;
+}
+
+@include media-breakpoint-up(lg) {
+    body.pagelayout-standard,
+    body.limitedwidth {
+        .drawer.drawer-left,
+        .drawer.drawer-right {
+            top: $navbar-height;
+            height: calc(100vh - #{$navbar-height});
+            max-height: none;
+            padding-bottom: 0;
+            border-radius: 0;
+            z-index: $zindex-sticky - 5;
+
+            .drawerheader {
+                padding-top: 0;
+
+                .drawerheadertop {
+                    height: $navbar-height;
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        .secondary-nav-helper ~ .drawer.drawer-left,
+        .secondary-nav-helper ~ .drawer.drawer-right {
+            top: #{$navbar-height * 2};
+            height: calc(100vh - #{$navbar-height * 2});
+        }
+
+        /* stylelint-disable declaration-no-important */
+        .drawer.drawer-left.show {
+            right: auto !important;
+            left: 0 !important;
+        }
+
+        .drawer.drawer-right.show {
+            left: auto !important;
+            right: 0 !important;
+        }
+
+        .drawer-toggles {
+            .drawer-toggler {
+                top: calc(#{$navbar-height * 2} + .7rem);
+            }
+
+            .drawer-left-toggle {
+                right: auto !important;
+                left: 0 !important;
+            }
+
+            .drawer-right-toggle {
+                left: auto !important;
+                right: 0 !important;
+            }
+        }
+        /* stylelint-enable declaration-no-important */
+
+        #page.drawers .main-inner {
+            margin-top: 1.5rem;
+        }
+    }
+    body.pagelayout-standard.no-left-nav,
+    body.limitedwidth.no-left-nav {
+        .secondary-nav-helper ~ .drawer.drawer-primary {
+            top: 0;
+            height: 100dvh;
+        }
+    }
+}
+
+@include media-breakpoint-up(xlg) {
+    body.pagelayout-standard:not(.no-left-nav),
+    body.limitedwidth:not(.no-left-nav) {
+        .drawer.drawer-left,
+        .drawer.drawer-right,
+        .secondary-nav-helper ~ .drawer.drawer-left,
+        .secondary-nav-helper ~ .drawer.drawer-right {
+            top: $navbar-height;
+            height: calc(100vh - #{$navbar-height});
+        }
+
+        /* stylelint-disable declaration-no-important */
+        .drawer.drawer-left.show {
+            left: $navbar-width !important;
+        }
+
+        .drawer-toggles {
+            .drawer-toggler {
+                top: calc(#{$navbar-height} + .7rem);
+            }
+
+            .drawer-left-toggle {
+                left: 286px !important;
+            }
+        }
+        /* stylelint-enable declaration-no-important */
+    }
+}
+
+#theme_boost-drawers-courseindex .drawerheading {
+    display: flex;
+    align-items: center;
+
+    #courseindexdrawercontrols {
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+}
+
+#courseindexdrawercontrols .courseindex-collapsemenu {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: transparent;
+
+    &:hover {
+        background-color: $gray-200;
+    }
 }

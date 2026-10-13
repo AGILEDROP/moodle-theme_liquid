@@ -10,7 +10,7 @@
             top: calc(#{$navbar-height} + 0.7rem);
         }
 
-        .btn.icon-no-margin {
+        .btn {
             border-radius: $border-radius;
             padding: 16px;
             background-color: $btn-secondary-bg;
@@ -57,7 +57,7 @@
     .drawer-right-toggle {
         margin: 0;
 
-        .btn.icon-no-margin {
+        .btn {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             padding-right: 10px;
@@ -171,4 +171,9 @@
             }
         }
     }
+}
+
+// Boost 5.3 gives .main-inner the body background; Liquid shows it as a white card on a grey page.
+#page.drawers .main-inner {
+    background-color: $white;
 }
