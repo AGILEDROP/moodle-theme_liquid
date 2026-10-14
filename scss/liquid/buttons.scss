@@ -10,6 +10,16 @@
     --bs-btn-border-color: #{$btn-secondary-bg};
     --bs-btn-disabled-bg: #{$btn-secondary-bg};
     --bs-btn-disabled-border-color: #{$btn-secondary-bg};
+
+    // Boost's dark palette turns the solid secondary button grey, as Boost's secondary colour is grey.
+    // Liquid's secondary button keeps its colour in both modes.
+    @include dark-mode {
+        @include button-variant($secondary, $secondary);
+        --bs-btn-bg: #{$btn-secondary-bg};
+        --bs-btn-border-color: #{$btn-secondary-bg};
+        --bs-btn-disabled-bg: #{$btn-secondary-bg};
+        --bs-btn-disabled-border-color: #{$btn-secondary-bg};
+    }
 }
 
 .btn {

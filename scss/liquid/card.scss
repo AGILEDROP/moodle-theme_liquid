@@ -1,6 +1,11 @@
 // Cards should have white background in light mode
 .card {
     background-color: $white;
+
+    // Boost's dark palette gives cards a solid grey border; Liquid keeps Bootstrap's translucent card border.
+    @include dark-mode {
+        border-color: var(--#{$prefix}border-color-translucent);
+    }
 }
 
 .course-card {

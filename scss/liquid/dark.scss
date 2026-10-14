@@ -19,6 +19,22 @@ $dark-comment-color: #4a9970;
 $dark-comment-bg: rgba($dark-comment-color, .15);
 $dark-comment-border: rgba($dark-comment-color, .4);
 
+// Boost's dark colour mode palette (theme/boost/scss/moodle/dark.scss) re-pointed to Liquid's colours.
+// The surfaces come from the $dark-surface-* variables in the preset. Components which take their colours from these
+// tokens (core and plugin components following Moodle 5.3's colour mode guidance) then match Liquid's dark look.
+@include color-mode(dark) {
+    // Links: the same colour Liquid gives links itself ($dark-link-color), as a solid colour for the -rgb variant.
+    --#{$prefix}link-color: #{mix($white, $dark-bg-color, 90%)};
+    --#{$prefix}link-color-rgb: #{to-rgb(mix($white, $dark-bg-color, 90%))};
+    --#{$prefix}link-hover-color: #{$white};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($white)};
+
+    // Design system text, used by the Moodle 5.3 React components (navigation, edit switch, timeline).
+    --mds-text-default: #{$dark-text-color};
+    --mds-text-link-primary-default: #{mix($white, $dark-bg-color, 90%)};
+    --mds-text-link-primary-hover: #{$white};
+}
+
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
 
