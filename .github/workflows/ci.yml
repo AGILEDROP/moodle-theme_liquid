@@ -96,6 +96,10 @@ jobs:
       - name: Mustache Lint
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci mustache
+        env:
+          # core_form/element-template is a base template: the form element templates which extend it supply the
+          # input its label points to, so it cannot produce valid HTML when rendered on its own.
+          MUSTACHE_IGNORE_NAMES: element-template.mustache
 
       - name: Grunt
         if: ${{ !cancelled() }}
