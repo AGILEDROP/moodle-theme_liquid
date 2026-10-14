@@ -19,6 +19,9 @@
 
     Moodle template for the login page.
 
+    Liquid: Liquid's login form layout, kept in line with core 5.3 (OAuth2 client notice, field icons, password
+    visibility toggle and the accessible error and info messages).
+
     Context variables required for this template:
     * autofocusform: Auto focus on form ?,
     * canloginasguest - Is guest login allowed?,
@@ -26,7 +29,10 @@
     * cansignup - Signup allowed?,
     * cookieshelpicon - cookies help icon details
     * error - Any errors in the form?,
+    * errortitle - Title shown above the error,
     * info - Info notification to display,
+    * hasoauth2client - Whether the login was requested by an OAuth2 client application,
+    * client - The OAuth2 client application (name, description),
     * forgotpasswordurl - Forgot password url,
     * hasidentityproviders - Flag, set to true to hide identity providers,
     * hasinstructions - Flag, set to true to show instructions,
@@ -41,6 +47,8 @@
     * logintoken - Random token to protect login request.,
     * maintenance - Maintenance message,
     * showloginform - Whether to show the standard username/password form
+    * togglepassword - Whether to show the password visibility toggle
+    * smallscreensonly - Whether the password visibility toggle is only shown on small screens
 
     Example context (json):
     {
@@ -104,14 +112,23 @@
     {{/languagemenu}}
     <div class="mt-auto mb-auto">
         <h1 class="login-heading mb-4">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
+        {{#hasoauth2client}}
+            <div class="login-oauth2client mb-4">
+                <h2 class="login-heading">{{#str}}oauth2:confirmscopes:clientaccesstitle, moodle, {
+                    "clientname": {{#quote}}{{client.name}}{{/quote}},
+                    "clientdescription": {{#quote}}{{client.description}}{{/quote}},
+                    "sitename": {{#quote}}{{sitename}}{{/quote}}
+                }{{/str}}</h2>
+                {{> core/oauth2/client_description}}
+            </div>
+        {{/hasoauth2client}}
         {{#maintenance}}
             <div class="alert alert-danger login-maintenance">
                 {{{maintenance}}}
             </div>
         {{/maintenance}}
         {{#error}}
-            <a href="#" id="loginerrormessage" class="visually-hidden">{{error}}</a>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger" id="loginerrormessage" role="alert">
                 {{#errortitle}}
                     <strong class="d-block mb-1">{{errortitle}}</strong>
                 {{/errortitle}}
@@ -119,18 +136,14 @@
             </div>
         {{/error}}
         {{#info}}
-            <a href="#" id="logininfomessage" class="visually-hidden">{{info}}</a>
-            <div class="alert alert-info" role="alert">{{info}}</div>
+            <div class="alert alert-info" id="logininfomessage" role="status">{{info}}</div>
         {{/info}}
-        {{#cansignup}}
-            <a href="{{signupurl}}" class="visually-hidden">{{#str}} tocreatenewaccount {{/str}}</a>
-        {{/cansignup}}
         {{#showloginform}}
             <form class="login-form" action="{{loginurl}}" method="post" id="login">
                 <input id="anchor" type="hidden" name="anchor" value="">
                 <script>document.getElementById('anchor').value = location.hash;</script>
                 <input type="hidden" name="logintoken" value="{{logintoken}}">
-                <div class="login-form-username form-group">
+                <div class="login-form-username mb-3">
                     <label for="username" class="visually-hidden">
                         {{^canloginbyemail}}
                             {{#str}} username {{/str}}
@@ -139,30 +152,41 @@
                             {{#str}} usernameemail {{/str}}
                         {{/canloginbyemail}}
                     </label>
-                    <input type="text" name="username" id="username" {{!
-                        !}}class="form-control" {{!
-                        !}}value="{{username}}" {{!
-                        !}}placeholder="{{^canloginbyemail}}{{#cleanstr}}username{{/cleanstr}}{{/canloginbyemail}}{{!
-                        !}}{{#canloginbyemail}}{{#cleanstr}}usernameemail{{/cleanstr}}{{/canloginbyemail}}" {{!
-                        !}}autocomplete="username">
+                    <div class="login-input-wrapper">
+                        <span class="login-input-icon">
+                            {{#canloginbyemail}}{{#pix}}i/email, core{{/pix}}{{/canloginbyemail}}
+                            {{^canloginbyemail}}{{#pix}}i/user, core{{/pix}}{{/canloginbyemail}}
+                        </span>
+                        <input type="text" name="username" id="username" {{!
+                            !}}class="form-control" {{!
+                            !}}value="{{username}}" {{!
+                            !}}placeholder="{{^canloginbyemail}}{{#cleanstr}}username{{/cleanstr}}{{/canloginbyemail}}{{!
+                            !}}{{#canloginbyemail}}{{#cleanstr}}usernameemail{{/cleanstr}}{{/canloginbyemail}}" {{!
+                            !}}autocomplete="username">
+                    </div>
                 </div>
-                <div class="login-form-password form-group">
+                <div class="login-form-password mb-3">
                     <label for="password" class="visually-hidden">{{#str}} password {{/str}}</label>
-                    <input type="password" name="password" id="password" value="" {{!
-                        !}}class="form-control" {{!
-                        !}}placeholder="{{#cleanstr}}password{{/cleanstr}}" {{!
-                        !}}autocomplete="current-password">
+                    <div class="login-input-wrapper">
+                        <span class="login-input-icon">
+                            {{#pix}}i/lock, core{{/pix}}
+                        </span>
+                        <input type="password" name="password" id="password" value="" {{!
+                            !}}class="form-control" {{!
+                            !}}placeholder="{{#cleanstr}}password{{/cleanstr}}" {{!
+                            !}}autocomplete="current-password">
+                    </div>
                 </div>
                 {{#recaptcha}}
-                    <div class="login-form-recaptcha form-group">
+                    <div class="login-form-recaptcha mb-3">
                         {{{recaptcha}}}
                     </div>
                 {{/recaptcha}}
                 <div class="d-flex align-items-center justify-content-between">
-                    <div class="login-form-submit form-group mb-0">
+                    <div class="login-form-submit">
                         <button class="btn btn-primary" type="submit" id="loginbtn">{{#str}}login{{/str}}</button>
                     </div>
-                    <div class="login-form-forgotpassword form-group mb-0">
+                    <div class="login-form-forgotpassword">
                         <a href="{{forgotpasswordurl}}">{{#str}}forgotaccount{{/str}}</a>
                     </div>
                 </div>
@@ -175,7 +199,7 @@
             <div class="login-identityproviders">
                 <h2 class="login-heading">{{#str}} potentialidps, auth {{/str}}</h2>
                 {{#identityproviders}}
-                    <a class="btn login-identityprovider-btn btn-block" href="{{url}}">
+                    <a class="btn login-identityprovider-btn" href="{{url}}">
                         {{#iconurl}}
                             <img src="{{iconurl}}" alt="" width="24" height="24"/>
                         {{/iconurl}}
@@ -239,9 +263,28 @@
             });
         {{/autofocusform}}
     {{/error}}
-    {{#error}}
-        document.getElementById('loginerrormessage').focus();
-    {{/error}}
+    require(['core/pending'], function(Pending) {
+        const errorMessageDiv = document.getElementById('loginerrormessage');
+        const infoMessageDiv = document.getElementById('logininfomessage');
+        const errorMessage = errorMessageDiv?.textContent.trim();
+        const infoMessage = infoMessageDiv?.textContent.trim();
+        if (errorMessage || infoMessage) {
+            const pendingJS = new Pending('login-move-focus');
+            const usernameField = document.getElementById('username');
+            setTimeout(function() {
+                if (errorMessage && usernameField) {
+                    usernameField.focus();
+                }
+                if (errorMessage) {
+                    errorMessageDiv.innerHTML += "&nbsp;";
+                }
+                if (infoMessage) {
+                    infoMessageDiv.innerHTML += "&nbsp;";
+                }
+                pendingJS.resolve();
+            }, 500);
+        }
+    });
     {{#togglepassword}}
         require(['core/togglesensitive'], function(ToggleSensitive) {
         ToggleSensitive.init("password", {{smallscreensonly}});

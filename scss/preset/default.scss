@@ -143,6 +143,9 @@ $auth-form-max-width: 25rem !default;
 $auth-logo-max-width: 20rem !default;
 $auth-right-panel-max-width: 50rem !default;
 $auth-box-border-radius: 0.25rem !default;
+// Login fields with icons and the password visibility toggle (Boost's login.scss): the same background as
+// Liquid's other form fields in both colour modes.
+$login-input-bg: var(--bs-body-bg) !default;
 
 // Shadow variables.
 $box-shadow-sm: 0 .375rem .75rem -.125rem rgba(208, 208, 196, .24) !default;

@@ -402,10 +402,6 @@
         margin: 0;
     }
 
-    .btn-block + .btn-block {
-        margin-top: 0;
-    }
-
     // 2 providers: side by side
     &:has(> a:nth-of-type(2):last-of-type) {
         grid-template-columns: repeat(2, 1fr);
