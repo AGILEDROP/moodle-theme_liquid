@@ -97,15 +97,15 @@
         </div>
 
         <div class="toggle-holder footer-section col-12 d-xlg-none">
-            <label class="light" for="darktheme-checkbox-bottom">
-                <i class="fa fa-sun-o"></i>
+            <label class="light" for="darktheme-checkbox-bottom" aria-hidden="true">
+                <i class="icon fa fa-sun fa-fw m-0"></i>
             </label>
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input darktheme-checkbox" id="darktheme-checkbox-bottom">
-                <span class="custom-control-label"></span>
+            <div class="form-check form-switch">
+                <input type="checkbox" role="switch" class="form-check-input darktheme-checkbox" id="darktheme-checkbox-bottom">
+                <label class="form-check-label visually-hidden" for="darktheme-checkbox-bottom">{{#str}}darkmode, theme_liquid{{/str}}</label>
             </div>
-            <label class="dark" for="darktheme-checkbox-bottom">
-                <i class="fa fa-moon-o"></i>
+            <label class="dark" for="darktheme-checkbox-bottom" aria-hidden="true">
+                <i class="icon fa fa-moon fa-fw m-0"></i>
             </label>
         </div>
 

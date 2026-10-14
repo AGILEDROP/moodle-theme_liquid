@@ -14,86 +14,145 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Darkmode functionality for theme Liquid.
+ * Light and dark mode switch for theme Liquid.
+ *
+ * The chosen mode is stored the same way as Boost's colour modes (theme_boost/colourmode): in the
+ * theme_boost_colourmode user preference and the cookie of the same name. The server renders the mode on the html tag
+ * (see theme_liquid\hook_callbacks), and a script in the page head resolves "auto" to the device's colour scheme, so
+ * nothing needs to be loaded before the page is shown.
  *
  * @module     theme_liquid/darkmode
  * @copyright  2025 Agiledrop ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {getUserPreference, setUserPreference} from 'core_user/repository';
+import {setUserPreference} from 'core_user/repository';
+import {add as addToast} from 'core/toast';
+import Prefetch from 'core/prefetch';
 
-const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-const darkThemeToggle = document.querySelectorAll(".darktheme-checkbox");
-
-const setTheme = (theme) => {
-    document.documentElement.setAttribute('data-bs-theme', theme);
+const SELECTORS = {
+    TOGGLE: '.darktheme-checkbox',
 };
+
+const MODES = {
+    LIGHT: 'light',
+    DARK: 'dark',
+    AUTO: 'auto',
+};
+
+/** @var {Object|null} config The configuration from theme_liquid\colour_mode::get_js_config(). */
+let config = null;
+
+/** @var {boolean} saving Whether we are currently saving the user's preference. */
+let saving = false;
 
 /**
- * Retrieves the value of a cookie by name.
- * @param {string} name - The name of the cookie.
- * @returns {string|null} - The value of the cookie or null if not found.
+ * Set every switch on the page to the mode currently shown.
  */
-const getCookie = async(name) => {
-    let cookie = null;
-
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-        cookie = parts.pop().split(';').shift();
-    }
-
-    const userPreference = await getUserPreference('theme_liquid-dark-mode');
-    if (userPreference !== null) {
-        cookie = userPreference === "dark" ? "1" : "0";
-    }
-
-    return cookie;
-};
-
-/**
- * Sets a cookie with the given name and value.
- * @param {string} name - The name of the cookie.
- * @param {string} value - The value to set for the cookie.
- */
-const setCookie = (name, value) => {
-    document.cookie = `${name}=${value}; path=/; SameSite=None; Secure`;
-    setUserPreference('theme_liquid-dark-mode', value === "0" ? "light" : "dark");
-};
-
-const handleCheckboxChange = (e) => {
-    const isDarkThemeEnabled = e.target.checked;
-
-    setTheme(isDarkThemeEnabled ? 'dark' : 'light');
-    setCookie("darkThemeEnabled", isDarkThemeEnabled ? "1" : "0");
-    updateCheckboxes(isDarkThemeEnabled);
-};
-
-const updateCheckboxes = (checked) => {
-    darkThemeToggle.forEach(function(checkbox) {
-        checkbox.checked = checked;
+const syncToggles = () => {
+    const isdark = document.documentElement.getAttribute('data-bs-theme') === MODES.DARK;
+    document.querySelectorAll(SELECTORS.TOGGLE).forEach((toggle) => {
+        toggle.checked = isdark;
     });
 };
 
-const initializeTheme = async() => {
-    const storedDarkThemeSetting = await getCookie("darkThemeEnabled");
+/**
+ * Store the mode in the browser, so that pages nobody is logged in to, such as the login page, are shown in it.
+ *
+ * @param {string} mode One of the MODES.
+ */
+const rememberMode = (mode) => {
+    document.cookie = `${config.cookiename}=${mode}${config.cookieattributes}`;
+};
 
-    if (storedDarkThemeSetting === null) {
-        setCookie("darkThemeEnabled", darkThemeMq.matches ? "1" : "0");
-        updateCheckboxes(darkThemeMq.matches);
-        setTheme(darkThemeMq.matches ? 'dark' : 'light');
-    } else {
-        const isDarkTheme = storedDarkThemeSetting === "1";
-        updateCheckboxes(isDarkTheme);
-        setTheme(isDarkTheme ? 'dark' : 'light');
+/**
+ * Remove the cookie Liquid used before Moodle 5.3, once its value has been carried over.
+ */
+const forgetLegacyCookie = () => {
+    document.cookie = `${config.legacycookiename}=; Max-Age=0; path=/; SameSite=None; Secure`;
+};
+
+/**
+ * Show the page in the chosen mode and store the choice.
+ *
+ * @param {string} mode Either MODES.LIGHT or MODES.DARK.
+ */
+const applyMode = async(mode) => {
+    if (saving) {
+        syncToggles();
+        return;
+    }
+
+    saving = true;
+    const toggles = [...document.querySelectorAll(SELECTORS.TOGGLE)];
+    toggles.forEach(toggle => {
+        toggle.disabled = true;
+    });
+
+    // The checkbox changed on click; restore it until saving succeeds.
+    syncToggles();
+
+    try {
+        if (config.canstore) {
+            await setUserPreference(config.preference, mode);
+        }
+
+        const root = document.documentElement;
+        root.setAttribute('data-colourmode', mode);
+        root.setAttribute('data-bs-theme', mode);
+        rememberMode(mode);
+    } catch {
+        addToast(config.saveerrormessage, {
+            type: 'warning',
+            autohide: true,
+            delay: 5000,
+            closeButton: true,
+        });
+    } finally {
+        syncToggles();
+        toggles.forEach(toggle => {
+            toggle.disabled = false;
+        });
+        saving = false;
     }
 };
 
-export const init = () => {
-    darkThemeToggle.forEach(function(checkbox) {
-        checkbox.addEventListener("change", handleCheckboxChange);
+/**
+ * Initialise the light and dark mode switches.
+ *
+ * @param {Object} settings The configuration from theme_liquid\colour_mode::get_js_config().
+ * @param {boolean} settings.canstore Whether the mode can be stored as a user preference.
+ * @param {string} settings.cookieattributes The attributes to store the cookie with.
+ * @param {string} settings.cookiename The name of the cookie which stores the mode.
+ * @param {string} settings.legacycookiename The name of the cookie Liquid used before Moodle 5.3.
+ * @param {string} settings.mode The mode the server rendered the page in.
+ * @param {string} settings.preference The name of the user preference which stores the mode.
+ */
+export const init = (settings) => {
+    if (config) {
+        return;
+    }
+    config = settings;
+    Prefetch.prefetchTemplate('core/local/toast/message');
+
+    // Refresh the browser copy from the mode the server resolved, so that it belongs to whoever is logged in now,
+    // and carry a choice made before Moodle 5.3 over to it.
+    rememberMode(config.mode);
+    forgetLegacyCookie();
+
+    syncToggles();
+
+    // While no mode has been chosen the page follows the device, and the script in the page head updates the mode.
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (document.documentElement.getAttribute('data-colourmode') === MODES.AUTO) {
+            syncToggles();
+        }
     });
 
-    initializeTheme();
+    document.addEventListener('change', (e) => {
+        const toggle = e.target.closest(SELECTORS.TOGGLE);
+        if (toggle) {
+            applyMode(toggle.checked ? MODES.DARK : MODES.LIGHT);
+        }
+    });
 };

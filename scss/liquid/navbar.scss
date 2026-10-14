@@ -285,15 +285,21 @@
         }
     }
 
-    .custom-switch {
-        cursor: pointer;
-    }
+    .form-switch {
+        min-height: 0;
+        margin: 0;
+        padding-left: 0;
 
-    .custom-control-input {
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        z-index: 1;
+        .form-check-input {
+            float: none;
+            margin: 0 .5rem 0 0;
+            cursor: pointer;
+
+            &:checked {
+                background-color: $secondary;
+                border-color: $secondary;
+            }
+        }
     }
 }
 
@@ -331,19 +337,6 @@
 }
 
 [data-bs-theme="dark"] {
-    .toggle-holder .custom-switch .custom-control-label {
-        &::before {
-            color: $white;
-            border-color: $secondary;
-            background-color: $secondary;
-        }
-
-        &::after {
-            background-color: $white;
-            transform: translateX(.75rem);
-        }
-    }
-
     // Edit mode switch in dark mode
     .editmode-switch-form {
         .custom-control.custom-switch {

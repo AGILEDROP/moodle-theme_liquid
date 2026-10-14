@@ -119,16 +119,16 @@
         {{{ output.page_heading_menu }}}
     </ul>
 
-    <div class="toggle-holder ml-auto mr-3 d-none d-xlg-flex">
-        <label class="light" for="darktheme-checkbox-top">
-            <i class="fa fa-sun-o"></i>
+    <div class="toggle-holder ms-auto me-3 d-none d-xlg-flex">
+        <label class="light" for="darktheme-checkbox-top" aria-hidden="true">
+            <i class="icon fa fa-sun fa-fw m-0"></i>
         </label>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input darktheme-checkbox" id="darktheme-checkbox-top">
-            <span class="custom-control-label"></span>
+        <div class="form-check form-switch">
+            <input type="checkbox" role="switch" class="form-check-input darktheme-checkbox" id="darktheme-checkbox-top">
+            <label class="form-check-label visually-hidden" for="darktheme-checkbox-top">{{#str}}darkmode, theme_liquid{{/str}}</label>
         </div>
-        <label class="dark" for="darktheme-checkbox-top">
-            <i class="fa fa-moon-o"></i>
+        <label class="dark" for="darktheme-checkbox-top" aria-hidden="true">
+            <i class="icon fa fa-moon fa-fw m-0"></i>
         </label>
     </div>
 
@@ -153,9 +153,3 @@
 {{#secondarymoremenu}}
     <div class="secondary-nav-helper"></div>{{/secondarymoremenu}}
 {{> theme_boost/primary-drawer-mobile }}
-{{#js}}
-M.util.js_pending('theme_liquid/darkmode:load');
-require(['theme_liquid/darkmode'], function() {
-    M.util.js_complete('theme_liquid/darkmode:load');
-});
-{{/js}}

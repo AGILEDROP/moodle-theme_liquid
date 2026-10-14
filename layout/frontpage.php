@@ -47,7 +47,7 @@ $primarymenu = $primary->export_for_template($renderer);
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
-$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init');
+$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init', [\theme_liquid\colour_mode::get_js_config()]);
 $PAGE->requires->js_call_amd('theme_liquid/tooltips', 'init');
 
 $templatecontext = [

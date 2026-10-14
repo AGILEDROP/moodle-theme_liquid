@@ -94,7 +94,7 @@ $coursefullname = ($PAGE->course?->fullname) ? format_string(
 ) : '';
 $courseurl = $PAGE->course ? new \core\url('/course/view.php', ['id' => $PAGE->course->id]) : null;
 
-$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init');
+$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init', [\theme_liquid\colour_mode::get_js_config()]);
 $PAGE->requires->js_call_amd('theme_liquid/tooltips', 'init');
 
 $templatecontext = [
