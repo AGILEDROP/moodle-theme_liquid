@@ -1,5 +1,10 @@
 $activity-edit-hover-bg: rgba(#032633, .06);
 
+// Moodle's design system components (navigation, edit switch, timeline) use Liquid's font as well.
+:root {
+    --mds-font-family-base: var(--bs-body-font-family);
+}
+
 #page-header {
     h1.h2 {
         font-weight: $headings-font-weight;

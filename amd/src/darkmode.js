@@ -29,6 +29,7 @@
 import {setUserPreference} from 'core_user/repository';
 import {add as addToast} from 'core/toast';
 import Prefetch from 'core/prefetch';
+import {init as initEditorColourMode} from 'theme_liquid/editor_colourmode';
 
 const SELECTORS = {
     TOGGLE: '.darktheme-checkbox',
@@ -127,6 +128,7 @@ const applyMode = async(mode) => {
  * @param {string} settings.legacycookiename The name of the cookie Liquid used before Moodle 5.3.
  * @param {string} settings.mode The mode the server rendered the page in.
  * @param {string} settings.preference The name of the user preference which stores the mode.
+ * @param {string} settings.saveerrormessage The message shown when the mode could not be saved.
  */
 export const init = (settings) => {
     if (config) {
@@ -134,6 +136,7 @@ export const init = (settings) => {
     }
     config = settings;
     Prefetch.prefetchTemplate('core/local/toast/message');
+    initEditorColourMode();
 
     // Refresh the browser copy from the mode the server resolved, so that it belongs to whoever is logged in now,
     // and carry a choice made before Moodle 5.3 over to it.

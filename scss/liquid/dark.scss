@@ -66,8 +66,10 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         color: $dark-text-color;
     }
 
-    a,
-    h1,
+    // TinyMCE's own elements (.tox: the editor, its menus and dialogs) are left out, as TinyMCE styles them with its
+    // own light or dark skin, which an editor keeps until the page is reloaded even if the page switches mode.
+    a:not(.tox *),
+    h1:not(.tox *),
     .h1,
     .maincalendar .calendarmonth td a,
     .maincalendar .calendarmonth th a,
@@ -95,13 +97,13 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .navbar .main-navbar .nav-link:hover,
     .navbar .main-navbar .nav-link:focus,
     .navbar .main-navbar .nav-link.active,
-    button {
+    button:not(.tox *) {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
 
     .btn.text-primary,
-    textarea {
+    textarea:not(.tox *) {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
@@ -302,50 +304,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     &.yui-skin-sam .yui-layout-unit .yui-resize-handle-r .yui-layout-resize-knob,
     &.yui-skin-sam .yui-layout-unit .yui-resize-handle-l .yui-layout-resize-knob {
         filter: invert(1);
-    }
-
-    .tox-tinymce {
-        filter: grayscale(100%) invert(95%);
-
-        // Reset color override — invert filter handles dark mode, forced white would double-invert to near-black
-        button {
-            /* stylelint-disable-next-line declaration-no-important */
-            color: unset !important;
-        }
-    }
-
-    // TinyMCE inline floating toolbar — lives in .tox-tinymce-aux OUTSIDE .tox-tinymce so the filter doesn't reach it
-    .tox-tinymce-aux {
-        .tox-pop__dialog {
-            background-color: $gray-900;
-            border: none;
-            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
-        }
-
-        .tox-pop.tox-pop--top::before,
-        .tox-pop.tox-pop--top::after {
-            border-color: transparent transparent $gray-900 transparent;
-        }
-
-        .tox-pop.tox-pop--bottom::before,
-        .tox-pop.tox-pop--bottom::after {
-            border-color: $gray-900 transparent transparent transparent;
-        }
-
-        .tox-tbtn {
-            /* stylelint-disable-next-line declaration-no-important */
-            color: $dark-text-color !important;
-            background: $gray-900;
-
-            svg path {
-                fill: $dark-text-color;
-            }
-
-            &:hover,
-            &:focus {
-                background-color: rgba($white, .1);
-            }
-        }
     }
 
     .breadcrumb-item:last-child,
