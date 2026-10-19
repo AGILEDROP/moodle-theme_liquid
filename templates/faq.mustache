@@ -42,7 +42,7 @@
                 <div class="accordion-item bg-white border-radius">
                     <h3 class="accordion-header" id="faq-heading-{{{faqid}}}">
                         <button class="accordion-button {{^isfirst}}collapsed{{/isfirst}}" type="button"
-                                data-toggle="collapse" data-target="#faq-content-{{{faqid}}}"
+                                data-bs-toggle="collapse" data-bs-target="#faq-content-{{{faqid}}}"
                                 aria-expanded="{{#isfirst}}true{{/isfirst}}{{^isfirst}}false{{/isfirst}}"
                                 aria-controls="faq-content-{{{faqid}}}">
                             {{{faqquestion}}}
@@ -50,7 +50,7 @@
                     </h3>
 
                     <div id="faq-content-{{{faqid}}}" class="accordion-collapse collapse {{#isfirst}}show{{/isfirst}}"
-                         aria-labelledby="faq-heading-{{{faqid}}}" data-parent="#faq-frontpage">
+                         aria-labelledby="faq-heading-{{{faqid}}}" data-bs-parent="#faq-frontpage">
                         <div class="accordion-body">
                             {{{faqanswer}}}
                         </div>
