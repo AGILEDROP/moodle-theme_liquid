@@ -85,16 +85,19 @@ $faq['showfaq'] = theme_liquid_setting('showfaq');
 $faq['numberfaq'] = theme_liquid_setting('numberfaq');
 $faq['faqtitle'] = theme_liquid_setting('faqtitle');
 $faq['faqdescription'] = theme_liquid_setting('faqdescription');
+$faq['questions'] = [];
 for ($i = 1; $i <= $faq['numberfaq']; $i++) {
-    $question = [];
-    $question['isfirst'] = false;
-    if ($i === 1) {
-        $question['isfirst'] = true;
+    $faqquestion = theme_liquid_setting('faq' . $i . 'question');
+    $faqanswer = theme_liquid_setting('faq' . $i . 'answer', 'format_html');
+    if (empty($faqquestion) || empty($faqanswer)) {
+        continue;
     }
-    $question['faqid'] = $i;
-    $question['faqquestion'] = theme_liquid_setting('faq' . $i . 'question');
-    $question['faqanswer'] = theme_liquid_setting('faq' . $i . 'answer', 'format_html');
-    $faq['questions'][] = $question;
+    $faq['questions'][] = [
+        'faqid' => $i,
+        'isfirst' => empty($faq['questions']),
+        'faqquestion' => $faqquestion,
+        'faqanswer' => $faqanswer,
+    ];
 }
 
 $templatecontext += $faq;

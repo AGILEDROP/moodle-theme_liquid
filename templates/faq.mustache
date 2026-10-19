@@ -23,9 +23,10 @@
     {
         "faqtitle": "Example Title",
         "faqdescription": "Example description.",
-        "faqid": 1,
-        "faqquestion": "Example question?",
-        "faqanswer": "Example answer."
+        "questions": [
+            {"faqid": 1, "isfirst": true, "faqquestion": "First question?", "faqanswer": "First answer."},
+            {"faqid": 2, "isfirst": false, "faqquestion": "Second question?", "faqanswer": "Second answer."}
+        ]
     }
 }}
 
@@ -41,7 +42,7 @@
             {{#questions}}
                 <div class="accordion-item bg-white border-radius">
                     <h3 class="accordion-header" id="faq-heading-{{{faqid}}}">
-                        <button class="accordion-button {{^isfirst}}collapsed{{/isfirst}}" type="button"
+                        <button class="accordion-button {{^isfirst}}collapsed{{/isfirst}} border-top border-radius" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#faq-content-{{{faqid}}}"
                                 aria-expanded="{{#isfirst}}true{{/isfirst}}{{^isfirst}}false{{/isfirst}}"
                                 aria-controls="faq-content-{{{faqid}}}">
