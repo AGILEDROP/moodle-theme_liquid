@@ -53,7 +53,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .generaltable,
     .navbar-nav .popover-region > * > .icon,
     .navbar .secondary-navbar .nav-tabs .nav-link,
-    .navbar .main-navbar .nav-link,
+    //.navbar .main-navbar .nav-link,
     .block .block-cards span.categoryname,
     .block .block-cards .btn-link,
     .dropdown-menu,
@@ -94,9 +94,9 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .navbar .secondary-navbar .nav-tabs .nav-link:hover,
     .navbar .secondary-navbar .nav-tabs .nav-link:focus,
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
-    .navbar .main-navbar .nav-link:hover,
-    .navbar .main-navbar .nav-link:focus,
-    .navbar .main-navbar .nav-link.active,
+    //.navbar .main-navbar .nav-link:hover,
+    //.navbar .main-navbar .nav-link:focus,
+    //.navbar .main-navbar .nav-link.active,
     button:not(.tox *) {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
@@ -164,9 +164,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
 
     #page.drawers .main-inner,
     .dropdown-menu,
-    .maincalendar .calendarmonth td:hover .day-number-circle,
-    .maincalendar .calendarmonth td:focus .day-number-circle,
-    .maincalendar .calendarmonth td:active .day-number-circle,
     .modal-content,
     .block .block-cards .btn.btn-link.btn-icon:hover,
     .block .block-cards .btn.btn-link.btn-icon:focus,
@@ -239,7 +236,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         background-color: $gray-800;
     }
 
-    .navbar.fixed-left,
     .path-mod-chat .yui-layout-unit-bottom,
     #chat-input-area,
     #chat-input-area table.generaltable,
@@ -900,6 +896,12 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         background-color: $white;
         border-radius: .25rem;
     }
+
+    .navbar.fixed-left { background-color: $primary; }
+    .navbar.fixed-left .primary-navigation a { color: $text-on-primary !important; }
+    .navbar.fixed-left .primary-navigation a.active,
+    .navbar.fixed-left .primary-navigation a:hover,
+    .navbar.fixed-left .primary-navigation a:focus { color: $white !important; }
 }
 
 

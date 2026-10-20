@@ -333,15 +333,6 @@ body#page-admin-reportbuilder-edit {
     border-color: $btn-secondary-bg !important;
 }
 
-.simplesearchform .btn-submit {
-    /* stylelint-disable-next-line declaration-no-important */
-    background-color: $btn-primary-bg !important;
-    /* stylelint-disable-next-line declaration-no-important */
-    border-color: $btn-primary-bg !important;
-    /* stylelint-disable-next-line declaration-no-important */
-    color: $text-on-primary !important;
-}
-
 .listing-actions.course-listing-actions {
     display: flex;
     align-items: center;

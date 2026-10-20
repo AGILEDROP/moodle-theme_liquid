@@ -139,13 +139,6 @@
             margin-top: 1.5rem;
         }
     }
-    body.pagelayout-standard.no-left-nav,
-    body.limitedwidth.no-left-nav {
-        .secondary-nav-helper ~ .drawer.drawer-primary {
-            top: 0;
-            height: 100dvh;
-        }
-    }
 }
 
 @include media-breakpoint-up(xlg) {
@@ -220,5 +213,16 @@
                 height: calc(100dvh - #{$navbar-height * 2});
             }
         }
+    }
+
+    .list-group {
+        border-radius: 0;
+    }
+
+    a.list-group-item {
+        margin: 0;
+        border: 0;
+        border-bottom: 1px solid rgba($text-on-primary, .55);
+        border-radius: 0;
     }
 }

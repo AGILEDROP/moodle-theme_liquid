@@ -13,9 +13,12 @@
 }
 
 .simplesearchform .btn-submit {
-    background-color: $primary;
-    border-color: $primary;
-    color: $white;
+    /* stylelint-disable-next-line declaration-no-important */
+    background-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $text-on-primary !important;
 }
 
 .form-filetypes-descriptions {

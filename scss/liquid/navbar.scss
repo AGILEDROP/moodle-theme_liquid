@@ -338,24 +338,6 @@
     }
 }
 
-[data-bs-theme="dark"] {
-    // Edit mode switch in dark mode
-    .editmode-switch-form {
-        .custom-control.custom-switch {
-            .custom-control-input {
-                &:checked ~ .custom-control-label::before {
-                    background-color: $secondary;
-                    border-color: $secondary;
-                }
-
-                &:checked ~ .custom-control-label::after {
-                    background-color: $white;
-                }
-            }
-        }
-    }
-}
-
 @include media-breakpoint-down(sm) {
     .navbar.fixed-top {
         padding-inline: .5rem;
