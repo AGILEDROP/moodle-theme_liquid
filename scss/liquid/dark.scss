@@ -897,11 +897,21 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         border-radius: .25rem;
     }
 
-    .navbar.fixed-left { background-color: $primary; }
-    .navbar.fixed-left .primary-navigation a { color: $text-on-primary !important; }
+    .navbar.fixed-left {
+        background-color: $primary;
+    }
+
+    .navbar.fixed-left .primary-navigation a {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $text-on-primary !important;
+    }
+
     .navbar.fixed-left .primary-navigation a.active,
     .navbar.fixed-left .primary-navigation a:hover,
-    .navbar.fixed-left .primary-navigation a:focus { color: $white !important; }
+    .navbar.fixed-left .primary-navigation a:focus {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
+    }
 }
 
 
