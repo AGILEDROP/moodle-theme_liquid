@@ -37,6 +37,11 @@
             justify-content: center;
             text-align: center;
             color: $primary;
+            padding: 1rem 3.5rem;
+
+            @include media-breakpoint-up(sm) {
+                padding: 2rem 5rem;
+            }
 
             *:not(.btn) {
                 color: $primary;
