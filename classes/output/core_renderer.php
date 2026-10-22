@@ -43,8 +43,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
      */
     public function box($contents, $classes = 'generalbox', $id = null, $attributes = []) {
         $output = parent::box($contents, $classes, $id, $attributes);
-        if ($this->page->pagetype === 'login-forgot_password'
-                && $contents === get_string('passwordforgotteninstructions2')) {
+        if (
+            $this->page->pagetype === 'login-forgot_password'
+            && $contents === get_string('passwordforgotteninstructions2')
+        ) {
             $heading = $this->heading(get_string('resetpasswordtitle', 'theme_liquid'), 1, 'login-heading mb-4');
             return html_writer::div($heading . $output, 'forgot-password-instructions w-100');
         }
