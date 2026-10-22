@@ -140,6 +140,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .page-link,
     .path-mod-assign .gradingtable tr.unselectedrow td,
     .loginform,
+    .pagelayout-login .login-container > div:not(.loginimage),
     .pagelayout-login#page-login-forgot_password .mform,
     .path-mod-chat .yui-layout-unit-right,
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax #chat-messages .chat-message.course-theme,
@@ -578,7 +579,13 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         }
     }
 
-    // Login form input has hardcoded light background
+    // Password recovery instructions share the colour of the surrounding login panel.
+    .pagelayout-login#page-login-forgot_password .generalbox {
+        color: $dark-text-color;
+        border-color: var(--#{$prefix}border-color);
+    }
+
+    // Login form input has hardcoded light background.
     .login-container .login-form .form-control {
         background-color: $dark-bg-color;
     }

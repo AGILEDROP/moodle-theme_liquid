@@ -155,7 +155,16 @@
 
                 > div {
                     width: 100%;
-                    margin-bottom: $spacer * 0.5;
+                    margin-bottom: 0;
+                }
+
+                > .col-form-label {
+                    @extend .visually-hidden;
+                }
+
+                > .felement {
+                    flex: 0 0 100%;
+                    max-width: 100%;
                 }
             }
 
@@ -172,32 +181,55 @@
 
         .login-container > div:not(.loginimage) {
             flex-direction: column;
-            justify-content: center;
-            gap: $spacer * 2;
+            justify-content: flex-start;
+            gap: $spacer * 1.5;
+            padding: $spacer * 2;
+
+            @include media-breakpoint-down(lg) {
+                padding-top: $spacer * 4;
+            }
+
+            @include media-breakpoint-up(lg) {
+                justify-content: center;
+            }
         }
 
         .generalbox {
             max-width: $auth-form-max-width;
-            margin: 0 $spacer * 2;
+            width: 100%;
+            margin: 0 auto;
             padding: $spacer * 0.5;
             border: 1px solid $border-color;
             border-radius: $auth-box-border-radius;
-
-            @include media-breakpoint-up(lg) {
-                margin: 0 auto;
-            }
         }
 
         .mform {
             display: flex;
             flex-direction: column;
-            padding: $spacer $spacer * 2;
+            padding: 0;
             background-color: $white;
             flex: 0 0 auto;
 
+            .login-input-wrapper {
+                position: relative;
+
+                .form-control {
+                    padding-inline-start: 3rem;
+                }
+
+                .login-input-icon {
+                    position: absolute;
+                    inset-inline-start: 1rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: $gray-600;
+                    pointer-events: none;
+                }
+            }
+
             fieldset {
-                margin-bottom: $spacer * 3;
-                padding-bottom: $spacer * 2;
+                margin-bottom: $spacer * 1.5;
+                padding-bottom: $spacer * 1.5;
                 width: 100%;
 
                 &:last-child {
@@ -242,6 +274,17 @@
                     }
                 }
             }
+        }
+
+        #id_searchbyemail {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        #fitem_id_submit {
+            margin-top: 0;
+            margin-inline: 0;
         }
 
         #fgroup_id_buttonar {
@@ -379,6 +422,7 @@
 }
 
 .login-heading,
+.forgot-password-instructions,
 .login-form,
 .login-divider,
 .login-instructions,

@@ -78,6 +78,7 @@ $string['roundedbase'] = 'Rounded base';
 $string['roundedlg'] = 'Rounded LG';
 $string['roundedsm'] = 'Rounded SM';
 $string['secondarycolor'] = 'Secondary color';
+$string['resetpasswordtitle'] = 'Reset your password';
 $string['showfaq'] = 'Show/hide FAQ';
 $string['showfaqdesc'] = 'Checkbox should be checked to display FAQ on frontpage.';
 $string['showslider'] = 'Show/hide slider';
