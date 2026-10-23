@@ -21,6 +21,7 @@
 
     Example context (json):
     {
+        "sliderratio": "ratio-16x9",
         "slidelink": "https://example.com",
         "slideimage": "https://example.com/image.jpg",
         "slidetext": "Example text."
@@ -44,7 +45,7 @@
                 {{#slidestatus}}
                     <div class="swiper-slide">
                         {{#slidelink}}
-                            <a href="{{{slidelink}}}" class="ratio ratio-16x9">
+                            <a href="{{{slidelink}}}" class="ratio {{sliderratio}}">
                                 <div class="image-wrapper">
                                     {{#slideimage}}
                                         <img src="{{{slideimage}}}" alt="{{{slidetext}}}">
@@ -61,7 +62,7 @@
                             </a>
                         {{/slidelink}}
                         {{^slidelink}}
-                            <div class="ratio ratio-16x9">
+                            <div class="ratio {{sliderratio}}">
                                 {{#slideimage}}
                                     <div class="image-wrapper">
                                         <img src="{{{slideimage}}}">

@@ -68,6 +68,7 @@ $templatecontext = [
 $slider = [];
 $slider['showslider'] = theme_liquid_setting('showslider');
 $slider['numberslides'] = theme_liquid_setting('numberslides');
+$slider['sliderratio'] = theme_liquid_setting('compactslider') ? 'ratio-banner' : 'ratio-16x9';
 $slider['slides'] = [];
 
 for ($i = 1; $i <= $slider['numberslides']; $i++) {

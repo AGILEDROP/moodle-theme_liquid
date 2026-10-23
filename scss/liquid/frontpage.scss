@@ -11,6 +11,11 @@
         text-decoration: none;
         background-color: $gray-300;
 
+        &.ratio-banner {
+            --bs-aspect-ratio: 25%;
+            min-height: 10rem;
+        }
+
         > * {
             position: absolute;
             top: 0;
