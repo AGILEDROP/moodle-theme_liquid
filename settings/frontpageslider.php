@@ -86,7 +86,7 @@ for ($i = 1; $i <= $numberslides; $i++) {
     $name = 'theme_liquid/slide' . $i . 'link';
     $title = get_string('slidelink', 'theme_liquid');
     $desc = get_string('slidelinkdesc', 'theme_liquid');
-    $default = '#';
+    $default = '';
     $setting = new admin_setting_configtext($name, $title, $desc, $default);
     $page->add($setting);
 }

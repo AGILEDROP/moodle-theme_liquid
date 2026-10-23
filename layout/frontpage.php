@@ -68,12 +68,21 @@ $templatecontext = [
 $slider = [];
 $slider['showslider'] = theme_liquid_setting('showslider');
 $slider['numberslides'] = theme_liquid_setting('numberslides');
+$slider['slides'] = [];
+
 for ($i = 1; $i <= $slider['numberslides']; $i++) {
+    $prefix = 'slide' . $i;
+
     $slide = [];
-    $slide['slidestatus'] = theme_liquid_setting('slide' . $i . 'status');
-    $slide['slideimage'] = $PAGE->theme->setting_file_url('slide' . $i . 'image', 'slide' . $i . 'image');
-    $slide['slidetext'] = theme_liquid_setting('slide' . $i . 'text', 'format_html');
-    $slide['slidelink'] = theme_liquid_setting('slide' . $i . 'link');
+    $slide['slidestatus'] = theme_liquid_setting($prefix . 'status');
+    $slide['slideimage'] = trim($PAGE->theme->setting_file_url($prefix . 'image', $prefix . 'image') ?: '');
+    $slide['slidetext'] = theme_liquid_setting($prefix . 'text', 'format_html');
+    $slide['slidelink'] = trim(theme_liquid_setting($prefix . 'link') ?: '');
+
+    if (trim(strip_tags($slide['slidetext'] ?? '')) === '' && $slide['slideimage'] === '') {
+        continue;
+    }
+
     $slider['slides'][] = $slide;
 }
 
