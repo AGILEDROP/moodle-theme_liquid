@@ -65,6 +65,10 @@
 .drawer.drawer-left.drawer-primary {
     background-color: $primary;
 
+    .drawerheader .sitename {
+        margin-left: 1rem;
+    }
+
     .drawerheader .draweractions .btn {
         background-color: transparent;
 
