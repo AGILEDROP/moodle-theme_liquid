@@ -91,6 +91,39 @@
     }
 }
 
+// Site home section without activities: hide the empty header strip.
+.sitetopic .section-item:not(:has(li.activity)) {
+    // Overrides the .d-flex utility on the header.
+    .course-section-header {
+        display: none !important; // stylelint-disable-line declaration-no-important
+    }
+
+    .course-content-item-content {
+        > [data-for="sectioninfo"] {
+            padding-top: map-get($spacers, 3);
+
+            &:not(:has(.summarytext)):not(:has(.availabilityinfo)):not(:has(.alert)) {
+                padding: 0;
+            }
+        }
+
+        .section-content-inner {
+            border-top: 0;
+            @include border-radius($activity-border-radius);
+
+            // Nothing to add outside edit mode.
+            body:not(.editing) & {
+                display: none;
+            }
+        }
+    }
+}
+
+// Outside edit mode, drop the Site home section completely when it shows nothing.
+body:not(.editing) .sitetopic .course-section:not(:has(li.activity)):not(:has(.summarytext)):not(:has(.availabilityinfo)) {
+    display: none;
+}
+
 .card-deck.dashboard-card-deck.frontpage-available-courses {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
