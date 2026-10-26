@@ -161,7 +161,7 @@
                 display: block;
                 width: .375rem;
                 height: 100%;
-                border-radius: $border-radius;
+                border-radius: 0 $border-radius $border-radius 0;
                 transition: all ease .3s;
                 z-index: -1;
             }
