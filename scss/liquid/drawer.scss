@@ -117,6 +117,15 @@
             left: 0 !important;
         }
 
+        // Core anchors the block drawer next to the content and reveals it with clip-path
+        // from left to right. Liquid docks it to the screen edge, so slide it in from the right.
+        .drawer.drawer-right {
+            left: auto !important;
+            right: calc(-#{$drawer-right-width} - 10px) !important;
+            clip-path: none;
+            @include transition(right .2s ease, visibility .2s ease);
+        }
+
         .drawer.drawer-right.show {
             left: auto !important;
             right: 0 !important;

@@ -119,7 +119,7 @@
         {{{ output.page_heading_menu }}}
     </ul>
 
-    <div class="toggle-holder ms-auto me-3 d-flex flex-shrink-0">
+    <div class="toggle-holder ms-auto me-3 d-none d-sm-flex flex-shrink-0">
         <label class="light" for="darktheme-checkbox-top" aria-hidden="true">
             <i class="icon fa fa-sun fa-fw m-0"></i>
         </label>
@@ -132,7 +132,7 @@
         </label>
     </div>
 
-    <div id="usernavigation" class="navbar-nav ms-0">
+    <div id="usernavigation" class="navbar-nav ms-auto ms-sm-0">
         {{# output.search_box }}
             {{{ output.search_box }}}
             <div class="divider border-left h-75 align-self-center mx-1"></div>
@@ -147,21 +147,25 @@
                 {{> core/user_menu }}
             {{/usermenu}}
         </div>
-        {{#output.edit_switch}}
-            <div class="dropdown navbar-edit-actions">
-                <button type="button"
-                        class="btn btn-icon d-sm-none"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        aria-label="{{#str}}more, core{{/str}}">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                </button>
+        {{! On small screens both toggles live in this menu; from sm up only the edit switch shows inline. }}
+        <div class="dropdown navbar-edit-actions">
+            <button type="button"
+                    class="btn btn-icon d-sm-none"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false"
+                    aria-label="{{#str}}more, core{{/str}}">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
 
-                <div class="dropdown-menu dropdown-menu-end">
-                    {{{ output.edit_switch }}}
+            <div class="dropdown-menu dropdown-menu-end">
+                <div class="form-check form-switch darkmode-switch d-sm-none">
+                    <label class="form-check-label" for="darktheme-checkbox-menu">{{#str}}darkmode, theme_liquid{{/str}}</label>
+                    <input type="checkbox" role="switch" class="form-check-input darktheme-checkbox" id="darktheme-checkbox-menu">
                 </div>
+                {{{ output.edit_switch }}}
             </div>
-        {{/output.edit_switch}}
+        </div>
     </div>
 </nav>
 {{#secondarymoremenu}}

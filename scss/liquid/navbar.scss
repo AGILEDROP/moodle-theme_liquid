@@ -284,57 +284,43 @@
             }
         }
     }
+}
 
-    .form-switch {
-        display: flex;
-        align-items: center;
-        min-height: 0;
-        margin: 0;
-        padding-left: 0;
+// Dark mode and edit mode toggles share the same switch.
+.toggle-holder .form-switch,
+.editmode-switch-form .form-switch,
+.navbar-edit-actions .darkmode-switch {
+    display: flex;
+    align-items: center;
+    min-height: 0;
+    margin: 0;
+    padding-left: 0;
 
-        .form-check-input {
-            float: none;
-            margin: 0 .5rem 0 0;
-            cursor: pointer;
+    .form-check-input {
+        float: none;
+        flex-shrink: 0;
+        width: 28px;
+        height: 16px;
+        margin: 0 .5rem 0 0;
+        cursor: pointer;
 
-            &:checked {
-                background-color: $secondary;
-                border-color: $secondary;
-            }
+        &:checked {
+            background-color: $secondary;
+            border-color: $secondary;
         }
     }
 }
 
-// Edit mode switch styling (now uses Bootstrap 4 custom-control)
-.editmode-switch-form {
-    .custom-control.custom-switch {
+// Switches with the text label in front.
+.editmode-switch-form .form-switch,
+.navbar-edit-actions .darkmode-switch {
+    .form-check-label {
+        margin: 0 .5rem 0 0;
         cursor: pointer;
+    }
 
-        .custom-control-input {
-            cursor: pointer;
-
-            ~ .custom-control-label::before {
-                border: 1px solid rgba(255, 255, 255, .3);
-                background-color: #fff;
-            }
-
-            ~ .custom-control-label::after {
-                background-color: #b4bbc3;
-            }
-
-            &:checked ~ .custom-control-label::before {
-                background-color: $secondary;
-                border-color: $secondary;
-            }
-
-            &:checked ~ .custom-control-label::after {
-                background-color: $white;
-            }
-        }
-
-        .custom-control-label {
-            cursor: pointer;
-        }
+    .form-check-input {
+        margin: 0;
     }
 }
 
@@ -358,38 +344,6 @@
                 white-space: nowrap;
             }
         }
-
-        .toggle-holder {
-            /* stylelint-disable-next-line declaration-no-important */
-            margin-inline-end: .25rem !important;
-            justify-content: center;
-            width: 2.5rem;
-            flex-shrink: 0;
-
-            .form-switch {
-                @include visually-hidden;
-            }
-
-            > label {
-                display: none;
-                margin: 0;
-                width: 2.5rem;
-                height: 2.5rem;
-                align-items: center;
-                justify-content: center;
-            }
-
-            &:focus-within {
-                outline: 2px solid $primary;
-                outline-offset: 2px;
-                border-radius: .25rem;
-            }
-        }
-    }
-
-    [data-bs-theme="light"] .navbar.fixed-top .toggle-holder > .dark,
-    [data-bs-theme="dark"] .navbar.fixed-top .toggle-holder > .light {
-        display: flex;
     }
 }
 
@@ -401,18 +355,48 @@
         .dropdown-menu {
             padding: .75rem;
             min-width: 12rem;
+
+            .form-switch {
+                flex: 1;
+                justify-content: space-between;
+            }
+
+            > * + * {
+                margin-top: .75rem;
+            }
         }
     }
 
     @include media-breakpoint-up(sm) {
-        > .dropdown-menu {
+        // Must beat Bootstrap's .navbar-expand .navbar-nav .dropdown-menu (position: absolute)
+        // and the hidden fade-in state from dropdown.scss.
+        .navbar .navbar-nav & > .dropdown-menu {
             display: block;
             position: static;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: none;
             padding: 0;
             margin: 0;
             min-width: 0;
             border: 0;
             background: transparent;
+
+            // Keep the inline switch off the screen edge.
+            .editmode-switch-form {
+                margin-right: 1rem;
+            }
         }
     }
+}
+
+// Keep the profile button compact within the navbar.
+.navbar.fixed-top .usermenu #user-menu-toggle {
+    padding-inline: .5rem;
+}
+
+// Tighter user menu dropdown.
+.navbar.fixed-top .usermenu .dropdown-menu {
+    --#{$prefix}dropdown-padding-y: .5rem;
+    --#{$prefix}dropdown-divider-margin-y: .25rem;
 }
