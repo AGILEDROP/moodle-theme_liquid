@@ -63,11 +63,14 @@
                         {{/slidelink}}
                         {{^slidelink}}
                             <div class="ratio {{sliderratio}}">
-                                {{#slideimage}}
-                                    <div class="image-wrapper">
+                                <div class="image-wrapper">
+                                    {{#slideimage}}
                                         <img src="{{{slideimage}}}">
-                                    </div>
-                                {{/slideimage}}
+                                    {{/slideimage}}
+                                    {{^slideimage}}
+                                        <img src="{{config.wwwroot}}/theme/liquid/pix/sample_slider.webp" alt="{{{slidetext}}}">
+                                    {{/slideimage}}
+                                </div>
                                 {{#slidetext}}
                                     <div class="content-wrapper">
                                         {{{slidetext}}}

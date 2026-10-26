@@ -76,16 +76,25 @@ for ($i = 1; $i <= $slider['numberslides']; $i++) {
 
     $slide = [];
     $slide['slidestatus'] = theme_liquid_setting($prefix . 'status');
+    if (!$slide['slidestatus']) {
+        continue;
+    }
+
     $slide['slideimage'] = trim($PAGE->theme->setting_file_url($prefix . 'image', $prefix . 'image') ?: '');
     $slide['slidetext'] = theme_liquid_setting($prefix . 'text', 'format_html');
     $slide['slidelink'] = trim(theme_liquid_setting($prefix . 'link') ?: '');
 
-    if (trim(strip_tags($slide['slidetext'] ?? '')) === '' && $slide['slideimage'] === '') {
+    if (
+        $slider['numberslides'] > 1 &&
+            trim(strip_tags($slide['slidetext'] ?? '')) === '' && $slide['slideimage'] === ''
+    ) {
         continue;
     }
 
     $slider['slides'][] = $slide;
 }
+
+$slider['showslider'] = $slider['showslider'] && !empty($slider['slides']);
 
 $templatecontext += $slider;
 
