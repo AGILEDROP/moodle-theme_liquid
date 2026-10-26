@@ -62,6 +62,12 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'leftnavigation' => theme_liquid_setting('leftnavigation'),
+    'facebooklink' => theme_liquid_setting('facebooklink'),
+    'xlink' => theme_liquid_setting('xlink'),
+    'instagramlink' => theme_liquid_setting('instagramlink'),
+    'linkedinlink' => theme_liquid_setting('linkedinlink'),
+    'youtubelink' => theme_liquid_setting('youtubelink'),
+    'tiktoklink' => theme_liquid_setting('tiktoklink'),
 ];
 
 // Frontpage slider data.

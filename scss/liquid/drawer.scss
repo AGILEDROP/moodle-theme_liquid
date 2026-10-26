@@ -79,6 +79,10 @@
     }
 }
 
+.drawer.drawer-left.drawer-primary.show {
+    box-shadow: 4px 0 12px -4px rgba(208, 208, 196, .32);
+}
+
 .drawercontent {
     padding: 1rem;
 }
