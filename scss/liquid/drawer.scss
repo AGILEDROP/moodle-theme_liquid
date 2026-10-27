@@ -43,6 +43,9 @@
 .drawer.drawer-left,
 .drawer.drawer-right {
     background-color: $gray-300;
+    // Boost caches the backdrop level from the first drawer. Keep every drawer above that
+    // backdrop at all viewport widths, and below the fixed top navbar.
+    z-index: $zindex-fixed - 1;
 }
 
 .drawer {
@@ -97,7 +100,7 @@
             max-height: none;
             padding-bottom: 0;
             border-radius: 0;
-            z-index: $zindex-sticky - 5;
+            z-index: $zindex-fixed - 1;
 
             .drawerheader {
                 padding-top: 0;

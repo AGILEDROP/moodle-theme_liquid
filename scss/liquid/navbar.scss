@@ -312,6 +312,62 @@
     }
 }
 
+// The bottom edit switch keeps its colours in both modes.
+.navbar.fixed-left .editmode-switch-form .form-switch {
+    .form-check-label {
+        color: $white;
+    }
+
+    // Keep the bottom switch independent of Bootstrap's colour-mode thumb images.
+    .form-check-input {
+        background-color: $liquid-slate;
+        border-color: $liquid-slate;
+        background-image: radial-gradient(circle closest-side, $white 80%, transparent 85%);
+        background-size: 14px 14px;
+        background-position: left center;
+
+        &:checked {
+            background-color: $liquid-orange;
+            border-color: $liquid-orange;
+            background-position: right center;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $liquid-orange;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// All top navigation switches share the same colours, including inside the mobile menu.
+.navbar.fixed-top .toggle-holder .form-switch,
+.navbar.fixed-top .navbar-edit-actions .darkmode-switch,
+.navbar.fixed-top .editmode-switch-form .form-switch {
+    .form-check-label {
+        color: var(--liquid-ink);
+    }
+
+    .form-check-input {
+        background-color: var(--liquid-sidebar);
+        border-color: var(--liquid-border);
+        background-image: radial-gradient(circle closest-side, var(--liquid-text-secondary) 80%, transparent 85%);
+        background-size: 14px 14px;
+        background-position: left center;
+
+        &:checked {
+            background-color: $liquid-orange;
+            border-color: $liquid-orange;
+            background-image: radial-gradient(circle closest-side, $white 80%, transparent 85%);
+            background-position: right center;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $liquid-orange;
+            outline-offset: 2px;
+        }
+    }
+}
+
 // Switches with the text label in front.
 .editmode-switch-form .form-switch,
 .navbar-edit-actions .darkmode-switch {
@@ -382,6 +438,9 @@
             min-width: 0;
             border: 0;
             background: transparent;
+            // Dark mode gives dropdowns an important surface colour; this wrapper is inline here.
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
 
             // Keep the inline switch off the screen edge.
             .editmode-switch-form {
