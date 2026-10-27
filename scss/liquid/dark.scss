@@ -1,12 +1,12 @@
 // Dark mode dynamic variables (using preset variables where available)
-$dark-text-color: rgba($white, .8);
-$dark-link-color: rgba($white, .9);
+$dark-text-color: $liquid-dark-ink;
+$dark-link-color: $liquid-dark-ink;
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
-$dark-surface-color: #191c20;
-$dark-card-header-bg: #576071;
+$dark-surface-color: $liquid-dark-surface;
+$dark-card-header-bg: $liquid-dark-sidebar;
 
 // Question/quiz panel colors
 $dark-outcome-color: #8e7a30;
@@ -225,7 +225,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .popover-region-footer-container,
     .popover-region-header-container {
         /* stylelint-disable-next-line declaration-no-important */
-        border-color: $gray-800 !important;
+        border-color: $liquid-dark-border !important;
     }
 
     .nav-tabs .nav-link.active,
@@ -249,7 +249,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .content-item-container.unread,
     .no-left-nav .navbar .secondary-navbar nav,
     .swiper-slide .ratio {
-        background-color: #101216;
+        background-color: $liquid-dark-surface;
     }
 
     .drawer,
@@ -291,7 +291,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     }
 
     .popover-region-toggle::after {
-        border-bottom-color: #101216;
+        border-bottom-color: $liquid-dark-surface;
     }
 
     .navbar .secondary-navbar .usermenu .dropdown-menu .submenu .header .icon,
@@ -905,7 +905,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     }
 
     .navbar.fixed-left {
-        background-color: $primary;
+        background-color: var(--liquid-navigation);
     }
 
     .navbar.fixed-left .primary-navigation a {

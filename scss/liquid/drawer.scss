@@ -53,7 +53,7 @@
         background-color: transparent;
 
         &:hover {
-            background-color: $gray-200;
+            background-color: var(--liquid-field);
         }
     }
 
@@ -80,7 +80,7 @@
 }
 
 .drawer.drawer-left.drawer-primary.show {
-    box-shadow: 4px 0 12px -4px rgba(208, 208, 196, .32);
+    box-shadow: var(--liquid-nav-shadow);
 }
 
 .drawercontent {
@@ -145,6 +145,8 @@
         .drawer.drawer-right.show {
             left: auto !important;
             right: 0 !important;
+            // Core reapplies an inset clip to the open drawer, cutting off its outer shadow.
+            clip-path: none;
         }
 
         .drawer-toggles {
@@ -216,7 +218,7 @@
     background-color: transparent;
 
     &:hover {
-        background-color: $gray-200;
+        background-color: var(--liquid-field);
     }
 }
 
