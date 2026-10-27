@@ -82,11 +82,9 @@
         </div>
         <div class="footer-section col-lg-12 col-xl-3 ml-auto">
             <hr class="d-none d-lg-block d-xl-none">
-            {{^leftnavigation}}
-                <div class="d-none d-lg-block mb-3">
-                    {{> theme_liquid/socialicons}}
-                </div>
-            {{/leftnavigation}}
+            <div class="d-none d-lg-block {{#leftnavigation}}d-xlg-none {{/leftnavigation}}mb-3">
+                {{> theme_liquid/socialicons}}
+            </div>
             <div>{{#str}}developedby, theme_liquid{{/str}}</div>
             <div>{{#str}}poweredbymoodle, core{{/str}}</div>
             {{#output.moodle_release}}

@@ -13,7 +13,7 @@
         svg {
             width: 16px;
             height: 16px;
-            fill: $black;
+            fill: var(--#{$prefix}emphasis-color);
             transition: opacity ease .3s;
 
             &:hover,
