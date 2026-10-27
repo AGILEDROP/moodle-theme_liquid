@@ -60,8 +60,22 @@
 }
 
 .frontpage-faq {
+    --#{$prefix}gutter-x: 2rem;
+    align-items: flex-start;
+    row-gap: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     padding-left: .5rem;
     padding-right: .5rem;
+
+    .faq-description {
+        color: var(--liquid-text-secondary);
+        line-height: 1.65;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
 
     @include media-breakpoint-up(sm) {
         padding-left: calc(.5rem + 15px);

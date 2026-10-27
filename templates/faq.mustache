@@ -31,18 +31,18 @@
 }}
 
 <div class="frontpage-faq row mb-5">
-    <div class="col-md-4 d-md-flex flex-column justify-content-center">
+    <div class="col-md-4">
         <h2 class="h1">{{{faqtitle}}}</h2>
-        <div class="pb-3 pb-sm-4">
+        <div class="faq-description">
             {{{faqdescription}}}
         </div>
     </div>
-    <div class="col-md-8 col-lg-7 offset-lg-1">
+    <div class="col-md-8">
         <div class="accordion" id="faq-frontpage">
             {{#questions}}
-                <div class="accordion-item bg-white border-radius">
+                <div class="accordion-item">
                     <h3 class="accordion-header" id="faq-heading-{{{faqid}}}">
-                        <button class="accordion-button {{^isfirst}}collapsed{{/isfirst}} border-top border-radius" type="button"
+                        <button class="accordion-button {{^isfirst}}collapsed{{/isfirst}}" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#faq-content-{{{faqid}}}"
                                 aria-expanded="{{#isfirst}}true{{/isfirst}}{{^isfirst}}false{{/isfirst}}"
                                 aria-controls="faq-content-{{{faqid}}}">
