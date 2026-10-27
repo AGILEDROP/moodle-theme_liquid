@@ -29,7 +29,9 @@
                 "fullname": "Course name 1",
                 "coursecategory": "Category"
             }
-        ]
+        ],
+        "viewmoreurl": "https://moodlesite/course/index.php",
+        "viewmoretext": "Full list of courses"
     }
 }}
 <div class="card-deck dashboard-card-deck frontpage-available-courses" data-region="card-deck" role="list">
@@ -60,3 +62,8 @@
         </div>
     {{/courses}}
 </div>
+{{#viewmoreurl}}
+    <div class="mt-3">
+        <a href="{{viewmoreurl}}" class="btn btn-outline-primary">{{viewmoretext}}</a>
+    </div>
+{{/viewmoreurl}}
