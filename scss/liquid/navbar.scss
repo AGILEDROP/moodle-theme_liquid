@@ -2,11 +2,16 @@
     &.fixed-top {
         border-bottom: 0;
 
+        @include media-breakpoint-down(xlg) {
+            padding-inline: .5rem;
+        }
+
         @include media-breakpoint-up(xlg) {
             left: $navbar-width;
 
             .no-left-nav & {
                 left: 0;
+                padding-inline-start: 1.5rem;
             }
         }
 
@@ -383,8 +388,6 @@
 
 @include media-breakpoint-down(sm) {
     .navbar.fixed-top {
-        padding-inline: .5rem;
-
         .navbar-brand {
             min-width: 0;
             max-width: 5rem;
