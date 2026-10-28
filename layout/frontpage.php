@@ -89,6 +89,9 @@ for ($i = 1; $i <= $slider['numberslides']; $i++) {
     $slide['slideimage'] = trim($PAGE->theme->setting_file_url($prefix . 'image', $prefix . 'image') ?: '');
     $slide['slidetext'] = theme_liquid_setting($prefix . 'text', 'format_html');
     $slide['slidelink'] = trim(theme_liquid_setting($prefix . 'link') ?: '');
+    $slide['slidetextcolor'] = trim(theme_liquid_setting($prefix . 'textcolor') ?: '');
+    $textsize = theme_liquid_setting($prefix . 'textsize');
+    $slide['slidetextsize'] = in_array($textsize, ['sm', 'md', 'lg', 'xl'], true) ? $textsize : '';
 
     if (
         $slider['numberslides'] > 1 &&

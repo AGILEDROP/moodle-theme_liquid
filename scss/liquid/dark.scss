@@ -60,8 +60,8 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .form-control,
     .custom-select,
     .btn:not(.btn-outline-secondary):not(.btn-outline-primary):not(.btn-primary):not(.btn-secondary),
-    .frontpage-slider .swiper-slide .ratio .content-wrapper,
-    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn),
+    .frontpage-slider .swiper-slide .ratio .content-wrapper:not(.has-text-color),
+    .frontpage-slider .swiper-slide .ratio .content-wrapper:not(.has-text-color) :not(.btn),
     body#page-my-index #managecoursesform button {
         color: $dark-text-color;
     }

@@ -24,7 +24,9 @@
         "sliderratio": "ratio-16x9",
         "slidelink": "https://example.com",
         "slideimage": "https://example.com/image.jpg",
-        "slidetext": "Example text."
+        "slidetext": "Example text.",
+        "slidetextcolor": "#ffffff",
+        "slidetextsize": "lg"
     }
 }}
 
@@ -55,7 +57,7 @@
                                     {{/slideimage}}
                                 </div>
                                 {{#slidetext}}
-                                    <div class="content-wrapper">
+                                    <div class="content-wrapper{{#slidetextcolor}} has-text-color{{/slidetextcolor}}{{#slidetextsize}} text-size-{{slidetextsize}}{{/slidetextsize}}"{{#slidetextcolor}} style="--liquid-slide-text-color: {{slidetextcolor}};"{{/slidetextcolor}}>
                                         {{{slidetext}}}
                                     </div>
                                 {{/slidetext}}
@@ -72,7 +74,7 @@
                                     {{/slideimage}}
                                 </div>
                                 {{#slidetext}}
-                                    <div class="content-wrapper">
+                                    <div class="content-wrapper{{#slidetextcolor}} has-text-color{{/slidetextcolor}}{{#slidetextsize}} text-size-{{slidetextsize}}{{/slidetextsize}}"{{#slidetextcolor}} style="--liquid-slide-text-color: {{slidetextcolor}};"{{/slidetextcolor}}>
                                         {{{slidetext}}}
                                     </div>
                                 {{/slidetext}}
