@@ -24,22 +24,30 @@
 
 namespace theme_liquid\privacy;
 
+use core_privacy\local\metadata\collection;
+
 /**
  * Privacy provider implementation for theme_liquid.
  *
- * Liquid does not store any personal data. The colour mode a user chooses is stored in Boost's
- * theme_boost_colourmode preference, which theme_boost's privacy provider reports.
+ * Colour preferences are reported by Boost. Optional Google Fonts loading sends browser request data to Google.
  *
  * @copyright  2025 Agiledrop ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider implements \core_privacy\local\metadata\null_provider {
+class provider implements \core_privacy\local\metadata\provider {
     /**
-     * Get the language string identifier with the component's language file to explain why this plugin stores no data.
+     * Describe data handled by Boost and the optional external font service.
      *
-     * @return string
+     * @param collection $collection The metadata collection.
+     * @return collection The completed metadata collection.
      */
-    public static function get_reason(): string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $collection): collection {
+        $collection->add_plugintype_link('theme_boost', [], 'privacy:metadata:boost');
+        $collection->add_external_location_link('googlefonts', [
+            'ipaddress' => 'privacy:metadata:googlefonts:ipaddress',
+            'browser' => 'privacy:metadata:googlefonts:browser',
+        ], 'privacy:metadata:googlefonts');
+
+        return $collection;
     }
 }

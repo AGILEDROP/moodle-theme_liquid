@@ -58,5 +58,11 @@ function xmldb_theme_liquid_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2026101300, 'theme', 'liquid');
     }
 
+    if ($oldversion < 2026102900) {
+        // Keep the saved font URL, but require an explicit opt-in before loading external fonts.
+        set_config('usegooglefonts', 0, 'theme_liquid');
+        upgrade_plugin_savepoint(true, 2026102900, 'theme', 'liquid');
+    }
+
     return true;
 }

@@ -86,11 +86,14 @@ class core_renderer extends \theme_boost\output\core_renderer {
     public function standard_head_html() {
         $output = parent::standard_head_html();
         $theme = theme_config::load('liquid');
-        $googlefont = $theme->settings->googlefonturl;
-
-        $output .= '<link rel="preconnect" href="https://fonts.googleapis.com">
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                <link href="' . $googlefont . '" rel="stylesheet">';
+        $googlefont = theme_liquid_get_google_font_url($theme);
+        if ($googlefont !== null) {
+            $output .= html_writer::empty_tag('link', [
+                'href' => $googlefont->out(false),
+                'rel' => 'stylesheet',
+                'referrerpolicy' => 'no-referrer',
+            ]);
+        }
 
         return $output;
     }
