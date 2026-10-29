@@ -61,9 +61,15 @@
     {{#courseindex}}
         {{< theme_boost/drawer }}
             {{$id}}theme_boost-drawers-courseindex{{/id}}
-            {{$drawerheadercontent}}
+            {{$drawerheading}}
+                {{> theme_boost/courseindexdrawerheading}}
                 {{> theme_boost/courseindexdrawercontrols}}
-            {{/drawerheadercontent}}
+            {{/drawerheading}}
+            {{$drawercontrols}}
+                <div class="mx-2 pb-2">
+                    <hr class="mt-0 mb-2 mx-3">
+                </div>
+            {{/drawercontrols}}
             {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
             {{$drawercontent}}
                 {{{courseindex}}}
@@ -79,10 +85,10 @@
             {{$id}}theme_boost-drawers-blocks{{/id}}
             {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
             {{$drawercontent}}
-                <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+                <div class="d-print-none">
                     {{{ addblockbutton }}}
                     {{{ sidepreblocks }}}
-                </section>
+                </div>
             {{/drawercontent}}
             {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
             {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
@@ -92,40 +98,40 @@
             {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
-    <div id="page" data-region="mainpage" data-usertour="scroller"
-         class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
         <div id="topofscroll" class="main-inner">
             <div class="drawer-toggles d-flex">
                 {{#courseindex}}
                     <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
                         <button
-                                class="btn icon-no-margin"
-                                data-toggler="drawers"
-                                data-action="toggle"
-                                data-target="theme_boost-drawers-courseindex"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="right"
-                                title="{{#str}}opendrawerindex, core{{/str}}"
+                            class="btn btn-icon icon-size-3"
+                            data-toggler="drawers"
+                            data-action="toggle"
+                            data-target="theme_boost-drawers-courseindex"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="right"
+                            title="{{#str}}opendrawerindex, core{{/str}}"
                         >
                             <span class="visually-hidden">{{#str}}opendrawerindex, core{{/str}}</span>
-                            {{#pix}} t/index_drawer, moodle {{/pix}}
+                            <span class="dir-rtl-hide">{{#pix}} a/view_list_active, core {{/pix}}</span>
+                            <span class="dir-ltr-hide">{{#pix}} a/view_list_active, core {{/pix}}</span>
                         </button>
                     </div>
                 {{/courseindex}}
                 {{#hasblocks}}
                     <div class="drawer-toggler drawer-right-toggle ms-auto d-print-none">
                         <button
-                                class="btn icon-no-margin"
-                                data-toggler="drawers"
-                                data-action="toggle"
-                                data-target="theme_boost-drawers-blocks"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="right"
-                                title="{{#str}}opendrawerblocks, core{{/str}}"
+                            class="btn btn-icon icon-size-3"
+                            data-toggler="drawers"
+                            data-action="toggle"
+                            data-target="theme_boost-drawers-blocks"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="right"
+                            title="{{#str}}opendrawerblocks, core{{/str}}"
                         >
                             <span class="visually-hidden">{{#str}}opendrawerblocks, core{{/str}}</span>
-                            <span class="dir-rtl-hide">{{#pix}}t/blocks_drawer, core{{/pix}}</span>
-                            <span class="dir-ltr-hide">{{#pix}}t/blocks_drawer_rtl, core{{/pix}}</span>
+                            <span class="dir-rtl-hide">{{#pix}} i/previous, core {{/pix}}</span>
+                            <span class="dir-ltr-hide">{{#pix}} i/next, core {{/pix}}</span>
                         </button>
                     </div>
                 {{/hasblocks}}
@@ -134,11 +140,11 @@
             <div id="page-content" class="pb-3 d-print-block">
                 <div id="region-main-box">
                     {{#hasregionmainsettingsmenu}}
-                        <div id="region-main-settings-menu" class="d-print-none">
-                            <div> {{{ regionmainsettingsmenu }}} </div>
-                        </div>
+                    <div id="region-main-settings-menu" class="d-print-none">
+                        <div> {{{ regionmainsettingsmenu }}} </div>
+                    </div>
                     {{/hasregionmainsettingsmenu}}
-                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
+                    <div id="region-main">
 
                         {{#hasregionmainsettingsmenu}}
                             <div class="region_main_settings_menu_proxy"></div>
@@ -158,7 +164,7 @@
                         {{{ output.activity_navigation }}}
                         {{{ output.course_content_footer }}}
 
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,9 +176,9 @@
 </body>
 </html>
 {{#js}}
-    M.util.js_pending('theme_boost/loader');
-    require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     Drawer.init();
     M.util.js_complete('theme_boost/loader');
-    });
+});
 {{/js}}

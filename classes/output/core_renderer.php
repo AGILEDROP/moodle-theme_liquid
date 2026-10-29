@@ -33,6 +33,50 @@ use theme_config;
  */
 class core_renderer extends \theme_boost\output\core_renderer {
     /**
+     * Add a heading above the password recovery instructions.
+     *
+     * @param string $contents Box content.
+     * @param string|array $classes Box classes.
+     * @param string|null $id Optional box ID.
+     * @param array $attributes Additional attributes.
+     * @return string Rendered HTML.
+     */
+    public function box($contents, $classes = 'generalbox', $id = null, $attributes = []) {
+        $output = parent::box($contents, $classes, $id, $attributes);
+        if (
+            $this->page->pagetype === 'login-forgot_password'
+            && $contents === get_string('passwordforgotteninstructions2')
+        ) {
+            $heading = $this->heading(get_string('resetpasswordtitle', 'theme_liquid'), 1, 'login-heading mb-4');
+            return html_writer::div($heading . $output, 'forgot-password-instructions w-100');
+        }
+
+        return $output;
+    }
+
+    /**
+     * Use login-style inputs for the password recovery search fields.
+     *
+     * @param string $templatename Template to render.
+     * @param array|\stdClass $context Template context.
+     * @return string Rendered HTML.
+     */
+    public function render_from_template($templatename, $context) {
+        if ($this->page->pagetype === 'login-forgot_password' && $templatename === 'core_form/element-text') {
+            $context = (array) $context;
+            $fieldname = $context['element']['name'];
+            if (in_array($fieldname, ['username', 'email'], true)) {
+                $context['element']['hiddenlabel'] = true;
+                $context['inputplaceholder'] = get_string($fieldname);
+                $context['inputicon'] = $fieldname === 'email' ? 'i/email' : 'i/user';
+                $templatename = 'theme_liquid/forgot_password_input';
+            }
+        }
+
+        return parent::render_from_template($templatename, $context);
+    }
+
+    /**
      * The standard tags (meta tags, links to stylesheets and JavaScript, etc.)
      * that should be included in the <head> tag. Designed to be called in theme
      * layout.php files.
@@ -42,11 +86,14 @@ class core_renderer extends \theme_boost\output\core_renderer {
     public function standard_head_html() {
         $output = parent::standard_head_html();
         $theme = theme_config::load('liquid');
-        $googlefont = $theme->settings->googlefonturl;
-
-        $output .= '<link rel="preconnect" href="https://fonts.googleapis.com">
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                <link href="' . $googlefont . '" rel="stylesheet">';
+        $googlefont = theme_liquid_get_google_font_url($theme);
+        if ($googlefont !== null) {
+            $output .= html_writer::empty_tag('link', [
+                'href' => $googlefont->out(false),
+                'rel' => 'stylesheet',
+                'referrerpolicy' => 'no-referrer',
+            ]);
+        }
 
         return $output;
     }

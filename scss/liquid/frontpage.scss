@@ -11,6 +11,11 @@
         text-decoration: none;
         background-color: $gray-300;
 
+        &.ratio-banner {
+            --bs-aspect-ratio: 25%;
+            min-height: 10rem;
+        }
+
         > * {
             position: absolute;
             top: 0;
@@ -37,9 +42,26 @@
             justify-content: center;
             text-align: center;
             color: $primary;
+            padding: 1rem 3.5rem;
+
+            @include media-breakpoint-up(sm) {
+                padding: 2rem 5rem;
+            }
 
             *:not(.btn) {
                 color: $primary;
+            }
+
+            &.has-text-color,
+            &.has-text-color *:not(.btn) {
+                color: var(--liquid-slide-text-color);
+            }
+
+            @each $size, $value in (sm: 1rem, md: 1.5rem, lg: 2rem, xl: 3rem) {
+                &.text-size-#{$size},
+                &.text-size-#{$size} *:not(.btn) {
+                    @include font-size($value);
+                }
             }
         }
 
@@ -50,8 +72,22 @@
 }
 
 .frontpage-faq {
+    --#{$prefix}gutter-x: 2rem;
+    align-items: flex-start;
+    row-gap: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     padding-left: .5rem;
     padding-right: .5rem;
+
+    .faq-description {
+        color: var(--liquid-text-secondary);
+        line-height: 1.65;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
 
     @include media-breakpoint-up(sm) {
         padding-left: calc(.5rem + 15px);
@@ -78,5 +114,62 @@
 .course-content ul.topics.frontpage {
     li.section {
         padding: 0;
+    }
+}
+
+// Site home section without activities: hide the empty header strip.
+.sitetopic .section-item:not(:has(li.activity)) {
+    // Overrides the .d-flex utility on the header.
+    .course-section-header {
+        display: none !important; // stylelint-disable-line declaration-no-important
+    }
+
+    .course-content-item-content {
+        > [data-for="sectioninfo"] {
+            padding-top: map-get($spacers, 3);
+
+            &:not(:has(.summarytext)):not(:has(.availabilityinfo)):not(:has(.alert)) {
+                padding: 0;
+            }
+        }
+
+        .section-content-inner {
+            border-top: 0;
+            @include border-radius($activity-border-radius);
+
+            // Nothing to add outside edit mode.
+            body:not(.editing) & {
+                display: none;
+            }
+        }
+    }
+}
+
+// Outside edit mode, drop the Site home section completely when it shows nothing.
+body:not(.editing) .sitetopic .course-section:not(:has(li.activity)):not(:has(.summarytext)):not(:has(.availabilityinfo)) {
+    display: none;
+}
+
+.card-deck.dashboard-card-deck.frontpage-available-courses {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+
+    @include media-breakpoint-up(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include media-breakpoint-up(xl) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    > .dashboard-card {
+        width: auto;
+        min-width: 0;
+        margin: 0;
     }
 }

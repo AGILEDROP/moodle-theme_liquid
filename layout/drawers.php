@@ -57,7 +57,6 @@ if (!$hasblocks) {
     $blockdraweropen = false;
 }
 
-
 $courseindex = core_course_drawer();
 if (!$courseindex) {
     $courseindexopen = false;
@@ -88,11 +87,20 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
-$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init');
+$coursefullname = ($PAGE->course?->fullname) ? format_string(
+    $PAGE->course->fullname,
+    true,
+    ['context' => context_course::instance($PAGE->course->id), 'escape' => false],
+) : '';
+$courseurl = $PAGE->course ? new \core\url('/course/view.php', ['id' => $PAGE->course->id]) : null;
+
+$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init', [\theme_liquid\colour_mode::get_js_config()]);
 $PAGE->requires->js_call_amd('theme_liquid/tooltips', 'init');
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
+    'coursefullname' => $coursefullname,
+    'courseurl' => $courseurl ? $courseurl->out(false) : null,
     'output' => $OUTPUT,
     'sidepreblocks' => $blockshtml,
     'hasblocks' => $hasblocks,

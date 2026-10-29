@@ -21,9 +21,12 @@
 
     Example context (json):
     {
+        "sliderratio": "ratio-16x9",
         "slidelink": "https://example.com",
         "slideimage": "https://example.com/image.jpg",
-        "slidetext": "Example text."
+        "slidetext": "Example text.",
+        "slidetextcolor": "#ffffff",
+        "slidetextsize": "lg"
     }
 }}
 
@@ -44,7 +47,7 @@
                 {{#slidestatus}}
                     <div class="swiper-slide">
                         {{#slidelink}}
-                            <a href="{{{slidelink}}}" class="ratio ratio-16x9">
+                            <a href="{{{slidelink}}}" class="ratio {{sliderratio}}">
                                 <div class="image-wrapper">
                                     {{#slideimage}}
                                         <img src="{{{slideimage}}}" alt="{{{slidetext}}}">
@@ -54,21 +57,24 @@
                                     {{/slideimage}}
                                 </div>
                                 {{#slidetext}}
-                                    <div class="content-wrapper">
+                                    <div class="content-wrapper{{#slidetextcolor}} has-text-color{{/slidetextcolor}}{{#slidetextsize}} text-size-{{slidetextsize}}{{/slidetextsize}}"{{#slidetextcolor}} style="--liquid-slide-text-color: {{slidetextcolor}};"{{/slidetextcolor}}>
                                         {{{slidetext}}}
                                     </div>
                                 {{/slidetext}}
                             </a>
                         {{/slidelink}}
                         {{^slidelink}}
-                            <div class="ratio ratio-16x9">
-                                {{#slideimage}}
-                                    <div class="image-wrapper">
+                            <div class="ratio {{sliderratio}}">
+                                <div class="image-wrapper">
+                                    {{#slideimage}}
                                         <img src="{{{slideimage}}}">
-                                    </div>
-                                {{/slideimage}}
+                                    {{/slideimage}}
+                                    {{^slideimage}}
+                                        <img src="{{config.wwwroot}}/theme/liquid/pix/sample_slider.webp" alt="{{{slidetext}}}">
+                                    {{/slideimage}}
+                                </div>
                                 {{#slidetext}}
-                                    <div class="content-wrapper">
+                                    <div class="content-wrapper{{#slidetextcolor}} has-text-color{{/slidetextcolor}}{{#slidetextsize}} text-size-{{slidetextsize}}{{/slidetextsize}}"{{#slidetextcolor}} style="--liquid-slide-text-color: {{slidetextcolor}};"{{/slidetextcolor}}>
                                         {{{slidetext}}}
                                     </div>
                                 {{/slidetext}}

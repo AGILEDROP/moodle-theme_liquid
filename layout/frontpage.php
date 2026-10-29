@@ -47,7 +47,7 @@ $primarymenu = $primary->export_for_template($renderer);
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
-$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init');
+$PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init', [\theme_liquid\colour_mode::get_js_config()]);
 $PAGE->requires->js_call_amd('theme_liquid/tooltips', 'init');
 
 $templatecontext = [
@@ -62,20 +62,48 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'leftnavigation' => theme_liquid_setting('leftnavigation'),
+    'facebooklink' => theme_liquid_setting('facebooklink'),
+    'xlink' => theme_liquid_setting('xlink'),
+    'instagramlink' => theme_liquid_setting('instagramlink'),
+    'linkedinlink' => theme_liquid_setting('linkedinlink'),
+    'youtubelink' => theme_liquid_setting('youtubelink'),
+    'tiktoklink' => theme_liquid_setting('tiktoklink'),
 ];
 
 // Frontpage slider data.
 $slider = [];
 $slider['showslider'] = theme_liquid_setting('showslider');
 $slider['numberslides'] = theme_liquid_setting('numberslides');
+$slider['sliderratio'] = theme_liquid_setting('compactslider') ? 'ratio-banner' : 'ratio-16x9';
+$slider['slides'] = [];
+
 for ($i = 1; $i <= $slider['numberslides']; $i++) {
+    $prefix = 'slide' . $i;
+
     $slide = [];
-    $slide['slidestatus'] = theme_liquid_setting('slide' . $i . 'status');
-    $slide['slideimage'] = $PAGE->theme->setting_file_url('slide' . $i . 'image', 'slide' . $i . 'image');
-    $slide['slidetext'] = theme_liquid_setting('slide' . $i . 'text', 'format_html');
-    $slide['slidelink'] = theme_liquid_setting('slide' . $i . 'link');
+    $slide['slidestatus'] = theme_liquid_setting($prefix . 'status');
+    if (!$slide['slidestatus']) {
+        continue;
+    }
+
+    $slide['slideimage'] = trim($PAGE->theme->setting_file_url($prefix . 'image', $prefix . 'image') ?: '');
+    $slide['slidetext'] = theme_liquid_setting($prefix . 'text', 'format_html');
+    $slide['slidelink'] = trim(theme_liquid_setting($prefix . 'link') ?: '');
+    $slide['slidetextcolor'] = trim(theme_liquid_setting($prefix . 'textcolor') ?: '');
+    $textsize = theme_liquid_setting($prefix . 'textsize');
+    $slide['slidetextsize'] = in_array($textsize, ['sm', 'md', 'lg', 'xl'], true) ? $textsize : '';
+
+    if (
+        $slider['numberslides'] > 1 &&
+            trim(strip_tags($slide['slidetext'] ?? '')) === '' && $slide['slideimage'] === ''
+    ) {
+        continue;
+    }
+
     $slider['slides'][] = $slide;
 }
+
+$slider['showslider'] = $slider['showslider'] && !empty($slider['slides']);
 
 $templatecontext += $slider;
 
@@ -85,16 +113,19 @@ $faq['showfaq'] = theme_liquid_setting('showfaq');
 $faq['numberfaq'] = theme_liquid_setting('numberfaq');
 $faq['faqtitle'] = theme_liquid_setting('faqtitle');
 $faq['faqdescription'] = theme_liquid_setting('faqdescription');
+$faq['questions'] = [];
 for ($i = 1; $i <= $faq['numberfaq']; $i++) {
-    $question = [];
-    $question['isfirst'] = false;
-    if ($i === 1) {
-        $question['isfirst'] = true;
+    $faqquestion = theme_liquid_setting('faq' . $i . 'question');
+    $faqanswer = theme_liquid_setting('faq' . $i . 'answer', 'format_html');
+    if (empty($faqquestion) || empty($faqanswer)) {
+        continue;
     }
-    $question['faqid'] = $i;
-    $question['faqquestion'] = theme_liquid_setting('faq' . $i . 'question');
-    $question['faqanswer'] = theme_liquid_setting('faq' . $i . 'answer', 'format_html');
-    $faq['questions'][] = $question;
+    $faq['questions'][] = [
+        'faqid' => $i,
+        'isfirst' => empty($faq['questions']),
+        'faqquestion' => $faqquestion,
+        'faqanswer' => $faqanswer,
+    ];
 }
 
 $templatecontext += $faq;

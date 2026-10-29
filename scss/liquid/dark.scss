@@ -1,12 +1,12 @@
 // Dark mode dynamic variables (using preset variables where available)
-$dark-text-color: rgba($white, .8);
-$dark-link-color: rgba($white, .9);
+$dark-text-color: $liquid-dark-ink;
+$dark-link-color: $liquid-dark-ink;
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
-$dark-surface-color: #191c20;
-$dark-card-header-bg: #576071;
+$dark-surface-color: $liquid-dark-surface;
+$dark-card-header-bg: $liquid-dark-sidebar;
 
 // Question/quiz panel colors
 $dark-outcome-color: #8e7a30;
@@ -18,6 +18,22 @@ $dark-outcome-border: rgba($dark-outcome-color, .4);
 $dark-comment-color: #4a9970;
 $dark-comment-bg: rgba($dark-comment-color, .15);
 $dark-comment-border: rgba($dark-comment-color, .4);
+
+// Boost's dark colour mode palette (theme/boost/scss/moodle/dark.scss) re-pointed to Liquid's colours.
+// The surfaces come from the $dark-surface-* variables in the preset. Components which take their colours from these
+// tokens (core and plugin components following Moodle 5.3's colour mode guidance) then match Liquid's dark look.
+@include color-mode(dark) {
+    // Links: the same colour Liquid gives links itself ($dark-link-color), as a solid colour for the -rgb variant.
+    --#{$prefix}link-color: #{mix($white, $dark-bg-color, 90%)};
+    --#{$prefix}link-color-rgb: #{to-rgb(mix($white, $dark-bg-color, 90%))};
+    --#{$prefix}link-hover-color: #{$white};
+    --#{$prefix}link-hover-color-rgb: #{to-rgb($white)};
+
+    // Design system text, used by the Moodle 5.3 React components (navigation, edit switch, timeline).
+    --mds-text-default: #{$dark-text-color};
+    --mds-text-link-primary-default: #{mix($white, $dark-bg-color, 90%)};
+    --mds-text-link-primary-hover: #{$white};
+}
 
 [data-bs-theme="dark"] {
     background-color: $dark-bg-color;
@@ -37,21 +53,23 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .generaltable,
     .navbar-nav .popover-region > * > .icon,
     .navbar .secondary-navbar .nav-tabs .nav-link,
-    .navbar .main-navbar .nav-link,
+    //.navbar .main-navbar .nav-link,
     .block .block-cards span.categoryname,
     .block .block-cards .btn-link,
     .dropdown-menu,
     .form-control,
     .custom-select,
     .btn:not(.btn-outline-secondary):not(.btn-outline-primary):not(.btn-primary):not(.btn-secondary),
-    .frontpage-slider .swiper-slide .ratio .content-wrapper,
-    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn),
+    .frontpage-slider .swiper-slide .ratio .content-wrapper:not(.has-text-color),
+    .frontpage-slider .swiper-slide .ratio .content-wrapper:not(.has-text-color) :not(.btn),
     body#page-my-index #managecoursesform button {
         color: $dark-text-color;
     }
 
-    a,
-    h1,
+    // TinyMCE's own elements (.tox: the editor, its menus and dialogs) are left out, as TinyMCE styles them with its
+    // own light or dark skin, which an editor keeps until the page is reloaded even if the page switches mode.
+    a:not(.tox *),
+    h1:not(.tox *),
     .h1,
     .maincalendar .calendarmonth td a,
     .maincalendar .calendarmonth th a,
@@ -76,16 +94,16 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .navbar .secondary-navbar .nav-tabs .nav-link:hover,
     .navbar .secondary-navbar .nav-tabs .nav-link:focus,
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
-    .navbar .main-navbar .nav-link:hover,
-    .navbar .main-navbar .nav-link:focus,
-    .navbar .main-navbar .nav-link.active,
-    button {
+    //.navbar .main-navbar .nav-link:hover,
+    //.navbar .main-navbar .nav-link:focus,
+    //.navbar .main-navbar .nav-link.active,
+    button:not(.tox *) {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
 
     .btn.text-primary,
-    textarea {
+    textarea:not(.tox *) {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
     }
@@ -122,6 +140,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .page-link,
     .path-mod-assign .gradingtable tr.unselectedrow td,
     .loginform,
+    .pagelayout-login .login-container > div:not(.loginimage),
     .pagelayout-login#page-login-forgot_password .mform,
     .path-mod-chat .yui-layout-unit-right,
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax #chat-messages .chat-message.course-theme,
@@ -146,9 +165,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
 
     #page.drawers .main-inner,
     .dropdown-menu,
-    .maincalendar .calendarmonth td:hover .day-number-circle,
-    .maincalendar .calendarmonth td:focus .day-number-circle,
-    .maincalendar .calendarmonth td:active .day-number-circle,
     .modal-content,
     .block .block-cards .btn.btn-link.btn-icon:hover,
     .block .block-cards .btn.btn-link.btn-icon:focus,
@@ -209,7 +225,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .popover-region-footer-container,
     .popover-region-header-container {
         /* stylelint-disable-next-line declaration-no-important */
-        border-color: $gray-800 !important;
+        border-color: $liquid-dark-border !important;
     }
 
     .nav-tabs .nav-link.active,
@@ -221,7 +237,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         background-color: $gray-800;
     }
 
-    .navbar.fixed-left,
     .path-mod-chat .yui-layout-unit-bottom,
     #chat-input-area,
     #chat-input-area table.generaltable,
@@ -234,7 +249,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .content-item-container.unread,
     .no-left-nav .navbar .secondary-navbar nav,
     .swiper-slide .ratio {
-        background-color: #101216;
+        background-color: $liquid-dark-surface;
     }
 
     .drawer,
@@ -276,7 +291,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     }
 
     .popover-region-toggle::after {
-        border-bottom-color: #101216;
+        border-bottom-color: $liquid-dark-surface;
     }
 
     .navbar .secondary-navbar .usermenu .dropdown-menu .submenu .header .icon,
@@ -286,50 +301,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     &.yui-skin-sam .yui-layout-unit .yui-resize-handle-r .yui-layout-resize-knob,
     &.yui-skin-sam .yui-layout-unit .yui-resize-handle-l .yui-layout-resize-knob {
         filter: invert(1);
-    }
-
-    .tox-tinymce {
-        filter: grayscale(100%) invert(95%);
-
-        // Reset color override — invert filter handles dark mode, forced white would double-invert to near-black
-        button {
-            /* stylelint-disable-next-line declaration-no-important */
-            color: unset !important;
-        }
-    }
-
-    // TinyMCE inline floating toolbar — lives in .tox-tinymce-aux OUTSIDE .tox-tinymce so the filter doesn't reach it
-    .tox-tinymce-aux {
-        .tox-pop__dialog {
-            background-color: $gray-900;
-            border: none;
-            box-shadow: 0 0 4px 0 rgba(0, 0, 0, .5);
-        }
-
-        .tox-pop.tox-pop--top::before,
-        .tox-pop.tox-pop--top::after {
-            border-color: transparent transparent $gray-900 transparent;
-        }
-
-        .tox-pop.tox-pop--bottom::before,
-        .tox-pop.tox-pop--bottom::after {
-            border-color: $gray-900 transparent transparent transparent;
-        }
-
-        .tox-tbtn {
-            /* stylelint-disable-next-line declaration-no-important */
-            color: $dark-text-color !important;
-            background: $gray-900;
-
-            svg path {
-                fill: $dark-text-color;
-            }
-
-            &:hover,
-            &:focus {
-                background-color: rgba($white, .1);
-            }
-        }
     }
 
     .breadcrumb-item:last-child,
@@ -608,7 +579,13 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         }
     }
 
-    // Login form input has hardcoded light background
+    // Password recovery instructions share the colour of the surrounding login panel.
+    .pagelayout-login#page-login-forgot_password .generalbox {
+        color: $dark-text-color;
+        border-color: var(--#{$prefix}border-color);
+    }
+
+    // Login form input has hardcoded light background.
     .login-container .login-form .form-control {
         background-color: $dark-bg-color;
     }
@@ -915,12 +892,32 @@ $dark-comment-border: rgba($dark-comment-color, .4);
                 border-bottom-color: $gray-700;
             }
         }
+
+        .message.received h6 {
+            color: inherit;
+        }
     }
 
     img[alt^="QR code"] {
         padding: .5rem;
         background-color: $white;
         border-radius: .25rem;
+    }
+
+    .navbar.fixed-left {
+        background-color: var(--liquid-navigation);
+    }
+
+    .navbar.fixed-left .primary-navigation a {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $text-on-primary !important;
+    }
+
+    .navbar.fixed-left .primary-navigation a.active,
+    .navbar.fixed-left .primary-navigation a:hover,
+    .navbar.fixed-left .primary-navigation a:focus {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
     }
 }
 

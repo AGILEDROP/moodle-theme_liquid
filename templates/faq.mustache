@@ -23,26 +23,27 @@
     {
         "faqtitle": "Example Title",
         "faqdescription": "Example description.",
-        "faqid": 1,
-        "faqquestion": "Example question?",
-        "faqanswer": "Example answer."
+        "questions": [
+            {"faqid": 1, "isfirst": true, "faqquestion": "First question?", "faqanswer": "First answer."},
+            {"faqid": 2, "isfirst": false, "faqquestion": "Second question?", "faqanswer": "Second answer."}
+        ]
     }
 }}
 
 <div class="frontpage-faq row mb-5">
-    <div class="col-md-4 d-md-flex flex-column justify-content-center">
+    <div class="col-md-4">
         <h2 class="h1">{{{faqtitle}}}</h2>
-        <div class="pb-3 pb-sm-4">
+        <div class="faq-description">
             {{{faqdescription}}}
         </div>
     </div>
-    <div class="col-md-8 col-lg-7 offset-lg-1">
+    <div class="col-md-8">
         <div class="accordion" id="faq-frontpage">
             {{#questions}}
-                <div class="accordion-item bg-white border-radius">
+                <div class="accordion-item">
                     <h3 class="accordion-header" id="faq-heading-{{{faqid}}}">
                         <button class="accordion-button {{^isfirst}}collapsed{{/isfirst}}" type="button"
-                                data-toggle="collapse" data-target="#faq-content-{{{faqid}}}"
+                                data-bs-toggle="collapse" data-bs-target="#faq-content-{{{faqid}}}"
                                 aria-expanded="{{#isfirst}}true{{/isfirst}}{{^isfirst}}false{{/isfirst}}"
                                 aria-controls="faq-content-{{{faqid}}}">
                             {{{faqquestion}}}
@@ -50,7 +51,7 @@
                     </h3>
 
                     <div id="faq-content-{{{faqid}}}" class="accordion-collapse collapse {{#isfirst}}show{{/isfirst}}"
-                         aria-labelledby="faq-heading-{{{faqid}}}" data-parent="#faq-frontpage">
+                         aria-labelledby="faq-heading-{{{faqid}}}" data-bs-parent="#faq-frontpage">
                         <div class="accordion-body">
                             {{{faqanswer}}}
                         </div>

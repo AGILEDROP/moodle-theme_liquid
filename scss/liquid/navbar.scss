@@ -2,11 +2,16 @@
     &.fixed-top {
         border-bottom: 0;
 
+        @include media-breakpoint-down(xlg) {
+            padding-inline: .5rem;
+        }
+
         @include media-breakpoint-up(xlg) {
             left: $navbar-width;
 
             .no-left-nav & {
                 left: 0;
+                padding-inline-start: 1.5rem;
             }
         }
 
@@ -123,6 +128,7 @@
         flex-wrap: nowrap;
         background-color: $primary;
         z-index: #{$zindex-fixed + 1};
+        box-shadow: var(--liquid-nav-shadow);
 
         .social-icons {
             margin-top: auto;
@@ -161,7 +167,7 @@
                 display: block;
                 width: .375rem;
                 height: 100%;
-                border-radius: $border-radius;
+                border-radius: 0 $border-radius $border-radius 0;
                 transition: all ease .3s;
                 z-index: -1;
             }
@@ -284,79 +290,176 @@
             }
         }
     }
-
-    .custom-switch {
-        cursor: pointer;
-    }
-
-    .custom-control-input {
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        z-index: 1;
-    }
 }
 
-// Edit mode switch styling (now uses Bootstrap 4 custom-control)
-.editmode-switch-form {
-    .custom-control.custom-switch {
+// Dark mode and edit mode toggles share the same switch.
+.toggle-holder .form-switch,
+.editmode-switch-form .form-switch,
+.navbar-edit-actions .darkmode-switch {
+    display: flex;
+    align-items: center;
+    min-height: 0;
+    margin: 0;
+    padding-left: 0;
+
+    .form-check-input {
+        float: none;
+        flex-shrink: 0;
+        width: 28px;
+        height: 16px;
+        margin: 0 .5rem 0 0;
         cursor: pointer;
 
-        .custom-control-input {
-            cursor: pointer;
-
-            ~ .custom-control-label::before {
-                border: 1px solid rgba(255, 255, 255, .3);
-                background-color: #fff;
-            }
-
-            ~ .custom-control-label::after {
-                background-color: #b4bbc3;
-            }
-
-            &:checked ~ .custom-control-label::before {
-                background-color: $secondary;
-                border-color: $secondary;
-            }
-
-            &:checked ~ .custom-control-label::after {
-                background-color: $white;
-            }
-        }
-
-        .custom-control-label {
-            cursor: pointer;
-        }
-    }
-}
-
-[data-bs-theme="dark"] {
-    .toggle-holder .custom-switch .custom-control-label {
-        &::before {
-            color: $white;
-            border-color: $secondary;
+        &:checked {
             background-color: $secondary;
-        }
-
-        &::after {
-            background-color: $white;
-            transform: translateX(.75rem);
+            border-color: $secondary;
         }
     }
+}
 
-    // Edit mode switch in dark mode
-    .editmode-switch-form {
-        .custom-control.custom-switch {
-            .custom-control-input {
-                &:checked ~ .custom-control-label::before {
-                    background-color: $secondary;
-                    border-color: $secondary;
-                }
+// The bottom edit switch keeps its colours in both modes.
+.navbar.fixed-left .editmode-switch-form .form-switch {
+    .form-check-label {
+        color: $white;
+    }
 
-                &:checked ~ .custom-control-label::after {
-                    background-color: $white;
-                }
+    // Keep the bottom switch independent of Bootstrap's colour-mode thumb images.
+    .form-check-input {
+        background-color: $liquid-slate;
+        border-color: $liquid-slate;
+        background-image: radial-gradient(circle closest-side, $white 80%, transparent 85%);
+        background-size: 14px 14px;
+        background-position: left center;
+
+        &:checked {
+            background-color: $liquid-orange;
+            border-color: $liquid-orange;
+            background-position: right center;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $liquid-orange;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// All top navigation switches share the same colours, including inside the mobile menu.
+.navbar.fixed-top .toggle-holder .form-switch,
+.navbar.fixed-top .navbar-edit-actions .darkmode-switch,
+.navbar.fixed-top .editmode-switch-form .form-switch {
+    .form-check-label {
+        color: var(--liquid-ink);
+    }
+
+    .form-check-input {
+        background-color: var(--liquid-sidebar);
+        border-color: var(--liquid-border);
+        background-image: radial-gradient(circle closest-side, var(--liquid-text-secondary) 80%, transparent 85%);
+        background-size: 14px 14px;
+        background-position: left center;
+
+        &:checked {
+            background-color: $liquid-orange;
+            border-color: $liquid-orange;
+            background-image: radial-gradient(circle closest-side, $white 80%, transparent 85%);
+            background-position: right center;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $liquid-orange;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// Switches with the text label in front.
+.editmode-switch-form .form-switch,
+.navbar-edit-actions .darkmode-switch {
+    .form-check-label {
+        margin: 0 .5rem 0 0;
+        cursor: pointer;
+    }
+
+    .form-check-input {
+        margin: 0;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .navbar.fixed-top {
+        .navbar-brand {
+            min-width: 0;
+            max-width: 5rem;
+            overflow: hidden;
+
+            .logo {
+                max-width: 100%;
+                object-fit: contain;
+            }
+
+            > span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
     }
+}
+
+.navbar-edit-actions {
+    display: flex;
+    align-items: center;
+
+    @include media-breakpoint-down(sm) {
+        .dropdown-menu {
+            padding: .75rem;
+            min-width: 12rem;
+
+            .form-switch {
+                flex: 1;
+                justify-content: space-between;
+            }
+
+            > * + * {
+                margin-top: .75rem;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        // Must beat Bootstrap's .navbar-expand .navbar-nav .dropdown-menu (position: absolute)
+        // and the hidden fade-in state from dropdown.scss.
+        .navbar .navbar-nav & > .dropdown-menu {
+            display: block;
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            box-shadow: none;
+            padding: 0;
+            margin: 0;
+            min-width: 0;
+            border: 0;
+            background: transparent;
+            // Dark mode gives dropdowns an important surface colour; this wrapper is inline here.
+            /* stylelint-disable-next-line declaration-no-important */
+            background-color: transparent !important;
+
+            // Keep the inline switch off the screen edge.
+            .editmode-switch-form {
+                margin-right: 1rem;
+            }
+        }
+    }
+}
+
+// Keep the profile button compact within the navbar.
+.navbar.fixed-top .usermenu #user-menu-toggle {
+    padding-inline: .5rem;
+}
+
+// Tighter user menu dropdown.
+.navbar.fixed-top .usermenu .dropdown-menu {
+    --#{$prefix}dropdown-padding-y: .5rem;
+    --#{$prefix}dropdown-divider-margin-y: .25rem;
 }

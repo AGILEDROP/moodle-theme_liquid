@@ -1,5 +1,10 @@
 $activity-edit-hover-bg: rgba(#032633, .06);
 
+// Moodle's design system components (navigation, edit switch, timeline) use Liquid's font as well.
+:root {
+    --mds-font-family-base: var(--bs-body-font-family);
+}
+
 #page-header {
     h1.h2 {
         font-weight: $headings-font-weight;
@@ -156,10 +161,6 @@ a:not([class]),
         /* stylelint-disable-next-line declaration-no-important */
         margin-top: 0 !important;
     }
-}
-
-.block_timeline .row > * {
-    width: auto;
 }
 
 .table-responsive {
@@ -330,15 +331,6 @@ body#page-admin-reportbuilder-edit {
     background-color: $btn-secondary-bg !important;
     /* stylelint-disable-next-line declaration-no-important */
     border-color: $btn-secondary-bg !important;
-}
-
-.simplesearchform .btn-submit {
-    /* stylelint-disable-next-line declaration-no-important */
-    background-color: $btn-primary-bg !important;
-    /* stylelint-disable-next-line declaration-no-important */
-    border-color: $btn-primary-bg !important;
-    /* stylelint-disable-next-line declaration-no-important */
-    color: $text-on-primary !important;
 }
 
 .listing-actions.course-listing-actions {
