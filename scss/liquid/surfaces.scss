@@ -31,7 +31,7 @@
     --liquid-ink: #{$liquid-dark-ink};
     --liquid-text-secondary: #{$liquid-dark-text-secondary};
     --liquid-topbar: #{$liquid-dark-page};
-    --liquid-nav-hover: #{$liquid-dark-page};
+    --liquid-nav-hover: #{rgba($liquid-surface, .1)};
     --liquid-nav-shadow-color: #{rgba($liquid-dark-ink, .16)};
     --liquid-nav-shadow: 4px 0 12px -4px var(--liquid-nav-shadow-color);
     --#{$prefix}body-color: var(--liquid-ink);
