@@ -1,6 +1,29 @@
 # Changelog
 
-All notable changes to the Liquid theme are documented in this file.
+## 2.0.0
+
+Compatible with Moodle 5.3.
+
+- Updated login, header, navigation and drawer templates for Moodle 5.3.
+- Integrated light and dark modes with Boost, including migration of existing
+  Liquid preferences and colour-mode updates for open TinyMCE editors.
+- Improved responsive navigation, course index controls and drawer stacking.
+- Refined light and dark styling across the dashboard, forms and course pages.
+- Added a compact slider option and per-slide text colour and size settings.
+- Improved front-page course cards, FAQ accordion and social links.
+- Improved password recovery inputs, login errors and notification links.
+- Updated the CI configuration for Moodle 5.3.
+- Declared Moodle 5.3 support in the plugin metadata.
+- Bundled Inter 4.1 locally with its SIL OFL 1.1 licence. Google Fonts now requires
+  explicit opt-in, with validated stylesheet URLs and Privacy API metadata.
+- Disabled Google Fonts on upgrade while preserving the saved font URL.
+
+## 1.1.1
+
+Compatible with Moodle 5.0, 5.1 and 5.2.
+
+- Refined button, file picker and login form styles.
+- Updated CI for Moodle 5.0+ testing with PostgreSQL 16 and MariaDB 10.11.
 
 ## 1.1.0
 
