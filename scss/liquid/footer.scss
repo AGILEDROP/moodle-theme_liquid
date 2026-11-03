@@ -34,7 +34,9 @@
     @include media-breakpoint-up(xlg) {
         left: $navbar-width;
 
-        .no-left-nav & {
+        .no-left-nav &,
+        .pagelayout-maintenance &,
+        .pagelayout-secure & {
             left: 0;
         }
     }
