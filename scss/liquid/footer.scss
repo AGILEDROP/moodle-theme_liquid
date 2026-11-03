@@ -13,7 +13,7 @@
         svg {
             width: 16px;
             height: 16px;
-            fill: $black;
+            fill: var(--#{$prefix}emphasis-color);
             transition: opacity ease .3s;
 
             &:hover,
@@ -37,5 +37,15 @@
         .no-left-nav & {
             left: 0;
         }
+    }
+}
+
+#page .stickyfooter .sticky-footer-content-wrapper:has(.course-linear-navigation) {
+    padding-left: .5rem;
+    padding-right: .5rem;
+
+    @include media-breakpoint-up(lg) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }

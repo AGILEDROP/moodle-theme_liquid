@@ -1,12 +1,12 @@
 // Dark mode dynamic variables (using preset variables where available)
-$dark-text-color: rgba($white, .8);
-$dark-link-color: rgba($white, .9);
+$dark-text-color: $liquid-dark-ink;
+$dark-link-color: $liquid-dark-ink;
 $dark-box-shadow: 0 .4375rem 1.25rem rgba(0, 0, 0, .24);
 $dark-btn-hover-bg: rgba($white, .1);
 $dark-btn-content-hover-bg: rgba($white, .15);
 
-$dark-surface-color: #191c20;
-$dark-card-header-bg: #576071;
+$dark-surface-color: $liquid-dark-surface;
+$dark-card-header-bg: $liquid-dark-sidebar;
 
 // Question/quiz panel colors
 $dark-outcome-color: #8e7a30;
@@ -37,15 +37,14 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .generaltable,
     .navbar-nav .popover-region > * > .icon,
     .navbar .secondary-navbar .nav-tabs .nav-link,
-    .navbar .main-navbar .nav-link,
     .block .block-cards span.categoryname,
     .block .block-cards .btn-link,
     .dropdown-menu,
     .form-control,
     .custom-select,
     .btn:not(.btn-outline-secondary):not(.btn-outline-primary):not(.btn-primary):not(.btn-secondary),
-    .frontpage-slider .swiper-slide .ratio .content-wrapper,
-    .frontpage-slider .swiper-slide .ratio .content-wrapper :not(.btn),
+    .frontpage-slider .swiper-slide .ratio .content-wrapper:not(.has-text-color),
+    .frontpage-slider .swiper-slide .ratio .content-wrapper:not(.has-text-color) :not(.btn),
     body#page-my-index #managecoursesform button {
         color: $dark-text-color;
     }
@@ -76,9 +75,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .navbar .secondary-navbar .nav-tabs .nav-link:hover,
     .navbar .secondary-navbar .nav-tabs .nav-link:focus,
     .navbar .secondary-navbar .nav-tabs .nav-link.active,
-    .navbar .main-navbar .nav-link:hover,
-    .navbar .main-navbar .nav-link:focus,
-    .navbar .main-navbar .nav-link.active,
     button {
         /* stylelint-disable-next-line declaration-no-important */
         color: $dark-link-color !important;
@@ -122,6 +118,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .page-link,
     .path-mod-assign .gradingtable tr.unselectedrow td,
     .loginform,
+    .pagelayout-login .login-container > div:not(.loginimage),
     .pagelayout-login#page-login-forgot_password .mform,
     .path-mod-chat .yui-layout-unit-right,
     &.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax #chat-messages .chat-message.course-theme,
@@ -146,9 +143,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
 
     #page.drawers .main-inner,
     .dropdown-menu,
-    .maincalendar .calendarmonth td:hover .day-number-circle,
-    .maincalendar .calendarmonth td:focus .day-number-circle,
-    .maincalendar .calendarmonth td:active .day-number-circle,
     .modal-content,
     .block .block-cards .btn.btn-link.btn-icon:hover,
     .block .block-cards .btn.btn-link.btn-icon:focus,
@@ -209,7 +203,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .popover-region-footer-container,
     .popover-region-header-container {
         /* stylelint-disable-next-line declaration-no-important */
-        border-color: $gray-800 !important;
+        border-color: $liquid-dark-border !important;
     }
 
     .nav-tabs .nav-link.active,
@@ -221,7 +215,6 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         background-color: $gray-800;
     }
 
-    .navbar.fixed-left,
     .path-mod-chat .yui-layout-unit-bottom,
     #chat-input-area,
     #chat-input-area table.generaltable,
@@ -234,7 +227,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     .content-item-container.unread,
     .no-left-nav .navbar .secondary-navbar nav,
     .swiper-slide .ratio {
-        background-color: #101216;
+        background-color: $liquid-dark-surface;
     }
 
     .drawer,
@@ -276,7 +269,7 @@ $dark-comment-border: rgba($dark-comment-color, .4);
     }
 
     .popover-region-toggle::after {
-        border-bottom-color: #101216;
+        border-bottom-color: $liquid-dark-surface;
     }
 
     .navbar .secondary-navbar .usermenu .dropdown-menu .submenu .header .icon,
@@ -608,7 +601,13 @@ $dark-comment-border: rgba($dark-comment-color, .4);
         }
     }
 
-    // Login form input has hardcoded light background
+    // Password recovery instructions share the colour of the surrounding login panel.
+    .pagelayout-login#page-login-forgot_password .generalbox {
+        color: $dark-text-color;
+        border-color: var(--#{$prefix}border-color);
+    }
+
+    // Login form input has hardcoded light background.
     .login-container .login-form .form-control {
         background-color: $dark-bg-color;
     }
@@ -915,12 +914,32 @@ $dark-comment-border: rgba($dark-comment-color, .4);
                 border-bottom-color: $gray-700;
             }
         }
+
+        .message.received h6 {
+            color: inherit;
+        }
     }
 
     img[alt^="QR code"] {
         padding: .5rem;
         background-color: $white;
         border-radius: .25rem;
+    }
+
+    .navbar.fixed-left {
+        background-color: var(--liquid-navigation);
+    }
+
+    .navbar.fixed-left .primary-navigation a {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $text-on-primary !important;
+    }
+
+    .navbar.fixed-left .primary-navigation a.active,
+    .navbar.fixed-left .primary-navigation a:hover,
+    .navbar.fixed-left .primary-navigation a:focus {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: $white !important;
     }
 }
 
