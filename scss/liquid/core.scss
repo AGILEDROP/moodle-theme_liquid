@@ -158,10 +158,6 @@ a:not([class]),
     }
 }
 
-.block_timeline .row > * {
-    width: auto;
-}
-
 .table-responsive {
     .table {
         .visually-hidden,
@@ -330,15 +326,6 @@ body#page-admin-reportbuilder-edit {
     background-color: $btn-secondary-bg !important;
     /* stylelint-disable-next-line declaration-no-important */
     border-color: $btn-secondary-bg !important;
-}
-
-.simplesearchform .btn-submit {
-    /* stylelint-disable-next-line declaration-no-important */
-    background-color: $btn-primary-bg !important;
-    /* stylelint-disable-next-line declaration-no-important */
-    border-color: $btn-primary-bg !important;
-    /* stylelint-disable-next-line declaration-no-important */
-    color: $text-on-primary !important;
 }
 
 .listing-actions.course-listing-actions {

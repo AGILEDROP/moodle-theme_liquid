@@ -34,6 +34,14 @@ $default = 1;
 $setting = new admin_setting_configcheckbox($name, $title, $desc, $default);
 $page->add($setting);
 
+// Compact banner slider, applies to all slides.
+$name = 'theme_liquid/compactslider';
+$title = get_string('compactslider', 'theme_liquid');
+$desc = get_string('compactsliderdesc', 'theme_liquid');
+$default = 0;
+$setting = new admin_setting_configcheckbox($name, $title, $desc, $default);
+$page->add($setting);
+
 // Number of slides on the frontpage.
 $name = 'theme_liquid/numberslides';
 $title = get_string('numberslides', 'theme_liquid');
@@ -51,6 +59,17 @@ $page->add(new admin_setting_configselect($name, $title, $desc, $default, $optio
 
 // Single slide settings.
 $numberslides = get_config('theme_liquid', 'numberslides');
+$slideimageratio = [
+    'full' => get_string('slideimageratiofull', 'theme_liquid'),
+    'banner' => get_string('slideimageratiobanner', 'theme_liquid'),
+];
+$slidetextsizes = [
+    '' => get_string('default'),
+    'sm' => get_string('slidetextsizesm', 'theme_liquid'),
+    'md' => get_string('slidetextsizemd', 'theme_liquid'),
+    'lg' => get_string('slidetextsizelg', 'theme_liquid'),
+    'xl' => get_string('slidetextsizexl', 'theme_liquid'),
+];
 for ($i = 1; $i <= $numberslides; $i++) {
     // Heading for single slide.
     $name = 'theme_liquid/slide' . $i . 'info';
@@ -69,7 +88,7 @@ for ($i = 1; $i <= $numberslides; $i++) {
     // Slide image.
     $name = 'theme_liquid/slide' . $i . 'image';
     $title = get_string('slideimage', 'theme_liquid');
-    $desc = get_string('slideimagedesc', 'theme_liquid');
+    $desc = get_string('slideimagedesc', 'theme_liquid', $slideimageratio);
     $setting = new admin_setting_configstoredfile($name, $title, $desc, 'slide' . $i . 'image');
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
@@ -82,11 +101,26 @@ for ($i = 1; $i <= $numberslides; $i++) {
     $setting = new admin_setting_configtextarea($name, $title, $desc, $default);
     $page->add($setting);
 
+    // Text color for slide, empty uses the theme default.
+    $name = 'theme_liquid/slide' . $i . 'textcolor';
+    $title = get_string('slidetextcolor', 'theme_liquid');
+    $desc = get_string('slidetextcolordesc', 'theme_liquid');
+    $default = '';
+    $setting = new admin_setting_configcolourpicker($name, $title, $desc, $default, null, false);
+    $page->add($setting);
+
+    // Text size for slide, empty uses the theme default.
+    $name = 'theme_liquid/slide' . $i . 'textsize';
+    $title = get_string('slidetextsize', 'theme_liquid');
+    $desc = get_string('slidetextsizedesc', 'theme_liquid');
+    $default = '';
+    $page->add(new admin_setting_configselect($name, $title, $desc, $default, $slidetextsizes));
+
     // Link for slide.
     $name = 'theme_liquid/slide' . $i . 'link';
     $title = get_string('slidelink', 'theme_liquid');
     $desc = get_string('slidelinkdesc', 'theme_liquid');
-    $default = '#';
+    $default = '';
     $setting = new admin_setting_configtext($name, $title, $desc, $default);
     $page->add($setting);
 }

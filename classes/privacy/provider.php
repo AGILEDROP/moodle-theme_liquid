@@ -52,6 +52,11 @@ class provider implements
      */
     public static function get_metadata(collection $collection): collection {
         $collection->add_user_preference(self::THEME_MODE, 'privacy:metadata:preference:thememode');
+        $collection->add_external_location_link('googlefonts', [
+            'ipaddress' => 'privacy:metadata:googlefonts:ipaddress',
+            'browser' => 'privacy:metadata:googlefonts:browser',
+        ], 'privacy:metadata:googlefonts');
+
         return $collection;
     }
 
@@ -66,7 +71,7 @@ class provider implements
 
         if (isset($thememodepref)) {
             $preferencestring = get_string('privacy:thememodelight', 'theme_liquid');
-            if ($thememodepref === '1') {
+            if (in_array((string) $thememodepref, ['dark', '1', 'true'], true)) {
                 $preferencestring = get_string('privacy:thememodedark', 'theme_liquid');
             }
             writer::export_user_preference(
