@@ -88,11 +88,27 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
+// The course index heading template was added in Moodle 5.2.
+$hascourseindexheading = file_exists($CFG->dirroot . '/theme/boost/templates/courseindexdrawerheading.mustache');
+$coursefullname = '';
+$courseurl = null;
+if ($hascourseindexheading && !empty($PAGE->course->id)) {
+    $coursefullname = format_string(
+        $PAGE->course->fullname,
+        true,
+        ['context' => context_course::instance($PAGE->course->id), 'escape' => false],
+    );
+    $courseurl = (new moodle_url('/course/view.php', ['id' => $PAGE->course->id]))->out(false);
+}
+
 $PAGE->requires->js_call_amd('theme_liquid/darkmode', 'init');
 $PAGE->requires->js_call_amd('theme_liquid/tooltips', 'init');
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
+    'hascourseindexheading' => $hascourseindexheading,
+    'coursefullname' => $coursefullname,
+    'courseurl' => $courseurl,
     'output' => $OUTPUT,
     'sidepreblocks' => $blockshtml,
     'hasblocks' => $hasblocks,

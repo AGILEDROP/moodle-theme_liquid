@@ -79,10 +79,10 @@
 {{/leftnavigation}}
 
 <nav class="navbar fixed-top bg-white navbar-expand">
-    <button class="navbar-toggler aabtn d-block d-xlg-none p-0 mr-3 border-0" data-toggler="drawers"
+    <button class="navbar-toggler aabtn d-block d-xlg-none p-0 me-3 border-0" data-toggler="drawers"
             data-action="toggle" data-target="theme_boost-drawers-primary">
         <span class="navbar-toggler-icon"></span>
-        <span class="sr-only">{{#str}}sidepanel, core{{/str}}</span>
+        <span class="visually-hidden">{{#str}}sidepanel, core{{/str}}</span>
     </button>
 
     <a href="{{{ config.homeurl }}}" class="navbar-brand m-0 p-0 d-flex align-items-center d-xlg-none">
@@ -119,27 +119,27 @@
         {{{ output.page_heading_menu }}}
     </ul>
 
-    <div class="toggle-holder ml-auto mr-3 d-none d-xlg-flex">
-        <label class="light" for="darktheme-checkbox-top">
-            <i class="fa fa-sun-o"></i>
+    <div class="toggle-holder ms-auto me-3 d-none d-sm-flex flex-shrink-0">
+        <label class="light" for="darktheme-checkbox-top" aria-hidden="true">
+            <i class="icon fa fa-sun fa-fw m-0"></i>
         </label>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input darktheme-checkbox" id="darktheme-checkbox-top">
-            <span class="custom-control-label"></span>
+        <div class="form-check form-switch">
+            <input type="checkbox" role="switch" class="form-check-input darktheme-checkbox" id="darktheme-checkbox-top">
+            <label class="form-check-label visually-hidden" for="darktheme-checkbox-top">{{#str}}darkmode, theme_liquid{{/str}}</label>
         </div>
-        <label class="dark" for="darktheme-checkbox-top">
-            <i class="fa fa-moon-o"></i>
+        <label class="dark" for="darktheme-checkbox-top" aria-hidden="true">
+            <i class="icon fa fa-moon fa-fw m-0"></i>
         </label>
     </div>
 
-    <div id="usernavigation" class="navbar-nav ml-auto ml-xlg-0">
+    <div id="usernavigation" class="navbar-nav ms-auto ms-sm-0">
         {{# output.search_box }}
             {{{ output.search_box }}}
-            <div class="divider border-left h-75 align-self-center mx-1"></div>
+            <div class="divider border-start h-75 align-self-center mx-1"></div>
         {{/output.search_box}}
         {{#langmenu}}
             {{> theme_boost/language_menu }}
-            <div class="divider border-left h-75 align-self-center mx-1"></div>
+            <div class="divider border-start h-75 align-self-center mx-1"></div>
         {{/langmenu}}
         {{{ output.navbar_plugin_output }}}
         <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
@@ -147,7 +147,25 @@
                 {{> core/user_menu }}
             {{/usermenu}}
         </div>
-        {{{ output.edit_switch }}}
+        {{! On small screens both toggles live in this menu; from sm up only the edit switch shows inline. }}
+        <div class="dropdown navbar-edit-actions">
+            <button type="button"
+                    class="btn btn-icon d-sm-none"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false"
+                    aria-label="{{#str}}more, core{{/str}}">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-end">
+                <div class="form-check form-switch darkmode-switch d-sm-none">
+                    <label class="form-check-label" for="darktheme-checkbox-menu">{{#str}}darkmode, theme_liquid{{/str}}</label>
+                    <input type="checkbox" role="switch" class="form-check-input darktheme-checkbox" id="darktheme-checkbox-menu">
+                </div>
+                {{{ output.edit_switch }}}
+            </div>
+        </div>
     </div>
 </nav>
 {{#secondarymoremenu}}
