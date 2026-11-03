@@ -155,6 +155,15 @@
             color: $text-on-primary;
         }
 
+        .primary-navigation {
+            padding-inline: 0;
+
+            .nav-link {
+                width: 100%;
+                padding-inline: 1rem;
+            }
+        }
+
         .primary-navigation a {
             position: relative;
             z-index: 0;
@@ -162,7 +171,7 @@
             &::before {
                 content: "";
                 position: absolute;
-                left: -.75rem;
+                left: 0;
                 top: 0;
                 display: block;
                 width: .375rem;
