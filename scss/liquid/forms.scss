@@ -13,9 +13,12 @@
 }
 
 .simplesearchform .btn-submit {
-    background-color: $primary;
-    border-color: $primary;
-    color: $white;
+    /* stylelint-disable-next-line declaration-no-important */
+    background-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    border-color: $btn-primary-bg !important;
+    /* stylelint-disable-next-line declaration-no-important */
+    color: $text-on-primary !important;
 }
 
 .form-filetypes-descriptions {
@@ -96,5 +99,20 @@ select.form-control[multiple] {
     > .col-md-9 {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+}
+
+// Form labels: right-aligned, with the required and help icons in front of the label.
+// Core's form element template (core_form/element-template) lays the label column out left-aligned with
+// pb-0 pe-md-0; restore Liquid's layout and the column's normal padding.
+.fitem > .col-form-label {
+    text-align: right;
+    /* stylelint-disable-next-line declaration-no-important */
+    padding-bottom: add($input-padding-y, $input-border-width) !important;
+
+    @include media-breakpoint-up(md) {
+        flex-direction: row-reverse;
+        /* stylelint-disable-next-line declaration-no-important */
+        padding-right: calc(var(--#{$prefix}gutter-x) * .5) !important;
     }
 }

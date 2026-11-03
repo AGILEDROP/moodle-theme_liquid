@@ -1,0 +1,176 @@
+// Shared surface roles, applied after the legacy component rules.
+:root,
+[data-bs-theme="light"] {
+    --liquid-page: #{$liquid-page};
+    --liquid-surface: #{$liquid-surface};
+    --liquid-sidebar: #{$liquid-page};
+    --liquid-navigation: #{$liquid-navy};
+    --liquid-field: #{$liquid-field};
+    --liquid-border: #{$liquid-border};
+    --liquid-ink: #{$liquid-ink};
+    --liquid-text-secondary: #{$liquid-text-secondary};
+    --liquid-topbar: #{$liquid-surface};
+    --liquid-nav-hover: #{rgba($liquid-surface, .1)};
+    --liquid-nav-shadow-color: #{rgba($liquid-navy, .16)};
+    --liquid-nav-shadow: 4px 0 12px -4px var(--liquid-nav-shadow-color);
+    --#{$prefix}border-color: var(--liquid-border);
+    --#{$prefix}border-color-translucent: var(--liquid-border);
+    --mds-text-default: var(--liquid-ink);
+    --mds-text-subtle: var(--liquid-text-secondary);
+    --mds-text-muted: var(--liquid-text-secondary);
+    --mds-border-default: var(--liquid-border);
+}
+
+[data-bs-theme="dark"] {
+    --liquid-page: #{$liquid-dark-page};
+    --liquid-surface: #{$liquid-dark-surface};
+    --liquid-sidebar: #{$liquid-dark-sidebar};
+    --liquid-navigation: #{$liquid-navy};
+    --liquid-field: #{$liquid-dark-page};
+    --liquid-border: #{$liquid-dark-border};
+    --liquid-ink: #{$liquid-dark-ink};
+    --liquid-text-secondary: #{$liquid-dark-text-secondary};
+    --liquid-topbar: #{$liquid-dark-page};
+    --liquid-nav-hover: #{rgba($liquid-surface, .1)};
+    --liquid-nav-shadow-color: #{rgba($liquid-dark-ink, .16)};
+    --liquid-nav-shadow: 4px 0 12px -4px var(--liquid-nav-shadow-color);
+    --#{$prefix}body-color: var(--liquid-ink);
+    --#{$prefix}body-color-rgb: #{to-rgb($liquid-dark-ink)};
+    --#{$prefix}secondary-color: var(--liquid-text-secondary);
+    --#{$prefix}secondary-color-rgb: #{to-rgb($liquid-dark-text-secondary)};
+    --#{$prefix}border-color: var(--liquid-border);
+    --#{$prefix}border-color-translucent: var(--liquid-border);
+    --#{$prefix}link-color: #{$liquid-dark-ink};
+    --#{$prefix}link-color-rgb: #{to-rgb($liquid-dark-ink)};
+    --mds-text-default: var(--liquid-ink);
+    --mds-text-emphasis: var(--liquid-ink);
+    --mds-text-subtle: var(--liquid-text-secondary);
+    --mds-text-muted: var(--liquid-text-secondary);
+    --mds-text-link-primary-default: var(--liquid-ink);
+    --mds-bg-surface-default: var(--liquid-surface);
+    --mds-bg-surface-subtle: var(--liquid-page);
+    --mds-bg-surface-strong: var(--liquid-sidebar);
+    --mds-border-default: var(--liquid-border);
+    --mds-border-subtle: var(--liquid-border);
+}
+
+body,
+#page.drawers {
+    background-color: var(--liquid-page);
+    color: var(--liquid-ink);
+}
+
+// Utility classes on these containers otherwise pin them to the legacy background.
+/* stylelint-disable declaration-no-important */
+.navbar.fixed-top.bg-white {
+    background-color: var(--liquid-topbar) !important;
+}
+
+#page.drawers .main-inner,
+.card,
+.dropdown-menu,
+.modal-content,
+.message-app,
+.popover-region-container,
+.popover-region-footer-container,
+.dashboard-card-footer {
+    background-color: var(--liquid-surface);
+    border-color: var(--liquid-border);
+}
+
+[data-bs-theme="dark"] .card,
+[data-bs-theme="dark"] .dropdown-menu,
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--liquid-surface);
+}
+
+body#page-my-index #page.drawers .main-inner {
+    background-color: transparent !important;
+}
+
+.drawer.drawer-left,
+.drawer.drawer-right {
+    background-color: var(--liquid-sidebar);
+}
+
+.navbar.fixed-left,
+.drawer.drawer-left.drawer-primary {
+    background-color: var(--liquid-navigation);
+    color: $white;
+}
+
+[data-bs-theme="dark"] .drawer.drawer-left.drawer-primary {
+    background-color: var(--liquid-navigation);
+}
+
+.drawer.drawer-right {
+    border-left: 1px solid var(--liquid-border);
+
+    &.show {
+        box-shadow: -4px 0 12px -4px var(--liquid-nav-shadow-color);
+    }
+}
+
+.drawer.drawer-left:not(.drawer-primary) {
+    border-right: 1px solid var(--liquid-border);
+}
+
+.navbar.fixed-left .primary-navigation a,
+#theme_boost-drawers-primary a.list-group-item {
+    &:hover,
+    &:focus-visible,
+    &.active {
+        background-color: var(--liquid-nav-hover) !important;
+    }
+}
+
+.form-control,
+.custom-select,
+.form-select,
+textarea:not(.tox *),
+#input-message {
+    background-color: var(--liquid-field);
+    color: var(--liquid-ink);
+    border-color: var(--liquid-border);
+
+    &:focus {
+        background-color: var(--liquid-field);
+        border-color: $liquid-bright-teal !important;
+    }
+}
+
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .custom-select,
+[data-bs-theme="dark"] textarea:not(.tox *) {
+    background-color: var(--liquid-field);
+}
+
+.block .card-title,
+.block .card-header,
+.dashboard-card .coursename {
+    color: var(--liquid-ink);
+}
+
+.block .card-header {
+    background-color: transparent;
+}
+
+.block .text-muted,
+.block .categoryname,
+.block_recentlyaccesseditems small {
+    color: var(--liquid-text-secondary) !important;
+}
+
+// Keep the block surface and use simple rows for its nested activity cards.
+.block_recentlyaccesseditems [data-region="items-list"] > .card {
+    border: 0 !important;
+    border-radius: 0;
+    border-bottom: 1px solid var(--liquid-border) !important;
+    background-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+        background-color: var(--liquid-field);
+    }
+}
+/* stylelint-enable declaration-no-important */

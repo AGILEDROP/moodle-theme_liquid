@@ -18,7 +18,7 @@
 
     @template core/editswitch
 
-    Liquid theme override - uses Bootstrap 4 custom-control instead of Bootstrap 5 form-check
+    Liquid theme override - uses the same Bootstrap 5 form-switch as the dark mode toggle.
 
     Example context (json):
     {
@@ -32,23 +32,21 @@
     }
 }}
 <form action="{{{legacyseturl}}}" method="post" class="d-flex align-items-center editmode-switch-form">
-    <div class="input-group">
-        <label class="me-2 mb-0" for="{{uniqid}}-editingswitch">
+    <div class="form-check form-switch">
+        <label class="form-check-label" for="{{uniqid}}-editingswitch">
             {{#str}} editmode {{/str}}
         </label>
-        <div class="custom-control custom-switch">
-            <input type="checkbox"{{!
-                }} name="setmode"{{!
-                }}{{#checked}}{{!
-                    }} checked{{!
-                }}{{/checked}}{{!
-                }} class="custom-control-input"{{!
-                }} id="{{uniqid}}-editingswitch"{{!
-                }} data-context="{{{pagecontextid}}}"{{!
-                }} data-pageurl="{{{pageurl}}}"{{!
-            }}>
-            <label class="custom-control-label" for="{{uniqid}}-editingswitch"></label>
-        </div>
+        <input type="checkbox"{{!
+            }} role="switch"{{!
+            }} name="setmode"{{!
+            }}{{#checked}}{{!
+                }} checked{{!
+            }}{{/checked}}{{!
+            }} class="form-check-input"{{!
+            }} id="{{uniqid}}-editingswitch"{{!
+            }} data-context="{{{pagecontextid}}}"{{!
+            }} data-pageurl="{{{pageurl}}}"{{!
+        }}>
     </div>
     <input type="hidden" name="sesskey" value="{{{sesskey}}}">
     <input type="hidden" name="pageurl" value="{{{pageurl}}}">
