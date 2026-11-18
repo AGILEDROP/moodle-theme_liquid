@@ -10,7 +10,7 @@
             top: calc(#{$navbar-height} + 0.7rem);
         }
 
-        .btn.icon-no-margin {
+        .btn {
             border-radius: $border-radius;
             padding: 16px;
             background-color: $btn-secondary-bg;
@@ -57,7 +57,7 @@
     .drawer-right-toggle {
         margin: 0;
 
-        .btn.icon-no-margin {
+        .btn {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             padding-right: 10px;
@@ -122,6 +122,16 @@
             }
         }
 
+        &.show-drawer-left.show-drawer-right {
+            @include media-breakpoint-up(xlg) {
+                margin-left: calc(#{$navbar-width} + #{$drawer-left-width});
+
+                .no-left-nav & {
+                    margin-left: $drawer-left-width;
+                }
+            }
+        }
+
         #region-main {
             > .notifications {
                 padding-left: 15px;
@@ -164,11 +174,10 @@
             }
         }
 
-        &.drawer-primary {
-            .no-left-nav & {
-                top: 0;
-                height: 100dvh;
-            }
-        }
     }
+}
+
+// Boost 5.3 gives .main-inner the body background; Liquid shows it as a white card on a grey page.
+#page.drawers .main-inner {
+    background-color: $white;
 }

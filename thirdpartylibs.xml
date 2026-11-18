@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <libraries>
     <library>
+        <location>fonts/inter</location>
+        <name>Inter</name>
+        <version>4.1</version>
+        <license>SIL OFL 1.1</license>
+        <repository>https://github.com/rsms/inter</repository>
+    </library>
+    <library>
         <location>js/swiper</location>
         <name>SwiperJs</name>
         <version>11.0.5</version>

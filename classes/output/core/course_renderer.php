@@ -74,7 +74,12 @@ class course_renderer extends \core_course_renderer {
 
             return $this->output->render_from_template(
                 "theme_liquid/frontpage/available_courses",
-                ['courses' => $data],
+                [
+                    'courses' => $data,
+                    'viewmoreurl' => $totalcount > count($data)
+                        ? (new moodle_url('/course/index.php'))->out(false) : false,
+                    'viewmoretext' => get_string('fulllistofcourses'),
+                ],
             );
         }
     }

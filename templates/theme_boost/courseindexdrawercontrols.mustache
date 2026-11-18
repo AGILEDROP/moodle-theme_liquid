@@ -1,0 +1,41 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/courseindexdrawercontrols
+
+    Liquid: the Moodle 5.3 expand/collapse all toggle as an icon-only button, shown on the
+    course index heading line next to the close button (see theme_boost/drawers).
+    The divider below the heading is rendered by theme_boost/drawers.
+
+    Example context (json):
+    {
+    }
+}}
+<div id="courseindexdrawercontrols">
+    <button type="button"
+            class="courseindex-collapsemenu btn btn-icon icon-size-2"
+            aria-expanded="true"
+            data-action="toggleallcourseindexsections">
+        <span class="collapseall">{{#pix}} t/collapseall, core, {{#str}}collapseall{{/str}} {{/pix}}</span>
+        <span class="expandall">{{#pix}} t/expandall, core, {{#str}}expandall{{/str}} {{/pix}}</span>
+    </button>
+</div>
+{{#js}}
+    require(['theme_boost/courseindexdrawercontrols'], function(component) {
+    component.init('courseindexdrawercontrols');
+    });
+{{/js}}

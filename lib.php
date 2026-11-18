@@ -45,7 +45,42 @@ function theme_liquid_get_main_scss_content($theme) {
     } else {
         $scss .= file_get_contents($CFG->dirroot . '/theme/liquid/scss/preset/default.scss');
     }
+    // Include local fonts for all presets, including uploaded presets.
+    $scss .= "\n" . file_get_contents($CFG->dirroot . '/theme/liquid/scss/liquid/fonts.scss');
     return $scss;
+}
+
+/**
+ * Return the explicitly enabled Google Fonts stylesheet URL, if valid.
+ *
+ * @param theme_config $theme The theme configuration.
+ * @return moodle_url|null The stylesheet URL, or null when external loading is disabled or invalid.
+ */
+function theme_liquid_get_google_font_url($theme): ?moodle_url {
+    if (empty($theme->settings->usegooglefonts)) {
+        return null;
+    }
+
+    $url = trim($theme->settings->googlefonturl ?? '');
+    if ($url === '' || clean_param($url, PARAM_URL) !== $url) {
+        return null;
+    }
+
+    $parts = parse_url($url);
+    if (
+        $parts === false
+        || ($parts['scheme'] ?? '') !== 'https'
+        || ($parts['host'] ?? '') !== 'fonts.googleapis.com'
+        || !in_array($parts['path'] ?? '', ['/css', '/css2'], true)
+        || isset($parts['user'])
+        || isset($parts['pass'])
+        || isset($parts['port'])
+        || isset($parts['fragment'])
+    ) {
+        return null;
+    }
+
+    return new moodle_url($url);
 }
 
 /**
@@ -104,32 +139,6 @@ function theme_liquid_get_pre_scss($theme) {
 function theme_liquid_get_extra_scss($theme) {
     $content = '';
     return !empty($theme->settings->scss) ? $theme->settings->scss . ' ' . $content : $content;
-}
-
-/**
- * Set HTML attributes for dark mode.
- *
- *  This is a legacy callback that is used for compatibility with older Moodle versions.
- *  Moodle 4.4+ will use theme_liquid\hook_callbacks::before_html_attributes instead.
- *
- * @return array An associative array of HTML attributes.
- */
-function theme_liquid_add_htmlattributes() {
-    global $USER;
-
-    $darkthemecookie = isset($_COOKIE['darkThemeEnabled']) ? $_COOKIE['darkThemeEnabled'] : null;
-    $theme = ($darkthemecookie === '1') ? 'dark' : 'light';
-
-    if (!isguestuser() && isloggedin()) {
-        $themeuserpreferences = get_user_preferences('theme_liquid-dark-mode', null, $USER->id);
-        if (!is_null($themeuserpreferences['theme_liquid-dark-mode']) && $themeuserpreferences['theme_liquid-dark-mode'] === true) {
-            $theme = 'dark';
-        }
-    }
-
-    return [
-        'data-bs-theme' => $theme,
-    ];
 }
 
 /**
@@ -195,20 +204,4 @@ function theme_liquid_pluginfile($course, $cm, $context, $filearea, $args, $forc
     } else {
         send_file_not_found();
     }
-}
-
-/**
- * Get the current user preferences that are available
- *
- * @return array[]
- */
-function theme_liquid_user_preferences(): array {
-    return [
-        'theme_liquid-dark-mode' => [
-            'type' => PARAM_ALPHA,
-            'null' => NULL_NOT_ALLOWED,
-            'default' => '0',
-            'permissioncallback' => [core_user::class, 'is_current_user'],
-        ],
-    ];
 }

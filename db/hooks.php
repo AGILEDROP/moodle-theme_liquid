@@ -31,4 +31,8 @@ $callbacks = [
         'callback' => '\theme_liquid\hook_callbacks::before_html_attributes',
         'priority' => 0,
     ],
+    [
+        'hook' => \core\hook\output\before_standard_head_html_generation::class,
+        'callback' => '\theme_liquid\hook_callbacks::before_standard_head_html_generation',
+    ],
 ];

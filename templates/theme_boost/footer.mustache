@@ -82,11 +82,9 @@
         </div>
         <div class="footer-section col-lg-12 col-xl-3 ml-auto">
             <hr class="d-none d-lg-block d-xl-none">
-            {{^leftnavigation}}
-                <div class="d-none d-lg-block mb-3">
-                    {{> theme_liquid/socialicons}}
-                </div>
-            {{/leftnavigation}}
+            <div class="d-none d-lg-block {{#leftnavigation}}d-xlg-none {{/leftnavigation}}mb-3">
+                {{> theme_liquid/socialicons}}
+            </div>
             <div>{{#str}}developedby, theme_liquid{{/str}}</div>
             <div>{{#str}}poweredbymoodle, core{{/str}}</div>
             {{#output.moodle_release}}
@@ -94,19 +92,6 @@
                     {{#str}}version, core{{/str}} {{{ output.moodle_release }}}
                 </div>
             {{/output.moodle_release}}
-        </div>
-
-        <div class="toggle-holder footer-section col-12 d-xlg-none">
-            <label class="light" for="darktheme-checkbox-bottom">
-                <i class="fa fa-sun-o"></i>
-            </label>
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input darktheme-checkbox" id="darktheme-checkbox-bottom">
-                <span class="custom-control-label"></span>
-            </div>
-            <label class="dark" for="darktheme-checkbox-bottom">
-                <i class="fa fa-moon-o"></i>
-            </label>
         </div>
 
         <div class="col-12 d-block d-lg-none">

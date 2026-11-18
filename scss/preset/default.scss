@@ -1,14 +1,17 @@
+@import "design-system";
+@import "palette";
+
 // Color variables.
 $white: #fff !default;
-$gray-100: #f6f9fc !default;
-$gray-200: #edf1f5 !default;
-$gray-300: #e3e9ef !default;
+$gray-100: $liquid-page !default;
+$gray-200: $liquid-field !default;
+$gray-300: $liquid-border !default;
 $gray-400: #d7dde2 !default;
 $gray-500: #b4bbc3 !default;
-$gray-600: #858c97 !default;
-$gray-700: #576071 !default;
+$gray-600: $liquid-slate !default;
+$gray-700: $liquid-text-secondary !default;
 $gray-800: #434a57 !default;
-$gray-900: #121519 !default;
+$gray-900: $liquid-ink !default;
 $black: #000 !default;
 
 $grays: () !default;
@@ -58,8 +61,8 @@ $colors: map-merge(
     $colors
 );
 
-$primary: $blue !default;
-$secondary: $gray-600 !default;
+$primary: $liquid-navy !default;
+$secondary: $liquid-orange !default;
 $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
@@ -79,9 +82,14 @@ $btn-secondary-hover-bg: darken($btn-secondary-bg, 10%) !default;
 $btn-secondary-hover-border: darken($btn-secondary-bg, 15%) !default;
 
 // Dark mode variables
-$dark-bg-color: #191c20 !default;
-$dark-box-bg-color: #121519 !default;
+$dark-bg-color: $liquid-dark-page !default;
+$dark-box-bg-color: $liquid-dark-surface !default;
 $dark-btn-content-bg: #032633 !default;
+
+// Boost's dark colour mode palette (theme/boost/scss/moodle/colour-mode.scss), mapped to Liquid's dark surfaces.
+$dark-surface-page: $dark-bg-color !default;          // Page background.
+$dark-surface-raised: $liquid-dark-surface !default;  // Cards, course sections, modals, dropdowns.
+$dark-surface-recessed: $liquid-dark-sidebar !default; // Drawers and supporting navigation.
 
 $theme-colors: () !default;
 $theme-colors: map-merge(
@@ -136,15 +144,21 @@ $auth-form-max-width: 25rem !default;
 $auth-logo-max-width: 20rem !default;
 $auth-right-panel-max-width: 50rem !default;
 $auth-box-border-radius: 0.25rem !default;
+// Login fields with icons and the password visibility toggle (Boost's login.scss): the same background as
+// Liquid's other form fields in both colour modes.
+$login-input-bg: var(--liquid-field) !default;
 
 // Shadow variables.
-$box-shadow-sm: 0 .375rem .75rem -.125rem rgba(208, 208, 196, .24) !default;
-$box-shadow: 0 .4375rem 1.25rem rgba(208, 208, 196, .32) !default;
-$box-shadow-lg: 0 .5rem 1.75rem -.125rem rgba(208, 208, 196, .48) !default;
+$box-shadow-sm: 0 .375rem .75rem -.125rem rgba($liquid-navy, .08) !default;
+$box-shadow: 0 .4375rem 1.25rem rgba($liquid-navy, .12) !default;
+$box-shadow-lg: 0 .5rem 1.75rem -.125rem rgba($liquid-navy, .16) !default;
 
 // Body variables.
-$body-bg: #f2f2f2 !default;
-$body-color: $gray-700 !default;
+$body-bg: $liquid-page !default;
+$body-color: $liquid-ink !default;
+$input-bg: $liquid-field !default;
+$input-color: $liquid-ink !default;
+$card-border-color: $liquid-border !default;
 
 // Navbar variables.
 $navbar-width: 300px !default;
@@ -167,7 +181,7 @@ $h6-font-size: $font-size-base !default;
 
 // Links variables.
 $link-color: $body-color !default;
-$link-hover-color: $primary !default;
+$link-hover-color: $liquid-bright-teal !default;
 
 // Button variables.
 $btn-padding-y: .75rem !default;
