@@ -32,23 +32,31 @@ paid subscription or API key is required.
 
 ## Installation
 
-1. Download the ZIP matching your Moodle version from Moodle Marketplace.
-2. Install it through **Site administration > Plugins > Install plugins**.
-   For manual installation on Moodle 5.3, extract the theme into
-   `<moodle-root>/public/theme/liquid`, with `version.php` directly inside `liquid`.
-3. Open **Site administration > Notifications** and complete installation.
-4. Select Liquid under **Site administration > Appearance > Themes**.
+### Composer
 
-For Git installation of this branch, run the following from the Moodle 5.3 root
-when `public/theme/liquid` does not already exist:
+Once a stable release is available on Packagist, run this command from the root of your Composer-managed Moodle project:
 
 ```bash
-git clone --branch feature/moodle-5.3-rewrite --single-branch https://github.com/AGILEDROP/moodle-theme_liquid.git public/theme/liquid
+composer require agiledrop/moodle-theme_liquid
 ```
 
-For older Moodle versions, use the corresponding Marketplace package. Install
-into `public/theme/liquid` if the Moodle installation has a `public/` directory,
-or `theme/liquid` otherwise. Rename the extracted directory to `liquid` if needed.
+### ZIP
+
+Choose a release compatible with your Moodle version. Open **Site administration → Plugins → Install plugins**, upload the plugin ZIP and follow the installation prompts.
+
+### Manual or Git installation
+
+Extract the plugin or check out the matching release from the [GitHub repository](https://github.com/AGILEDROP/moodle-theme_liquid) into `theme/liquid/` under Moodle's web root. If your project uses a `public/` web root, the path from the project root is `public/theme/liquid/`. The directory should contain the plugin's `version.php`.
+
+### Complete the installation
+
+After installing the files with Composer, manually or with Git, open **Site administration → Notifications**. Alternatively, run the following command from the Moodle project root:
+
+```bash
+php admin/cli/upgrade.php
+```
+
+After installation, select **Liquid** under **Site administration → Appearance → Themes**.
 
 ## Configuration
 
