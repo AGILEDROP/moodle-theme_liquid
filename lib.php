@@ -45,7 +45,42 @@ function theme_liquid_get_main_scss_content($theme) {
     } else {
         $scss .= file_get_contents($CFG->dirroot . '/theme/liquid/scss/preset/default.scss');
     }
+    // Include local fonts for all presets, including uploaded presets.
+    $scss .= "\n" . file_get_contents($CFG->dirroot . '/theme/liquid/scss/liquid/fonts.scss');
     return $scss;
+}
+
+/**
+ * Return the explicitly enabled Google Fonts stylesheet URL, if valid.
+ *
+ * @param theme_config $theme The theme configuration.
+ * @return moodle_url|null The stylesheet URL, or null when external loading is disabled or invalid.
+ */
+function theme_liquid_get_google_font_url($theme): ?moodle_url {
+    if (empty($theme->settings->usegooglefonts)) {
+        return null;
+    }
+
+    $url = trim($theme->settings->googlefonturl ?? '');
+    if ($url === '' || clean_param($url, PARAM_URL) !== $url) {
+        return null;
+    }
+
+    $parts = parse_url($url);
+    if (
+        $parts === false
+        || ($parts['scheme'] ?? '') !== 'https'
+        || ($parts['host'] ?? '') !== 'fonts.googleapis.com'
+        || !in_array($parts['path'] ?? '', ['/css', '/css2'], true)
+        || isset($parts['user'])
+        || isset($parts['pass'])
+        || isset($parts['port'])
+        || isset($parts['fragment'])
+    ) {
+        return null;
+    }
+
+    return new moodle_url($url);
 }
 
 /**

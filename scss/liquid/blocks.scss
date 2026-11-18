@@ -12,7 +12,7 @@
     }
 }
 
-section:not(#region-main) .block_calendar_month {
+.block-region .block_calendar_month {
     .maincalendar {
         .controls {
             margin: 0;
@@ -40,11 +40,5 @@ section:not(#region-main) .block_calendar_month {
             }
         }
 
-        .calendarmonth td .day-number-circle {
-            width: 100%;
-            height: auto;
-            max-width: 2.125rem;
-            aspect-ratio: 1 / 1;
-        }
     }
 }

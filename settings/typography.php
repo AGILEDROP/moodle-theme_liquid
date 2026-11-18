@@ -26,11 +26,21 @@ defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_liquid_typography', get_string('typographysettings', 'theme_liquid'));
 
+// External fonts require an explicit opt-in. Inter is bundled locally.
+$setting = new admin_setting_configcheckbox(
+    'theme_liquid/usegooglefonts',
+    get_string('usegooglefonts', 'theme_liquid'),
+    get_string('usegooglefonts_desc', 'theme_liquid'),
+    0
+);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // Google font URL.
 $title = get_string('googlefonturl', 'theme_liquid');
 $description = get_string('googlefonturl_desc', 'theme_liquid');
 $default = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
-$setting = new admin_setting_configtext('theme_liquid/googlefonturl', $title, $description, $default, PARAM_TEXT);
+$setting = new admin_setting_configtext('theme_liquid/googlefonturl', $title, $description, $default, PARAM_URL);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 

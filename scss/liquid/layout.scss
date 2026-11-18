@@ -10,7 +10,7 @@
             top: calc(#{$navbar-height} + 0.7rem);
         }
 
-        .btn.icon-no-margin {
+        .btn {
             border-radius: $border-radius;
             padding: 16px;
             background-color: $btn-secondary-bg;
@@ -57,7 +57,7 @@
     .drawer-right-toggle {
         margin: 0;
 
-        .btn.icon-no-margin {
+        .btn {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             padding-right: 10px;
@@ -119,6 +119,16 @@
             @include media-breakpoint-up(xl) {
                 margin-right: $drawer-right-width;
                 padding-right: 1.5rem;
+            }
+        }
+
+        &.show-drawer-left.show-drawer-right {
+            @include media-breakpoint-up(xlg) {
+                margin-left: calc(#{$navbar-width} + #{$drawer-left-width});
+
+                .no-left-nav & {
+                    margin-left: $drawer-left-width;
+                }
             }
         }
 
