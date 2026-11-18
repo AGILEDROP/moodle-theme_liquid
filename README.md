@@ -46,17 +46,35 @@ Easily accessible via **Site Administration > Appearance > Themes > Liquid (cog 
 7. **Advanced Options:**
    Access additional settings for advanced customization needs.
 
+## Compatibility
+
+Liquid 1.2.0 supports Moodle 5.0.x, 5.1.x and 5.2.x.
+
 ## Installation
 
-To install the Liquid theme, follow these steps:
+### Composer
 
-1. Clone or download the repository into the appropriate Moodle directory:
+Once a stable release is available on Packagist, run this command from the root of your Composer-managed Moodle project:
 
-   ```bash
-   git clone https://github.com/AGILEDROP/moodle-theme_liquid.git
-   ```
+```bash
+composer require agiledrop/moodle-theme_liquid
+```
 
-2. Navigate to **Site Administration > Notifications** in Moodle and follow the prompts to complete the installation.
+### ZIP
+
+Choose a release compatible with your Moodle version. Open **Site administration → Plugins → Install plugins**, upload the plugin ZIP and follow the installation prompts.
+
+### Manual or Git installation
+
+Extract the plugin or check out the matching release from the [GitHub repository](https://github.com/AGILEDROP/moodle-theme_liquid) into `theme/liquid/` under Moodle's web root. If your project uses a `public/` web root, the path from the project root is `public/theme/liquid/`. The directory should contain the plugin's `version.php`.
+
+### Complete the installation
+
+After installing the files with Composer, manually or with Git, open **Site administration → Notifications**. Alternatively, run the following command from the Moodle project root:
+
+```bash
+php admin/cli/upgrade.php
+```
 
 ## Usage
 
